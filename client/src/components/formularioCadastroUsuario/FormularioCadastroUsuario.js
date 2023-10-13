@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styles from './FormularioCadastroUsuario.module.css'
 import Input from '../input/Input'
+import Button from '../button/Button'
 
 function FormularioCadastroUsuario() {
-    const [values, setValues] = useState({
+    const [dados, setDados] = useState({
         iUsername: '',
         iNomeExib: '',
         iEmail: '',
@@ -12,9 +13,37 @@ function FormularioCadastroUsuario() {
         iConfirmSenha: '',
     })
 
+    const validarUsername = (username) => {
+        document.querySelector('#cookie_iUsername').innerText = ''
+        if (username.length < 5 || username.length > 20) { return false }
+        return true
+    }
+
+    const validarNomeExib = (nomeExib) => {
+        document.querySelector('#cookie_iNomeExib').innerText = ''
+        if (nomeExib !== '' && (nomeExib.length < 2 || nomeExib.length > 30)) { return false }
+        if (nomeExib === '') { nomeExib = dados.iUsername }
+        return true
+    }
+
+    const validarCampos = () => {
+        if (!validarUsername(dados.iUsername)) {
+            document.querySelector('#cookie_iUsername').innerText = inputs[0].errorMessage
+            return false
+        }
+
+        if (!validarNomeExib(dados.iNomeExib)) {
+            document.querySelector('#cookie_iNomeExib').innerText = inputs[1].errorMessage
+            return false
+        }
+        return true
+    }
+
     const cadastrarUsuario = (e) => {
-        console.log(values)
         e.preventDefault()
+        if (validarCampos()) {
+
+        }
     }
 
     const inputs = [
@@ -23,16 +52,20 @@ function FormularioCadastroUsuario() {
             name: 'iUsername',
             type: 'text',
             placeholder: 'Insira seu @',
-            errorMessage: 'Seu nome deve conter entre 4-20 caractéres',
-            label: 'Nome de usuário'
+            errorMessage: 'Deve conter entre 4-20 caracteres',
+            label: 'Nome de usuário',
+            className: 'cadastro',
+            required: true
         },
         {
             id: 2,
             name: 'iNomeExib',
             type: 'text',
             placeholder: 'Como quer ser chamado?',
-            errorMessage: 'Seu nome deve conter entre 4-20 caractéres',
-            label: 'Nome de exibição'
+            errorMessage: 'Deve conter entre 2-30 caractéres',
+            label: 'Nome de exibição',
+            className: 'cadastro',
+            required: false
         },
         {
             id: 3,
@@ -40,15 +73,19 @@ function FormularioCadastroUsuario() {
             type: 'text',
             placeholder: 'Insira seu email',
             errorMessage: 'E-mail inválido',
-            label: 'E-mail'
+            label: 'E-mail',
+            className: 'cadastro',
+            required: true
         },
         {
             id: 5,
             name: 'iDtNasc',
             type: 'date',
             placeholder: 'Insira sua data de nascimento',
-            errorMessage: 'Não  são permitidos usuários com idade menor que 16 anos',
-            label: 'Data de nascimento'
+            errorMessage: 'Não são permitidos usuários com idade menor que 16 anos',
+            label: 'Data de nascimento',
+            className: 'cadastro',
+            required: true
         },
         {
             id: 6,
@@ -56,7 +93,9 @@ function FormularioCadastroUsuario() {
             type: 'password',
             placeholder: 'Insira sua senha',
             errorMessage: 'Sua senha deve conter entre 8-30 caracteres e conter uma letra maiúscula',
-            label: 'Senha'
+            label: 'Senha',
+            className: 'cadastro',
+            required: true
         },
         {
             id: 7,
@@ -64,25 +103,28 @@ function FormularioCadastroUsuario() {
             type: 'password',
             placeholder: 'Confirme sua senha',
             errorMessage: 'As senhas devem ser idênticas',
-            label: 'Confirmar senha'
+            label: 'Confirmar senha',
+            className: 'cadastro',
+            required: true
         }
     ]
 
-    const attValues = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value })
+    const attDados = (e) => {
+        setDados({ ...dados, [e.target.name]: e.target.value })
     }
 
     return (
         <form onSubmit={cadastrarUsuario} className={styles.form_container}>
-            {inputs.map((input) => (
+            {inputs.map(input => (
                 <Input
                     key={input.id}
                     {...input}
-                    handleOnChange={attValues}
-                    value={values[input.name]}
+                    handleOnChange={attDados}
+                    value={dados[input.name]}
+                    required={input.required}
                 />
             ))}
-            <button> Cadastrar </button>
+            <Button className='submit' text='Cadastrar' />
         </form>
     )
 }

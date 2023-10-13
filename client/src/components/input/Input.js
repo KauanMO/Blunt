@@ -1,11 +1,13 @@
 import React from 'react'
-import styles from './Input.module.css'
+import './Input.css'
 
-function Input({ label, type, name, placeholder, value, handleOnChange }) {
+function Input({ label, type, name, placeholder, value, handleOnChange, className, required }) {
+
     return (
-        <div className={styles.input_container}>
-            <label htmlFor={name}>{label}</label>
+        <div className='input_container'>
+            <label htmlFor={name}>{label}{required === true ? <span className='campo_obrigatorio'>*</span> : ''}</label>
             <input
+                className={className}
                 type={type}
                 name={name}
                 id={name}
@@ -15,6 +17,7 @@ function Input({ label, type, name, placeholder, value, handleOnChange }) {
                 autoComplete='off'
             >
             </input>
+            <span className='cookie_erro' id={'cookie_' + name}></span>
         </div>
     )
 }

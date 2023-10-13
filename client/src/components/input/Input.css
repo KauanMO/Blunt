@@ -1,0 +1,29 @@
+.input_container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.cadastro {
+    border-radius: .3rem;
+    border: 1px solid #ccc;
+    padding: .3rem;
+}
+
+.cadastro[type=date]:focus {
+    background-color: var(--raisin-black-);
+}
+
+.cookie_erro{
+    position: absolute;
+    bottom: 0;
+    font-size: .8rem;
+    color: red;
+}
+
+.campo_obrigatorio{
+    color: red;
+    margin-left: .2rem;
+}
