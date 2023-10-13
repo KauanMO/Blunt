@@ -1,3 +1,5 @@
+drop database Blunt;
+
 create database Blunt;
 
 use Blunt;
@@ -12,6 +14,7 @@ create table Usuario (
     fotoCapaUsuario varchar(255),
     nomeExibicaoUsuario varchar(30),
     bioUsuario varchar(100),
+    dataNasc date,
     dataCadastro datetime
 );
 

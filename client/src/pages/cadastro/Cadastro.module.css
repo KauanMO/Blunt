@@ -1,7 +1,10 @@
-
-
 .container {
     width: 100vw;
     height: 100vh;
-    background-color: aqua;
+}
+
+.titulo_cadastro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
