@@ -191,18 +191,24 @@ function FormularioCadastroUsuario() {
     }
 
     return (
-        <form onSubmit={cadastrarUsuario} className={styles.form_container}>
-            {inputs.map(input => (
-                <Input
-                    key={input.id}
-                    {...input}
-                    handleOnChange={attDados}
-                    value={dados[input.name]}
-                    required={input.required}
-                />
-            ))}
-            <Button className='submit' text='Cadastrar' />
-        </form>
+        <div className={styles.form_container}>
+            <form onSubmit={cadastrarUsuario}>
+                {inputs.map(input => (
+                    <Input
+                        key={input.id}
+                        {...input}
+                        handleOnChange={attDados}
+                        value={dados[input.name]}
+                        required={input.required}
+                    />
+                ))}
+                <Button className='full_colored w_80p' text='Cadastrar' />
+            </form>
+            <div className={styles.possui_conta}>
+                <span>Já possui conta?</span>
+                <Button text="Entrar" className='negative_colored w_80p'/>
+            </div>
+        </div>
     )
 }
 

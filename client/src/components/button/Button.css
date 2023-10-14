@@ -1,7 +1,21 @@
-.submit {
+.button {
     border: none;
     border-radius: 1rem;
+    padding: .6rem 1rem;
+    font-weight: 700;
+}
+
+.full_colored {
     background-color: var(--raisin-black);
     color: white;
-    padding: .6rem 1rem;
+}
+
+.negative_colored {
+    color: var(--raisin-black);
+    background-color: white;
+    border: 1px solid;
+}
+
+.w_80p {
+    width: 80%;
 }

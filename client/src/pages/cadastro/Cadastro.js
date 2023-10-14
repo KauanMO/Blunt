@@ -1,9 +1,8 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
-import axios from 'axios';
 import styles from './Cadastro.module.css'
 import '../../Global.css'
 import FormularioCadastroUsuario from '../../components/formularioCadastroUsuario/FormularioCadastroUsuario'
+import Button from '../../components/button/Button'
 
 function Cadastro() {
   return (
