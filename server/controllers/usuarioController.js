@@ -10,10 +10,12 @@ function listarUsuarios(req, res) {
 }
 
 function cadastrarUsuario(req, res) {
+    console.log(req.body)
     model.cadastrarUsuario(
         req.body.usernameServer,
         req.body.emailServer,
         req.body.senhaServer,
+        req.body.dtNascServer,
         req.body.nomeExibServer
     ).then(result => {
         res.json(result)

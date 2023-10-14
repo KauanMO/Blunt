@@ -21,6 +21,7 @@
     bottom: 0;
     font-size: .8rem;
     color: red;
+    -webkit-user-select: none;
 }
 
 .campo_obrigatorio{

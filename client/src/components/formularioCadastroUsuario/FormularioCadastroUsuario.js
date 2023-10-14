@@ -13,17 +13,37 @@ function FormularioCadastroUsuario() {
         iConfirmSenha: '',
     })
 
-    const validarUsername = (username) => {
+    const validarUsername = username => {
         document.querySelector('#cookie_iUsername').innerText = ''
-        if (username.length < 5 || username.length > 20) { return false }
+        return username.length >= 5 && username.length <= 20
+    }
+
+    const validarNomeExib = nomeExib => {
+        document.querySelector('#cookie_iNomeExib').innerText = ''
+        if (nomeExib !== '' && (nomeExib.length < 2 || nomeExib.length > 30)) { return false }
+        if (nomeExib === '') { dados.iNomeExib = dados.iUsername }
         return true
     }
 
-    const validarNomeExib = (nomeExib) => {
-        document.querySelector('#cookie_iNomeExib').innerText = ''
-        if (nomeExib !== '' && (nomeExib.length < 2 || nomeExib.length > 30)) { return false }
-        if (nomeExib === '') { nomeExib = dados.iUsername }
-        return true
+    const validarEmail = email => {
+        document.querySelector('#cookie_iEmail').innerText = ''
+        return /\S+@\S+\.\S+/.test(email)
+    }
+
+    const validarDtNasc = dtNasc => {
+        document.querySelector('#cookie_iDtNasc').innerText = ''
+        dtNasc = Number(dtNasc.slice(0, 4))
+        return (new Date().getFullYear() - dtNasc) >= 16
+    }
+
+    const validarSenha = senha => {
+        document.querySelector('#cookie_iSenha').innerText = ''
+        return senha.length >= 8 && senha.length <= 30
+    }
+
+    const validarConfirmSenha = confirmSenha => {
+        document.querySelector('#cookie_iConfirmSenha').innerText = ''
+        return confirmSenha === dados.iSenha
     }
 
     const validarCampos = () => {
@@ -31,18 +51,50 @@ function FormularioCadastroUsuario() {
             document.querySelector('#cookie_iUsername').innerText = inputs[0].errorMessage
             return false
         }
-
         if (!validarNomeExib(dados.iNomeExib)) {
             document.querySelector('#cookie_iNomeExib').innerText = inputs[1].errorMessage
+            return false
+        }
+        if (!validarEmail(dados.iEmail)) {
+            document.querySelector('#cookie_iEmail').innerText = inputs[2].errorMessage
+            return false
+        }
+        if (!validarDtNasc(dados.iDtNasc)) {
+            document.querySelector('#cookie_iDtNasc').innerText = inputs[3].errorMessage
+            return false
+        }
+        if (!validarSenha(dados.iSenha)) {
+            document.querySelector('#cookie_iSenha').innerText = inputs[4].errorMessage
+            return false
+        }
+        if (!validarConfirmSenha(dados.iConfirmSenha)) {
+            document.querySelector('#cookie_iConfirmSenha').innerText = inputs[5].errorMessage
             return false
         }
         return true
     }
 
-    const cadastrarUsuario = (e) => {
+    const cadastrarUsuario = e => {
         e.preventDefault()
         if (validarCampos()) {
-
+            console.log(dados)
+            fetch('http://localhost:5000/usuarios/cadastrar', {
+                method: 'POST',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify({
+                    usernameServer: dados.iUsername,
+                    emailServer: dados.iEmail,
+                    senhaServer: dados.iSenha,
+                    nomeExibServer: dados.iNomeExib,
+                    dtNascServer: dados.iDtNasc
+                })
+            }).then(res => {
+                if (res.ok) {
+                    sessionStorage.setItem('idUsuario', res.insertedId)
+                }
+            }).catch(e => {
+                console.log(e)
+            })
         }
     }
 
@@ -109,7 +161,7 @@ function FormularioCadastroUsuario() {
         }
     ]
 
-    const attDados = (e) => {
+    const attDados = e => {
         setDados({ ...dados, [e.target.name]: e.target.value })
     }
 
