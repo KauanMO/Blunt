@@ -9,13 +9,13 @@ create table Usuario (
     username varchar(20),
     emailUsuario varchar(45),
     senhaUsuario varchar(255),
-    statusUsuario tinyint,
+    statusUsuario tinyint default 1,
     fotoPerfilUsuario varchar(255),
     fotoCapaUsuario varchar(255),
     nomeExibicaoUsuario varchar(30),
     bioUsuario varchar(100),
     dataNasc date,
-    dataCadastro datetime
+    dataCadastro datetime default current_timestamp
 );
 
 create table Seguidor (
