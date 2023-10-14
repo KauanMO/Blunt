@@ -10,7 +10,6 @@ function listarUsuarios(req, res) {
 }
 
 function cadastrarUsuario(req, res) {
-    console.log(req.body)
     model.cadastrarUsuario(
         req.body.usernameServer,
         req.body.emailServer,
@@ -25,7 +24,17 @@ function cadastrarUsuario(req, res) {
     })
 }
 
+function buscarUsuarioPorCampo(req, res) {
+    model.buscarUsuarioPorCampo(req.params.campo, req.params.valor).then(result => {
+        res.json(result)
+    }).catch(e => {
+        console.log(e)
+        res.status(500).json
+    })
+}
+
 module.exports = {
     listarUsuarios,
-    cadastrarUsuario
+    cadastrarUsuario,
+    buscarUsuarioPorCampo
 }

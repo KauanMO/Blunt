@@ -9,7 +9,12 @@ function cadastrarUsuario(username, email, senha, dataNasc, nomeExibicao) {
     ('${username}', '${email}', '${senha}', '${dataNasc}', '${nomeExibicao}')`)
 }
 
+function buscarUsuarioPorCampo(campo, valor) {
+    return db.exec(`SELECT idUsuario FROM Usuario WHERE ${campo} = '${valor}'`)
+}
+
 module.exports = {
     listarUsuarios,
-    cadastrarUsuario
+    cadastrarUsuario,
+    buscarUsuarioPorCampo
 }

@@ -74,28 +74,53 @@ function FormularioCadastroUsuario() {
         return true
     }
 
+    const verificarUsuarioUnico = () => {
+        return fetch(`http://localhost:5000/usuarios/buscarUsuario/username/${dados.iUsername}`).then(res => res.json().then(json => {
+            return json.length === 0
+        }))
+    }
+
+    const verificarEmailUnico = () => {
+        return fetch(`http://localhost:5000/usuarios/buscarUsuario/emailUsuario/${dados.iEmail}`).then(res => res.json().then(json => {
+            return json.length === 0
+        }))
+    }
+
     const cadastrarUsuario = e => {
         e.preventDefault()
-        if (validarCampos()) {
-            console.log(dados)
-            fetch('http://localhost:5000/usuarios/cadastrar', {
-                method: 'POST',
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify({
-                    usernameServer: dados.iUsername,
-                    emailServer: dados.iEmail,
-                    senhaServer: dados.iSenha,
-                    nomeExibServer: dados.iNomeExib,
-                    dtNascServer: dados.iDtNasc
+        if (!validarCampos()) { return }
+
+        verificarUsuarioUnico().then(usernameUnico => {
+            if (usernameUnico) {
+                verificarEmailUnico().then(emailUnico => {
+                    if (emailUnico) {
+                        fetch('http://localhost:5000/usuarios/cadastrar', {
+                            method: 'POST',
+                            headers: { 'Content-type': 'application/json' },
+                            body: JSON.stringify({
+                                usernameServer: dados.iUsername,
+                                emailServer: dados.iEmail,
+                                senhaServer: dados.iSenha,
+                                nomeExibServer: dados.iNomeExib,
+                                dtNascServer: dados.iDtNasc
+                            })
+                        }).then(res => {
+                            if (res.ok) {
+                                res.json().then(cadastro => {
+                                    sessionStorage.setItem('idUsuario', cadastro.insertId)
+                                })
+                            }
+                        }).catch(e => {
+                            console.log(e)
+                        })
+                    } else {
+                        document.querySelector('#cookie_iEmail').innerText = 'E-mail já cadastrado'
+                    }
                 })
-            }).then(res => {
-                if (res.ok) {
-                    sessionStorage.setItem('idUsuario', res.insertedId)
-                }
-            }).catch(e => {
-                console.log(e)
-            })
-        }
+            } else {
+                document.querySelector('#cookie_iUsername').innerText = 'Nome de usuário indisponível'
+            }
+        })
     }
 
     const inputs = [
