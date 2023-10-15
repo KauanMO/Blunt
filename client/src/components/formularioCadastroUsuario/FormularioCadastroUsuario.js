@@ -33,7 +33,7 @@ function FormularioCadastroUsuario() {
     const validarDtNasc = dtNasc => {
         document.querySelector('#cookie_iDtNasc').innerText = ''
         dtNasc = Number(dtNasc.slice(0, 4))
-        return (new Date().getFullYear() - dtNasc) >= 16
+        return ((new Date().getFullYear() - dtNasc) >= 16) && dados.iDtNasc !== ''
     }
 
     const validarSenha = senha => {
@@ -89,6 +89,7 @@ function FormularioCadastroUsuario() {
     const cadastrarUsuario = e => {
         e.preventDefault()
         if (!validarCampos()) { return }
+        console.log(dados)
 
         verificarUsuarioUnico().then(usernameUnico => {
             if (usernameUnico) {
@@ -206,11 +207,10 @@ function FormularioCadastroUsuario() {
             </form>
             <div className={styles.possui_conta}>
                 <span>Já possui conta?</span>
-                <Button text="Entrar" className='negative_colored w_80p'/>
+                <Button text="Entrar" className='negative_colored w_80p' />
             </div>
         </div>
     )
 }
-
 
 export default FormularioCadastroUsuario
