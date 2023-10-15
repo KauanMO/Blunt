@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 import Cadastro from './pages/cadastro/Cadastro'
 import CadastroImagem from './pages/cadastroImagem/CadastroImagem'
 import Home from './pages/home/Home'

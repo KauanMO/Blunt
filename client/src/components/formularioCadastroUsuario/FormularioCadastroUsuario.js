@@ -89,7 +89,6 @@ function FormularioCadastroUsuario() {
     const cadastrarUsuario = e => {
         e.preventDefault()
         if (!validarCampos()) { return }
-        console.log(dados)
 
         verificarUsuarioUnico().then(usernameUnico => {
             if (usernameUnico) {
@@ -109,6 +108,7 @@ function FormularioCadastroUsuario() {
                             if (res.ok) {
                                 res.json().then(cadastro => {
                                     sessionStorage.setItem('idUsuario', cadastro.insertId)
+                                    window.location.href = '/cadastro-imagem'
                                 })
                             }
                         }).catch(e => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Input.css'
 
-function Input({ label, type, name, placeholder, value, handleOnChange, className, required }) {
+function Input({ label, type, name, placeholder, value, handleOnChange, className, required, accept }) {
 
     return (
         <div className='input_container'>
@@ -15,6 +15,7 @@ function Input({ label, type, name, placeholder, value, handleOnChange, classNam
                 value={value}
                 onChange={handleOnChange}
                 autoComplete='off'
+                accept={accept}
             >
             </input>
             <span className='cookie_erro' id={'cookie_' + name}></span>

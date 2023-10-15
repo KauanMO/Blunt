@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from './Home.module.css'
+import { Link } from 'react-router-dom'
 
 function Home() {
     return (
         <div>
-            <a href='/cadastro'>Cadastrar-se</a>
+            <Link to='/cadastro'>Cadastrar-se</Link>
         </div>
     )
 }
