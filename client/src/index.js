@@ -1,10 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import Cadastro from './pages/cadastro/Cadastro';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Cadastro from './pages/cadastro/Cadastro'
+import CadastroImagem from './pages/cadastroImagem/CadastroImagem'
+import Home from './pages/home/Home'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: 'cadastro',
+    element: <Cadastro />
+  },
+  {
+    path: 'cadastro-imagem',
+    element: <CadastroImagem />
+  }
+])
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Cadastro />
+    <RouterProvider router={router} />
   </React.StrictMode>
-);
+)

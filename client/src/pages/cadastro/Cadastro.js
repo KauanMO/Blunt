@@ -2,7 +2,6 @@ import React from 'react'
 import styles from './Cadastro.module.css'
 import '../../Global.css'
 import FormularioCadastroUsuario from '../../components/formularioCadastroUsuario/FormularioCadastroUsuario'
-import Button from '../../components/button/Button'
 
 function Cadastro() {
   return (
