@@ -195,13 +195,15 @@ function FormularioCadastroUsuario() {
         <div className={styles.form_container}>
             <form onSubmit={cadastrarUsuario}>
                 {inputs.map(input => (
-                    <Input
-                        key={input.id}
-                        {...input}
-                        handleOnChange={attDados}
-                        value={dados[input.name]}
-                        required={input.required}
-                    />
+                    <div className={styles.input_container}>
+                        <Input
+                            key={input.id}
+                            {...input}
+                            handleOnChange={attDados}
+                            value={dados[input.name]}
+                            required={input.required}
+                        />
+                    </div>
                 ))}
                 <Button className='full_colored w_80p' text='Cadastrar' />
             </form>

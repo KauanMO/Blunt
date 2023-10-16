@@ -4,7 +4,7 @@ import './Input.css'
 function Input({ label, type, name, placeholder, value, handleOnChange, className, required, accept }) {
 
     return (
-        <div className='input_container'>
+        <div>
             <label htmlFor={name}>{label}{required === true ? <span className='campo_obrigatorio'>*</span> : ''}</label>
             <input
                 className={className}
