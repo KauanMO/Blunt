@@ -1,4 +1,13 @@
 .mini-perfil-feed {
     border-radius: 50%;
     border: 3px solid black;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.w_3rem {
+    width: 3rem;
 }

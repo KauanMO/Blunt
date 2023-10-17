@@ -6,6 +6,11 @@ router.get('/listar', (req, res) => {
     controller.listarUsuarios(req, res)
 })
 
+// Buscar info usuario
+router.get('/biu/:idUsuario', (req, res) => {
+    controller.buscarInfoUsuario(req, res)
+})
+
 // Buscar foto usuario
 router.get('/bfu/:idUsuario', (req, res) => {
     controller.buscarFotoUsuario(req, res)

@@ -1,0 +1,24 @@
+.mini_perfil_container {
+    background-color: dimgray;
+    width: 12rem;
+    height: 4rem;
+    border-radius: 5px;
+    padding: .3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.name_username_container {
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.span_nomeExib {
+    color: white;
+}
+
+.span_username {
+    color: #ccc;
+}
