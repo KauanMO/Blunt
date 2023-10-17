@@ -1,5 +1,5 @@
 .mini_perfil_container {
-    background-color: dimgray;
+    background-color: var(--preto);
     width: 12rem;
     height: 4rem;
     border-radius: 5px;

@@ -5,8 +5,8 @@ import styles from './MiniPerfil.module.css'
 
 function MiniPerfil() {
     const [dadosPerfil, setDadosPerfil] = useState({
-        nomeExib: '--------',
-        username: '@--------'
+        nomeExib: '',
+        username: ''
     })
 
     fetch(`http://localhost:5000/usuarios/biu/${sessionStorage.getItem('idUsuario')}`).then(res => res.json().then(info => {
