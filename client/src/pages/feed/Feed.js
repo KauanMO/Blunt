@@ -1,9 +1,10 @@
 import React from 'react'
+import FotoPerfil from '../../components/fotoPerfil/FotoPerfil'
 
 function Feed() {
     return (
         <div>
-            feed
+            <FotoPerfil className='mini-perfil-feed' />
         </div>
     )
 }

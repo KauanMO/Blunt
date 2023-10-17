@@ -4,6 +4,10 @@ function listarUsuarios() {
     return db.exec('SELECT * FROM Usuario')
 }
 
+function buscarFotoUsuario(idUsuario) {
+    return db.exec(`SELECT fotoPerfilUsuario from Usuario WHERE idUsuario = ${idUsuario}`)
+}
+
 function cadastrarUsuario(username, email, senha, dataNasc, nomeExibicao) {
     return db.exec(`INSERT INTO Usuario (username, emailUsuario, senhaUsuario, dataNasc, nomeExibicaoUsuario) VALUES
     ('${username}', '${email}', '${senha}', '${dataNasc}', '${nomeExibicao}')`)
@@ -19,6 +23,7 @@ function atualizaUsuario(campo, valor, idUsuario) {
 
 module.exports = {
     listarUsuarios,
+    buscarFotoUsuario,
     cadastrarUsuario,
     buscarUsuarioPorCampo,
     atualizaUsuario

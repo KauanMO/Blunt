@@ -9,6 +9,15 @@ function listarUsuarios(req, res) {
     })
 }
 
+function buscarFotoUsuario(req, res) {
+    model.buscarFotoUsuario(req.params.idUsuario).then(result => {
+        res.json(result)
+    }).catch(e => {
+        console.log(e)
+        res.status(500).json
+    })
+}
+
 function cadastrarUsuario(req, res) {
     model.cadastrarUsuario(
         req.body.usernameServer,
@@ -44,6 +53,7 @@ function atualizarUsuario(req, res) {
 
 module.exports = {
     listarUsuarios,
+    buscarFotoUsuario,
     cadastrarUsuario,
     buscarUsuarioPorCampo,
     atualizarUsuario
