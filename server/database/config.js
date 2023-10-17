@@ -4,8 +4,8 @@ function exec(query) {
     return new Promise((res, rej) => {
         const con = mysql.createConnection({
             host: 'localhost',
-            user: 'root',
-            password: '1234',
+            user: process.env.MYSQL_USER,
+            password: process.env.MYSQL_PASSWORD,
             database: 'Blunt'
         })
 

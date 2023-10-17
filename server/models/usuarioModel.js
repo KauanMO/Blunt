@@ -4,6 +4,10 @@ function listarUsuarios() {
     return db.exec('SELECT * FROM Usuario')
 }
 
+function buscarInfoUsuario(idUsuario) {
+    return db.exec(`SELECT username, nomeExibicaoUsuario, bioUsuario, dataNasc, dataCadastro FROM Usuario WHERE idUsuario = ${idUsuario}`)
+}
+
 function buscarFotoUsuario(idUsuario) {
     return db.exec(`SELECT fotoPerfilUsuario from Usuario WHERE idUsuario = ${idUsuario}`)
 }
@@ -23,6 +27,7 @@ function atualizaUsuario(campo, valor, idUsuario) {
 
 module.exports = {
     listarUsuarios,
+    buscarInfoUsuario,
     buscarFotoUsuario,
     cadastrarUsuario,
     buscarUsuarioPorCampo,
