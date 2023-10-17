@@ -33,8 +33,18 @@ function buscarUsuarioPorCampo(req, res) {
     })
 }
 
+function atualizarUsuario(req, res) {
+    model.atualizaUsuario(req.params.campo, req.params.valor, req.params.idUsuario).then(result => {
+        res.json(result)
+    }).catch(e => {
+        console.log(e)
+        res.status(500).son
+    })
+}
+
 module.exports = {
     listarUsuarios,
     cadastrarUsuario,
-    buscarUsuarioPorCampo
+    buscarUsuarioPorCampo,
+    atualizarUsuario
 }

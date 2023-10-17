@@ -1,15 +1,11 @@
 import React from 'react'
-import { useState } from "react";
 import styles from './CadastroImagem.module.css'
 import Input from '../../components/input/Input'
 import Button from '../../components/button/Button'
 
 function CadastroImagem() {
-    const [image, setImage] = useState(null)
-
     const previewImagem = e => {
         const [img] = e.target.files
-        setImage(img)
         if (img) {
             document.querySelector('#preview_image').src = URL.createObjectURL(img)
             document.querySelector('#span_upload_image').style.opacity = '0'
@@ -19,18 +15,20 @@ function CadastroImagem() {
     }
 
     const cadastrarImagem = e => {
-        if (e.target.innerText === 'Faço isso depois') {
-            window.location.href = '/feed'
-        } else {
+        if (e.target.innerText !== 'Faço isso depois') {
             document.querySelector('#img_form').submit()
-            window.location.href = '/feed'
         }
+        setTimeout(() => { window.location.href = '/feed' }, 500)
     }
+
+    const uploadImagePath = `http://localhost:5000/azureUpload/uploadFotoUsuario/${sessionStorage.getItem('idUsuario')}`
+
     return (
         <div>
             {sessionStorage.getItem('idUsuario')
                 ? (
                     <main className={styles.container}>
+                        
                         <div className={styles.input_preview_image_container}>
                             <span>Escolha sua foto de perfil</span>
                             <label id='label_preview_image' className={styles.label_preview_image}>
@@ -38,8 +36,8 @@ function CadastroImagem() {
                                     <i className="fa-solid fa-upload"></i>
                                     upload
                                 </span>
-                                <form id='img_form' action='http://localhost:5000/azureUpload' method='post' encType='multipart/form-data'>
-                                    <Input handleOnChange={previewImagem} name='imageToUpload' id='#img_perfil' type="file" accept='image/*' />
+                                <form id='img_form' action={uploadImagePath} method='post' encType='multipart/form-data'>
+                                    <Input handleOnChange={previewImagem} name='fotoUsuarioUpload' id='#img_perfil' type="file" accept='image/*' />
                                 </form>
                                 <div className={styles.preview_image_container}>
                                     <img alt='' className={styles.preview_image} id='preview_image' />

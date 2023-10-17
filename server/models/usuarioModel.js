@@ -13,8 +13,13 @@ function buscarUsuarioPorCampo(campo, valor) {
     return db.exec(`SELECT idUsuario FROM Usuario WHERE ${campo} = '${valor}'`)
 }
 
+function atualizaUsuario(campo, valor, idUsuario) {
+    return db.exec(`UPDATE Usuario SET ${campo} = '${valor}' WHERE idUsuario = ${idUsuario}`)
+}
+
 module.exports = {
     listarUsuarios,
     cadastrarUsuario,
-    buscarUsuarioPorCampo
+    buscarUsuarioPorCampo,
+    atualizaUsuario
 }
