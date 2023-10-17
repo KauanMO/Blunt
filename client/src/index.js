@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import Cadastro from './pages/cadastro/Cadastro'
 import CadastroImagem from './pages/cadastroImagem/CadastroImagem'
 import Home from './pages/home/Home'
+import Feed from './pages/feed/Feed'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: 'cadastro-imagem',
     element: <CadastroImagem />
+  }, 
+  {
+    path: 'feed',
+    element: <Feed />
   }
 ])
 
