@@ -28,5 +28,8 @@ router.get('/login/:email/:senha', (req, res) => {
     controller.login(req, res)
 })
 
+router.delete('/deletar/:idUsuario/:senha', (req, res) => {
+    controller.deletar(req, res)
+})
 
 module.exports = router

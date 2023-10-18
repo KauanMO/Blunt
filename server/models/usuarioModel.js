@@ -29,6 +29,10 @@ function login(email, senha) {
     return db.exec(`SELECT idUsuario FROM Usuario WHERE emailUsuario = '${email}' AND senhaUsuario = '${senha}'`)
 }
 
+function deletar(idUsuario, senha) {
+    return db.exec(`DELETE FROM Usuario WHERE idUsuario = ${idUsuario} AND senhaUsuario = '${senha}'`)
+}
+
 module.exports = {
     listarUsuarios,
     buscarInfoUsuario,
@@ -36,5 +40,6 @@ module.exports = {
     cadastrarUsuario,
     buscarUsuarioPorCampo,
     atualizarUsuario,
-    login
+    login,
+    deletar
 }

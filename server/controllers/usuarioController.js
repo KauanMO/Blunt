@@ -56,7 +56,7 @@ function atualizarUsuario(req, res) {
         res.json(result)
     }).catch(e => {
         console.log(e)
-        res.status(500).son
+        res.status(500).json
     })
 }
 
@@ -65,7 +65,16 @@ function login(req, res) {
         res.send(result.length > 0)
     }).catch(e => {
         console.log(e)
-        res.status(500).son
+        res.status(500).json
+    })
+}
+
+function deletar(req, res) {
+    model.deletar(req.params.idUsuario, req.params.senha).then(result => {
+        res.json(result)
+    }).catch(e => {
+        console.log(e)
+        res.status(500).json
     })
 }
 
@@ -76,5 +85,6 @@ module.exports = {
     cadastrarUsuario,
     buscarUsuarioPorCampo,
     atualizarUsuario,
-    login
+    login,
+    deletar
 }
