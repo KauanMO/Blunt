@@ -1,18 +1,75 @@
+@keyframes optionsIn {
+    0% {
+        top: -3rem;
+        opacity: 0;
+    }
+
+    100% {
+        top: -7rem;
+        opacity: 1;
+    }
+}
+
+@keyframes optionsOut {
+    0% {
+        top: -7rem;
+        opacity: 1;
+    }
+
+    100% {
+        top: -3;
+        opacity: 0;
+    }
+}
+
 .mini_perfil_container {
-    background-color: var(--preto);
-    width: 12rem;
-    height: 4rem;
-    border-radius: 5px;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 1rem;
     padding: .3rem;
     display: flex;
     align-items: center;
     gap: 1rem;
+    transition: all 200ms;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+}
+
+.mini_perfil_container:hover {
+    background-color: var(--raisin-black);
+    transition: all 200ms;
+}
+
+.mini_perfil_options {
+    display: none;
+    flex-direction: column;
+    width: 10rem;
+    height: 7rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    list-style-type: none;
+    padding: 0.3rem;
+    opacity: 0;
+}
+
+.mini_perfil_option {
+    display: flex;
+    gap: .3rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.mini_perfil_option:hover {
+    background-color: var(--raisin-black);
 }
 
 .name_username_container {
     display: flex;
     flex-direction: column;
-    gap: .6rem;
+    gap: .3rem;
 }
 
 .span_nomeExib {

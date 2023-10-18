@@ -62,7 +62,6 @@ function atualizarUsuario(req, res) {
 
 function login(req, res) {
     model.login(req.params.email, req.params.senha).then(result => {
-        console.log(result[0].idUsuario)
         res.send(
             {
                 login: result.length > 0,
