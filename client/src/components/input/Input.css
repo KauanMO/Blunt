@@ -1,4 +1,5 @@
-.cadastro {
+.cadastro,
+.login {
     border-radius: .3rem;
     border: 1px solid #ccc;
     padding: .3rem;
@@ -8,7 +9,7 @@
     background-color: var(--raisin-black-);
 }
 
-.cookie_erro{
+.cookie_erro {
     position: absolute;
     bottom: 0;
     font-size: .8rem;
@@ -16,7 +17,12 @@
     -webkit-user-select: none;
 }
 
-.campo_obrigatorio{
+.campo_obrigatorio {
     color: red;
     margin-left: .2rem;
+}
+
+.label_input { 
+    display: flex;
+    flex-direction: column;
 }

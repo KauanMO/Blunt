@@ -21,7 +21,7 @@ function MiniPerfil() {
             <FotoPerfil className='mini-perfil-feed w_3rem' />
             <div className={styles.name_username_container}>
                 <span className={styles.span_nomeExib}>{dadosPerfil.nomeExib}</span>
-                <span className={styles.username}>@{dadosPerfil.username}</span>
+                <span className={styles.span_username}>@{dadosPerfil.username}</span>
             </div>
         </div>
     )

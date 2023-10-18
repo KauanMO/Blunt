@@ -1,0 +1,30 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.titulo_cadastro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.possui_conta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0 0 0;
+    width: 36%;
+}
+
+.formularios {
+    position: relative;
+    height: 12rem;
+    width: 36%;
+}
+
+.bt_login_cadastro{
+    display: flex;
+    justify-content: center;
+    width: 36%;
+}

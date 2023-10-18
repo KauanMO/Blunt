@@ -3,7 +3,9 @@
     border-radius: 1rem;
     padding: .6rem 1rem;
     font-weight: 700;
+    height: 2.3rem;
     transition: all 300ms;
+    cursor: pointer;
 }
 
 .full_colored {
@@ -19,6 +21,10 @@
 
 .w_80p {
     width: 80%;
+}
+
+.w_50p {
+    width: 50%;
 }
 
 .w_13rem {

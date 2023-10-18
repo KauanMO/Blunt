@@ -1,9 +1,8 @@
 import { useState } from "react";
-import styles from './FormularioCadastroUsuario.module.css'
+import './FormularioCadastroUsuario.css'
 import Input from '../input/Input'
-import Button from '../button/Button'
 
-function FormularioCadastroUsuario() {
+function FormularioCadastroUsuario({ id }) {
     const [dados, setDados] = useState({
         iUsername: '',
         iNomeExib: '',
@@ -125,66 +124,69 @@ function FormularioCadastroUsuario() {
     }
 
     const inputs = [
-        {
-            id: 1,
-            name: 'iUsername',
-            type: 'text',
-            placeholder: 'Insira seu @',
-            errorMessage: 'Deve conter entre 4-20 caracteres',
-            label: 'Nome de usuário',
-            className: 'cadastro',
-            required: true
-        },
-        {
-            id: 2,
-            name: 'iNomeExib',
-            type: 'text',
-            placeholder: 'Como quer ser chamado?',
-            errorMessage: 'Deve conter entre 2-30 caractéres',
-            label: 'Nome de exibição',
-            className: 'cadastro',
-            required: false
-        },
-        {
-            id: 3,
-            name: 'iEmail',
-            type: 'text',
-            placeholder: 'Insira seu email',
-            errorMessage: 'E-mail inválido',
-            label: 'E-mail',
-            className: 'cadastro',
-            required: true
-        },
-        {
-            id: 5,
-            name: 'iDtNasc',
-            type: 'date',
-            placeholder: 'Insira sua data de nascimento',
-            errorMessage: 'Não são permitidos usuários com idade menor que 16 anos',
-            label: 'Data de nascimento',
-            className: 'cadastro',
-            required: true
-        },
-        {
-            id: 6,
-            name: 'iSenha',
-            type: 'password',
-            placeholder: 'Insira sua senha',
-            errorMessage: 'Sua senha deve conter entre 8-30 caracteres e conter uma letra maiúscula',
-            label: 'Senha',
-            className: 'cadastro',
-            required: true
-        },
-        {
-            id: 7,
-            name: 'iConfirmSenha',
-            type: 'password',
-            placeholder: 'Confirme sua senha',
-            errorMessage: 'As senhas devem ser idênticas',
-            label: 'Confirmar senha',
-            className: 'cadastro',
-            required: true
-        }
+        [
+            {
+                id: 1,
+                name: 'iUsername',
+                type: 'text',
+                placeholder: 'Insira seu @',
+                errorMessage: 'Deve conter entre 4-20 caracteres',
+                label: 'Nome de usuário',
+                className: 'cadastro',
+                required: true
+            },
+            {
+                id: 2,
+                name: 'iNomeExib',
+                type: 'text',
+                placeholder: 'Como quer ser chamado?',
+                errorMessage: 'Deve conter entre 2-30 caractéres',
+                label: 'Nome de exibição',
+                className: 'cadastro',
+                required: false
+            },
+            {
+                id: 3,
+                name: 'iEmail',
+                type: 'text',
+                placeholder: 'Insira seu email',
+                errorMessage: 'E-mail inválido',
+                label: 'E-mail',
+                className: 'cadastro',
+                required: true
+            },
+        ], [
+            {
+                id: 4,
+                name: 'iDtNasc',
+                type: 'date',
+                placeholder: 'Insira sua data de nascimento',
+                errorMessage: 'Não são permitidos usuários com idade menor que 16 anos',
+                label: 'Data de nascimento',
+                className: 'cadastro',
+                required: true
+            },
+            {
+                id: 5,
+                name: 'iSenha',
+                type: 'password',
+                placeholder: 'Insira sua senha',
+                errorMessage: 'Sua senha deve conter entre 8-30 caracteres e conter uma letra maiúscula',
+                label: 'Senha',
+                className: 'cadastro',
+                required: true
+            },
+            {
+                id: 6,
+                name: 'iConfirmSenha',
+                type: 'password',
+                placeholder: 'Confirme sua senha',
+                errorMessage: 'As senhas devem ser idênticas',
+                label: 'Confirmar senha',
+                className: 'cadastro',
+                required: true
+            }
+        ]
     ]
 
     const attDados = e => {
@@ -192,25 +194,35 @@ function FormularioCadastroUsuario() {
     }
 
     return (
-        <div className={styles.form_container}>
-            <form onSubmit={cadastrarUsuario}>
-                {inputs.map(input => (
-                    <div className={styles.input_container}>
-                        <Input
-                            key={input.id}
-                            {...input}
-                            handleOnChange={attDados}
-                            value={dados[input.name]}
-                            required={input.required}
-                        />
-                    </div>
-                ))}
-                <Button className='full_colored w_80p' text='Cadastrar' />
+        <div id={id} className='form_cadastro_container'>
+            <form className='form_cadastro' onSubmit={cadastrarUsuario}>
+                <div>
+                    {inputs[0].map(input => (
+                        <div key={input.id} className='input_container'>
+                            <Input
+                                key={input.id}
+                                {...input}
+                                handleOnChange={attDados}
+                                value={dados[input.name]}
+                                required={input.required}
+                            />
+                        </div>
+                    ))}
+                </div>
+                <div>
+                    {inputs[0].map(input => (
+                        <div key={input.id} className='input_container'>
+                            <Input
+                                key={input.id}
+                                {...input}
+                                handleOnChange={attDados}
+                                value={dados[input.name]}
+                                required={input.required}
+                            />
+                        </div>
+                    ))}
+                </div>
             </form>
-            <div className={styles.possui_conta}>
-                <span>Já possui conta?</span>
-                <Button text="Entrar" className='negative_colored w_80p' />
-            </div>
         </div>
     )
 }
