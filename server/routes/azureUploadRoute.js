@@ -3,6 +3,7 @@ const router = express.Router()
 const multer = require('multer')
 const { BlobServiceClient } = require("@azure/storage-blob")
 const usuarioModel = require('../models/usuarioModel')
+const fotoPublicacaoModel = require('../models/fotoPublicacaoModel')
 
 const storage = multer.memoryStorage()
 const upload = multer({ dest: 'uploads/', storage: storage })
@@ -13,7 +14,7 @@ const connStr = process.env.AZURE_KEY
 
 const blobServiceClient = BlobServiceClient.fromConnectionString(connStr)
 
-router.post('/uploadFotoUsuario/:idUsuario', upload.single('fotoUsuarioUpload'), async function (req, res, next) {
+router.post('/uploadFotoUsuario/:idUsuario', upload.single('fotoUsuarioUpload'), async function (req, res) {
     const containerClient = blobServiceClient.getContainerClient(containerName)
     const blobName = new Date().getTime() + req.file.originalname
 
@@ -25,6 +26,22 @@ router.post('/uploadFotoUsuario/:idUsuario', upload.single('fotoUsuarioUpload'),
 
     usuarioModel.atualizarUsuario('fotoPerfilUsuario', blockBlobClient.url, req.params.idUsuario)
 
+    res.status(200)
+})
+
+router.post('/uploadFotoPub/:idPub', upload.single('fotoPublicacaoUpload'), async function (req, res) {
+    const containerClient = blobServiceClient.getContainerClient(containerName)
+    const blobName = new Date().getTime() + req.file.originalname
+
+    console.log(req.file)
+
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName)
+
+    const content = req.file.buffer
+
+    blockBlobClient.upload(content, content.length)
+
+    fotoPublicacaoModel.cadastrarFoto(req.params.idPub, blockBlobClient.url)
     res.status(200)
 })
 

@@ -27,19 +27,12 @@ create table Seguidor (
     constraint usuarioSeguido foreign key (seguido) references Usuario(idUsuario)
 );
 
-create table TipoPublicacao (
-	idTipoPublicacao int primary key auto_increment,
-    tipoPublicacao varchar(30)
-);
-
 create table Publicacao (
 	idPublicacao int primary key auto_increment,
     textoPublicacao varchar(60),
-    fixada tinyint,
+    fixada tinyint default 0,
     dataPublicacao datetime,
-    fkTipoPublicacao int,
     fkUsuario int,
-    constraint publicacaoTipoPublicacao foreign key (fkTipoPublicacao) references TipoPublicacao(idTipoPublicacao),
     constraint publicacaoUsuario foreign key (fkUsuario) references Usuario(idUsuario)
 );
 
@@ -112,7 +105,3 @@ create table Denuncia (
     constraint denunciaPublicacao foreign key (fkPublicacao) references Publicacao(idPublicacao),
     constraint denunciaComentario foreign key (fkComentario) references Comentario(idComentario)
 );
-
-select * from usuario;
-
-SELECT idUsuario FROM Usuario WHERE emailUsuario = 'kauaanmatheus@gmail.com' AND senhaUsuario = 'kauan123'
