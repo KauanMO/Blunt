@@ -7,10 +7,9 @@ import Button from '../../components/button/Button'
 
 function Cadastro() {
   const cadastrarOuEntrar = e => {
-    document.querySelector('#form_cadastro_submit').click()
-    // e.target.innerText === 'Cadastrar'
-    //   ?
-    //   : document.querySelector('#form_login').submit()
+    e.target.innerText === 'Cadastrar'
+      ? document.querySelector('#form_cadastro_submit').click()
+      : document.querySelector('#form_login_submit').click()
   }
 
   const formCadastroParaLogin = () => {

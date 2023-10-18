@@ -62,7 +62,13 @@ function atualizarUsuario(req, res) {
 
 function login(req, res) {
     model.login(req.params.email, req.params.senha).then(result => {
-        res.send(result.length > 0)
+        console.log(result[0].idUsuario)
+        res.send(
+            {
+                login: result.length > 0,
+                idUsuario: result[0].idUsuario
+            }
+        )
     }).catch(e => {
         console.log(e)
         res.status(500).json

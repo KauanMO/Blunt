@@ -5,14 +5,18 @@ import './FormularioLoginUsuario.css'
 
 function FormularioLoginUsuario({ id }) {
     const [dados, setDados] = useState({
-        iEmail: '',
-        iSenha: ''
+        iEmailLogin: '',
+        iSenhaLogin: ''
     })
+
+    const errorMessage = {
+        usuarioNaoEncontrado: 'Usuário não encontrado'
+    }
 
     const inputs = [
         {
             id: 1,
-            name: 'iUsername',
+            name: 'iEmailLogin',
             type: 'text',
             placeholder: 'Insira seu email',
             label: 'E-mail',
@@ -20,7 +24,7 @@ function FormularioLoginUsuario({ id }) {
         },
         {
             id: 2,
-            name: 'iSenha',
+            name: 'iSenhaLogin',
             type: 'password',
             placeholder: '*******',
             label: 'Senha',
@@ -28,8 +32,22 @@ function FormularioLoginUsuario({ id }) {
         }
     ]
 
-    const login = () => {
+    const cookie = document.querySelector('#cookie_iSenhaLogin')
 
+    const login = e => {
+        e.preventDefault()
+        cookie.innerText = ''
+        fetch(`http://localhost:5000/usuarios/login/${dados.iEmailLogin}/${dados.iSenhaLogin}`).then(res => {
+            console.log(res);
+            res.json().then(cred => {
+                if (cred.login) {
+                    sessionStorage.setItem('idUsuario', cred.idUsuario)
+                    window.location.href += 'feed'
+                } else {
+                    cookie.innerText = errorMessage.usuarioNaoEncontrado
+                }
+            })
+        })
     }
 
     const attDados = e => {
@@ -51,6 +69,7 @@ function FormularioLoginUsuario({ id }) {
                         </div>
                     ))}
                 </div>
+                <input style={{ display: 'none' }} id="form_login_submit" type="submit"></input>
             </form>
         </div>
     )

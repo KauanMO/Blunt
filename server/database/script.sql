@@ -114,3 +114,5 @@ create table Denuncia (
 );
 
 select * from usuario;
+
+SELECT idUsuario FROM Usuario WHERE emailUsuario = 'kauaanmatheus@gmail.com' AND senhaUsuario = 'kauan123'
