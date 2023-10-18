@@ -23,7 +23,7 @@ router.post('/uploadFotoUsuario/:idUsuario', upload.single('fotoUsuarioUpload'),
 
     blockBlobClient.upload(content, content.length)
 
-    usuarioModel.atualizaUsuario('fotoPerfilUsuario', blockBlobClient.url, req.params.idUsuario)
+    usuarioModel.atualizarUsuario('fotoPerfilUsuario', blockBlobClient.url, req.params.idUsuario)
 
     res.status(200)
 })

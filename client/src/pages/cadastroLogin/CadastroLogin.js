@@ -6,6 +6,13 @@ import FormularioLoginUsuario from '../../components/formularioLoginUsuario/Form
 import Button from '../../components/button/Button'
 
 function Cadastro() {
+  const cadastrarOuEntrar = e => {
+    document.querySelector('#form_cadastro_submit').click()
+    // e.target.innerText === 'Cadastrar'
+    //   ?
+    //   : document.querySelector('#form_login').submit()
+  }
+
   const formCadastroParaLogin = () => {
     const formularioCadastro = document.querySelector('#formulario_cadastro')
     const formularioLogin = document.querySelector('#formulario_login')
@@ -51,7 +58,7 @@ function Cadastro() {
         <FormularioLoginUsuario id="formulario_login" />
       </div>
       <div className={styles.bt_login_cadastro}>
-        <Button id='bt_login_cadastro' className='full_colored w_50p' text='Cadastrar' />
+        <Button id='bt_login_cadastro' handleOnClick={cadastrarOuEntrar} className='full_colored w_50p' text='Cadastrar' />
       </div>
       <div className={styles.possui_conta}>
         <span>Já possui conta?</span>

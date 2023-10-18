@@ -9,10 +9,10 @@ function listarUsuarios(req, res) {
     })
 }
 
-function buscarInfoUsuario(req,res) {
-    model.buscarInfoUsuario(req.params.idUsuario).then(result=>{
+function buscarInfoUsuario(req, res) {
+    model.buscarInfoUsuario(req.params.idUsuario).then(result => {
         res.json(result)
-    }).catch(e=>{
+    }).catch(e => {
         console.log(e)
         res.status(500).json
     })
@@ -52,8 +52,17 @@ function buscarUsuarioPorCampo(req, res) {
 }
 
 function atualizarUsuario(req, res) {
-    model.atualizaUsuario(req.params.campo, req.params.valor, req.params.idUsuario).then(result => {
+    model.atualizarUsuario(req.params.campo, req.params.valor, req.params.idUsuario).then(result => {
         res.json(result)
+    }).catch(e => {
+        console.log(e)
+        res.status(500).son
+    })
+}
+
+function login(req, res) {
+    model.login(req.params.email, req.params.senha).then(result => {
+        res.send(result.length > 0)
     }).catch(e => {
         console.log(e)
         res.status(500).son
@@ -66,5 +75,6 @@ module.exports = {
     buscarFotoUsuario,
     cadastrarUsuario,
     buscarUsuarioPorCampo,
-    atualizarUsuario
+    atualizarUsuario,
+    login
 }

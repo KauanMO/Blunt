@@ -24,5 +24,9 @@ router.post('/cadastrar', (req, res) => {
     controller.cadastrarUsuario(req, res)
 })
 
+router.get('/login/:email/:senha', (req, res) => {
+    controller.login(req, res)
+})
+
 
 module.exports = router

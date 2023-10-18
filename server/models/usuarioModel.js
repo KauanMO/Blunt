@@ -21,8 +21,12 @@ function buscarUsuarioPorCampo(campo, valor) {
     return db.exec(`SELECT idUsuario FROM Usuario WHERE ${campo} = '${valor}'`)
 }
 
-function atualizaUsuario(campo, valor, idUsuario) {
+function atualizarUsuario(campo, valor, idUsuario) {
     return db.exec(`UPDATE Usuario SET ${campo} = '${valor}' WHERE idUsuario = ${idUsuario}`)
+}
+
+function login(email, senha) {
+    return db.exec(`SELECT idUsuario FROM Usuario WHERE emailUsuario = '${email}' AND senhaUsuario = '${senha}'`)
 }
 
 module.exports = {
@@ -31,5 +35,6 @@ module.exports = {
     buscarFotoUsuario,
     cadastrarUsuario,
     buscarUsuarioPorCampo,
-    atualizaUsuario
+    atualizarUsuario,
+    login
 }

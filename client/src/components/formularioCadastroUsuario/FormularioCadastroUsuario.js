@@ -47,27 +47,27 @@ function FormularioCadastroUsuario({ id }) {
 
     const validarCampos = () => {
         if (!validarUsername(dados.iUsername)) {
-            document.querySelector('#cookie_iUsername').innerText = inputs[0].errorMessage
+            document.querySelector('#cookie_iUsername').innerText = inputs[0][0].errorMessage
             return false
         }
         if (!validarNomeExib(dados.iNomeExib)) {
-            document.querySelector('#cookie_iNomeExib').innerText = inputs[1].errorMessage
+            document.querySelector('#cookie_iNomeExib').innerText = inputs[0][1].errorMessage
             return false
         }
         if (!validarEmail(dados.iEmail)) {
-            document.querySelector('#cookie_iEmail').innerText = inputs[2].errorMessage
+            document.querySelector('#cookie_iEmail').innerText = inputs[0][2].errorMessage
             return false
         }
         if (!validarDtNasc(dados.iDtNasc)) {
-            document.querySelector('#cookie_iDtNasc').innerText = inputs[3].errorMessage
+            document.querySelector('#cookie_iDtNasc').innerText = inputs[1][3].errorMessage
             return false
         }
         if (!validarSenha(dados.iSenha)) {
-            document.querySelector('#cookie_iSenha').innerText = inputs[4].errorMessage
+            document.querySelector('#cookie_iSenha').innerText = inputs[1][4].errorMessage
             return false
         }
         if (!validarConfirmSenha(dados.iConfirmSenha)) {
-            document.querySelector('#cookie_iConfirmSenha').innerText = inputs[5].errorMessage
+            document.querySelector('#cookie_iConfirmSenha').innerText = inputs[1][5].errorMessage
             return false
         }
         return true
@@ -195,7 +195,7 @@ function FormularioCadastroUsuario({ id }) {
 
     return (
         <div id={id} className='form_cadastro_container'>
-            <form className='form_cadastro' onSubmit={cadastrarUsuario}>
+            <form id='form_cadastro' className='form_cadastro' onSubmit={cadastrarUsuario}>
                 <div>
                     {inputs[0].map(input => (
                         <div key={input.id} className='input_container'>
@@ -210,7 +210,7 @@ function FormularioCadastroUsuario({ id }) {
                     ))}
                 </div>
                 <div>
-                    {inputs[0].map(input => (
+                    {inputs[1].map(input => (
                         <div key={input.id} className='input_container'>
                             <Input
                                 key={input.id}
@@ -222,6 +222,7 @@ function FormularioCadastroUsuario({ id }) {
                         </div>
                     ))}
                 </div>
+                <input style={{display: 'none'}} id="form_cadastro_submit" type="submit"></input>
             </form>
         </div>
     )
