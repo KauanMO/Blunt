@@ -1,4 +1,10 @@
-.mini-perfil-feed {
+.foto_perfil_pub {
+    border-radius: 50%;
+    position: absolute;
+    left: 7.8rem;
+}
+
+.mini_perfil_feed {
     border-radius: 50%;
     border: 3px solid black;
     user-select: none;

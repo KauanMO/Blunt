@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Feed.module.css'
 import MiniPerfil from '../../components/miniPerfil/MiniPerfil'
 import Publicar from '../../components/publicar/Publicar'
-// import ModalExcluirConta from '../../components/modalExcluirConta/ModalExcluirConta'
+import FotoPerfil from '../../components/fotoPerfil/FotoPerfil'
 
 function Feed() {
     if (!sessionStorage.getItem('idUsuario')) { window.location.href = window.location.origin }
@@ -13,6 +13,7 @@ function Feed() {
             </div>
             <div className={styles.center}>
                 <div className={styles.publicar_container}>
+                    <FotoPerfil className='foto_perfil_pub w_2rem h_2rem' />
                     <Publicar />
                 </div>
             </div>

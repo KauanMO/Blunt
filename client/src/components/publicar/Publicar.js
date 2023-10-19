@@ -43,7 +43,6 @@ function ModalPublicar() {
     }
 
     const notificarPublicacao = () => {
-        document.querySelector('#iFotoPub').files[0] = '';
         document.querySelector('#iTextoPub').style.animation = 'check 600ms'
         setTimeout(() => {
             document.querySelector('#iTextoPub').value = ''
@@ -89,7 +88,6 @@ function ModalPublicar() {
                 placeholder="Publique o que está pensando" name='iTextoPub'
                 className="w_100p texto_publicacao"
                 handleOnChange={attTextoPub}
-                rows={'1'}
             />
             <label className={styles.publicar_imagem_icon} id='publicar_imagem_icon' htmlFor='iFotoPub'>
                 <i className="fa-regular fa-image" />

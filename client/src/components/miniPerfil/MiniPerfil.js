@@ -60,7 +60,7 @@ function MiniPerfil() {
                 <li className={styles.mini_perfil_option}>Meu perfil</li>
                 <li onClick={logout} style={{ color: 'red' }} className={styles.mini_perfil_option}> <i className="fa-solid fa-right-from-bracket"></i>Sair</li>
             </div>
-            <FotoPerfil className='mini-perfil-feed w_2rem h_2rem' />
+            <FotoPerfil className='mini_perfil_feed w_2rem h_2rem' />
             <div className={styles.name_username_container}>
                 <span className={styles.span_nomeExib}>{dadosPerfil.nomeExib}</span>
                 <span className={styles.span_username}>@{dadosPerfil.username}</span>
