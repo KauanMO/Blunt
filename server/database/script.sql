@@ -29,7 +29,7 @@ create table Seguidor (
 
 create table Publicacao (
 	idPublicacao int primary key auto_increment,
-    textoPublicacao varchar(60),
+    textoPublicacao varchar(200),
     fixada tinyint default 0,
     dataPublicacao datetime,
     fkUsuario int,

@@ -25,8 +25,8 @@ function atualizarUsuario(campo, valor, idUsuario) {
     return db.exec(`UPDATE Usuario SET ${campo} = '${valor}' WHERE idUsuario = ${idUsuario}`)
 }
 
-function login(email, senha) {
-    return db.exec(`SELECT idUsuario FROM Usuario WHERE emailUsuario = '${email}' AND senhaUsuario = '${senha}'`)
+function login(emailUsername, senha) {
+    return db.exec(`SELECT * FROM Usuario WHERE username = '${emailUsername}' or emailUsuario = '${emailUsername}' and senhaUsuario = '${senha}'`)
 }
 
 function deletar(idUsuario, senha) {

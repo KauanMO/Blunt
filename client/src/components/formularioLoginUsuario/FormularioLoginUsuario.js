@@ -5,7 +5,7 @@ import './FormularioLoginUsuario.css'
 
 function FormularioLoginUsuario({ id }) {
     const [dados, setDados] = useState({
-        iEmailLogin: '',
+        iEmailUsernameLogin: '',
         iSenhaLogin: ''
     })
 
@@ -16,10 +16,10 @@ function FormularioLoginUsuario({ id }) {
     const inputs = [
         {
             id: 1,
-            name: 'iEmailLogin',
+            name: 'iEmailUsernameLogin',
             type: 'text',
-            placeholder: 'Insira seu email',
-            label: 'E-mail',
+            placeholder: 'Insira seu email ou @',
+            label: 'E-mail ou @',
             className: 'login'
         },
         {
@@ -37,8 +37,7 @@ function FormularioLoginUsuario({ id }) {
     const login = e => {
         e.preventDefault()
         cookie.innerText = ''
-        fetch(`http://localhost:5000/usuarios/login/${dados.iEmailLogin}/${dados.iSenhaLogin}`).then(res => {
-            console.log(res);
+        fetch(`http://localhost:5000/usuarios/login/${dados.iEmailUsernameLogin}/${dados.iSenhaLogin}`).then(res => {
             res.json().then(cred => {
                 if (cred.login) {
                     sessionStorage.setItem('idUsuario', cred.idUsuario)

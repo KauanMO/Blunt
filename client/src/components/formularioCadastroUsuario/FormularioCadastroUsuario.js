@@ -59,15 +59,15 @@ function FormularioCadastroUsuario({ id }) {
             return false
         }
         if (!validarDtNasc(dados.iDtNasc)) {
-            document.querySelector('#cookie_iDtNasc').innerText = inputs[1][3].errorMessage
+            document.querySelector('#cookie_iDtNasc').innerText = inputs[1][0].errorMessage
             return false
         }
         if (!validarSenha(dados.iSenha)) {
-            document.querySelector('#cookie_iSenha').innerText = inputs[1][4].errorMessage
+            document.querySelector('#cookie_iSenha').innerText = inputs[1][1].errorMessage
             return false
         }
         if (!validarConfirmSenha(dados.iConfirmSenha)) {
-            document.querySelector('#cookie_iConfirmSenha').innerText = inputs[1][5].errorMessage
+            document.querySelector('#cookie_iConfirmSenha').innerText = inputs[1][2].errorMessage
             return false
         }
         return true

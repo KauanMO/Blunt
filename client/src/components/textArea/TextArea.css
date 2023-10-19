@@ -1,0 +1,23 @@
+.w_80p {
+    width: 80%;
+}
+
+.w_100p {
+    width: 100%;
+}
+
+.texto_publicacao {
+    padding: .5rem 1rem;
+    background-color: unset;
+    border: 3px solid var(--raisin-black);
+    border-radius: 1rem;
+    resize: none;
+    color: white;
+    transition: all 100ms;
+    height: .9rem;
+    position: relative;
+}
+
+.texto_publicacao::-webkit-scrollbar {
+    display: none;
+}

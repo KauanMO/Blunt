@@ -1,5 +1,27 @@
 .container {
     width: 100vw;
     height: 100vh;
-    background-color: var(--preto) ;
+    background-color: var(--preto);
+    display: flex;
+}
+
+.left_side,
+.right_side {
+    width: 22%;
+}
+
+.center {
+    width: -webkit-fill-available;
+    padding: 0 1rem;
+    border-left: 1px solid var(--cinza);
+    border-right: 1px solid var(--cinza);
+    display: flex;
+    flex-direction: column;
+}
+
+.publicar_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
 }
