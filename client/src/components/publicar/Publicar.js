@@ -48,7 +48,7 @@ function ModalPublicar() {
             document.querySelector('#bt_publicar').style.opacity = '1'
         }, 100);
     }
-    
+
     const animacoesFecharPub = () => {
         document.querySelector('#publicar_container').style.height = '3rem'
         document.querySelector('#publicar_imagem_icon').style.opacity = '0'
@@ -66,6 +66,7 @@ function ModalPublicar() {
     }
 
     const fecharPublicar = e => {
+        if (e.target.value) { return }
         e.target.style.height = '0.9rem'
         e.target.style.rows = '1'
         animacoesFecharPub()
