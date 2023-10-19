@@ -33,10 +33,23 @@ function ModalPublicar() {
                 fkUsuarioServer: sessionStorage.getItem('idUsuario')
             })
         }).then(res => res.json().then(pub => {
-            if (document.querySelector('#iFotoPub').files[0]) {
-                publicarFoto(`http://localhost:5000/azureUpload/uploadFotoPub/${pub.insertId}`, document.querySelector('#iFotoPub').files[0])
+            if (res.ok) {
+                notificarPublicacao()
+                if (document.querySelector('#iFotoPub').files[0]) {
+                    publicarFoto(`http://localhost:5000/azureUpload/uploadFotoPub/${pub.insertId}`, document.querySelector('#iFotoPub').files[0])
+                }
             }
         }))
+    }
+
+    const notificarPublicacao = () => {
+        document.querySelector('#iFotoPub').files[0] = '';
+        document.querySelector('#iTextoPub').style.animation = 'check 600ms'
+        setTimeout(() => {
+            document.querySelector('#iTextoPub').value = ''
+            document.querySelector('#iTextoPub').blur()
+            document.querySelector('#iTextoPub').style.animation = ''
+        }, 500);
     }
 
     const animacoesAbrirPub = () => {
@@ -61,14 +74,12 @@ function ModalPublicar() {
 
     const abrirPublicar = e => {
         e.target.style.height = '3.7rem'
-        e.target.style.rows = '3'
         animacoesAbrirPub()
     }
 
     const fecharPublicar = e => {
         if (e.target.value) { return }
         e.target.style.height = '0.9rem'
-        e.target.style.rows = '1'
         animacoesFecharPub()
     }
 

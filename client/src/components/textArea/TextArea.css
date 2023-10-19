@@ -1,3 +1,12 @@
+@keyframes check {
+    50% {
+        color: green;
+    }
+    100% {
+        color: unset;
+    }
+}
+
 .w_80p {
     width: 80%;
 }

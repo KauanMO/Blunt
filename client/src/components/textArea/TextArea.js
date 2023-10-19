@@ -12,7 +12,8 @@ function TextArea({ name, className, handleOnFocus, handleOnBlur, placeholder, r
             autoComplete='off'
             maxLength='200'
             rows={rows} 
-            onChange={handleOnChange}/>
+            onChange={handleOnChange}
+            spellCheck='false'/>
     )
 }
 
