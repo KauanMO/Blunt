@@ -1,0 +1,26 @@
+.foto_perfil_pub {
+    border-radius: 50%;
+    position: absolute;
+    left: 5.8rem;
+}
+
+.mini_perfil_feed {
+    border-radius: 50%;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.imagem_pub{
+    width: 20rem;
+}
+
+.w_2rem {
+    width: 2rem;
+}
+
+.h_2rem {
+    height: 2rem;
+}

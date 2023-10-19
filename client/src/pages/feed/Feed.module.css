@@ -1,13 +1,13 @@
 .container {
     width: 100vw;
     height: 100vh;
-    background-color: var(--preto);
+    
     display: flex;
 }
 
 .left_side,
 .right_side {
-    width: 22%;
+    width: 35%;
 }
 
 .center {

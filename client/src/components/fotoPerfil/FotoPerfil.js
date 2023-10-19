@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Imagem from '../imagem/Imagem'
 import './FotoPerfil.css'
 
-function FotoPerfil({ className }) {
+function FotoPerfil({ imageClassName }) {
     const [fotoUsuario, setFotoUsuario] = useState('')
 
     useEffect(() => {
@@ -23,7 +24,7 @@ function FotoPerfil({ className }) {
 
     return (
         <div>
-            <img alt='' className={className} src={fotoUsuario} />
+            <Imagem alt='' imageClassName={imageClassName} src={fotoUsuario} />
         </div>
     )
 }
