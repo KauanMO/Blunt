@@ -6,4 +6,8 @@ router.post('/publicar', (req, res) => {
     controller.publicar(req, res)
 })
 
+router.get('/foryou', (req, res) => {
+    controller.buscarFeedForYou(req,res)
+})
+
 module.exports = router

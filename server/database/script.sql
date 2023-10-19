@@ -37,8 +37,8 @@ create table Publicacao (
 );
 
 create table FotoPublicacao (
-	idFotoPostagem int primary key auto_increment,
-    fotoPostagem varchar(255),
+	idFotoPublicacao int primary key auto_increment,
+    fotoPublicacao varchar(255),
     fkPublicacao int,
     constraint fotoPubPublicacao foreign key (fkPublicacao) references Publicacao(idPublicacao)
 );
