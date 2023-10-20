@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/source-sans-pro');
 :root {
     --raisin-black: #272635;
     --preto: #080808;
@@ -5,10 +6,10 @@
     --lilás: #938DE0;
     --branco: #FCF9FE;
     --cinza: #939194;
-    --preto_002: #18161A; 
+    --preto_002: #18161A;
 }
 
-body{
+body {
     overflow-x: hidden;
     background-color: var(--preto);
 }
@@ -16,4 +17,5 @@ body{
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
 }

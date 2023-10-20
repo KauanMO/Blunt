@@ -40,7 +40,9 @@ function FormularioLoginUsuario({ id }) {
         fetch(`http://localhost:5000/usuarios/login/${dados.iEmailUsernameLogin}/${dados.iSenhaLogin}`).then(res => {
             res.json().then(cred => {
                 if (cred.login) {
+                    console.log(cred);
                     sessionStorage.setItem('idUsuario', cred.idUsuario)
+                    sessionStorage.setItem('username', cred.username)
                     window.location.href += 'feed'
                 } else {
                     cookie.innerText = errorMessage.usuarioNaoEncontrado

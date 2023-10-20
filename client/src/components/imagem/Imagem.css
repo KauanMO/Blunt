@@ -15,6 +15,7 @@
 
 .foto_usuario_pub{
     border-radius: 50%;
+    background-color: var(--lilás);
 }
 
 .imagem_pub{

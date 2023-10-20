@@ -35,6 +35,7 @@
     transition: all 600ms;
     opacity: 1;
     position: absolute;
+    color: white;
 }
 
 .form_cadastro_container form {

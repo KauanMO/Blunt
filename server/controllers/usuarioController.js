@@ -65,7 +65,8 @@ function login(req, res) {
         res.send(
             {
                 login: result.length > 0,
-                idUsuario: result[0].idUsuario
+                idUsuario: result[0].idUsuario,
+                username: result[0].username
             }
         )
     }).catch(e => {

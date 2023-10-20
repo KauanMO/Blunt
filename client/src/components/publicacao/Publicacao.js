@@ -15,10 +15,11 @@ function Publicacao({ pubInfo }) {
                 <div className={styles.publicacao_textos}>
                     <div className={styles.info_usuario}>
                         <span className={styles.nome_username}>
-                            {pubInfo.nomeExibicaoUsuario} <span className={styles.username}>
+                            <span className={styles.nome_exibicao}>{pubInfo.nomeExibicaoUsuario}</span>
+                            <span className={styles.username}>
                                 @{pubInfo.username}
                             </span>
-                            <span style={{color: 'var(--cinza)'}}>•</span>
+                            <span style={{ color: 'var(--cinza)' }}>•</span>
                             <span className={styles.dataPub}>{tempoPubPassado}</span>
                         </span>
                     </div>
@@ -26,7 +27,20 @@ function Publicacao({ pubInfo }) {
                 </div>
             </div>
             {pubInfo.fotoPublicacao ? <Imagem imageClassName="imagem_pub as_fe" src={pubInfo.fotoPublicacao} /> : ''}
-
+            <div className={styles.publicacoes_opcoes}>
+                <div id={'curtir_' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
+                    <i className="fa-regular fa-heart"></i>
+                    <span>Curtidas</span>
+                </div>
+                <div id={'repostar' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
+                    <i className="fa-solid fa-repeat"></i>
+                    <span>Repostagens</span>
+                </div>
+                <div id={'comentar' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
+                    <i className="fa-regular fa-comment"></i>
+                    <span>Comentarios</span>
+                </div>
+            </div>
         </div>
     )
 }

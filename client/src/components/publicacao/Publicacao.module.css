@@ -1,5 +1,6 @@
 .publicacao_container {
     display: flex;
+    gap: 1rem;
     flex-direction: column;
     width: 28rem;
     margin-top: .3rem;
@@ -9,7 +10,7 @@
 }
 
 .publicacao_container:hover {
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(17, 17, 17);
     cursor: pointer;
 }
 
@@ -29,7 +30,11 @@
 .nome_username {
     display: flex;
     gap: .5rem;
+}
+
+.nome_exibicao{
     font-weight: 600;
+    color: var(--lilás);
 }
 
 .username {
@@ -44,4 +49,22 @@
 
 .dataPub { 
     color: var(--cinza);
+}
+
+.publicacoes_opcoes{
+    display: flex;
+    color: var(--cinza);
+    justify-content: space-around;
+}
+
+.publicacao_opcao_container{
+    align-items: center;
+    display: flex;
+    gap: .3rem;
+    transition: all 100ms;
+    border-radius: 4px;
+}
+
+.publicacao_opcao_container:hover{
+    color: var(--lilás);
 }

@@ -36,6 +36,16 @@ create table Publicacao (
     constraint publicacaoUsuario foreign key (fkUsuario) references Usuario(idUsuario)
 );
 
+create table Republicacao (
+    idRepublicacao int primary key auto_increment,
+    textoRepublicacao varchar(200),
+    dataRepublicacao datetime,
+    fkUsuario int,
+    fkPublicacao int,
+    constraint republicacaoUsuario foreign key (fkUsuario) references Usuario(idUsuario),
+    constraint RepublicacaoPublicacao foreign key (fkPublicacao) references Publicacao(idPublicacao)
+);
+
 create table FotoPublicacao (
 	idFotoPublicacao int primary key auto_increment,
     fotoPublicacao varchar(255),
