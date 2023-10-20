@@ -1,3 +1,42 @@
-.publicacao_container{
+.publicacao_container {
+    display: flex;
+    flex-direction: column;
+    width: 28rem;
+    margin-top: .3rem;
+    transition: all 600ms;
+    padding: 1rem;
+    border-radius: 5px;
+}
 
+.publicacao_container:hover {
+    background-color: var(--cinza);
+}
+
+.info_usuario {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.topo_pub {
+    display: flex;
+    gap: .9rem;
+    color: white;
+    align-items: center;
+}
+
+.nome_username {
+    display: flex;
+    gap: .5rem;
+    font-weight: 600;
+}
+
+.username {
+    color: var(--cinza);
+}
+
+.publicacao_textos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
 }

@@ -17,6 +17,8 @@
     border-right: 1px solid var(--cinza);
     display: flex;
     flex-direction: column;
+    height: fit-content;
+    align-items: center;
 }
 
 .publicar_container {
