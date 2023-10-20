@@ -1,7 +1,7 @@
 const db = require('../database/config')
 
 function publicar(textoPublicacao, fkUsuario) {
-    return db.exec(`INSERT INTO Publicacao(textoPublicacao, dataPublicacao, fkUsuario) VALUES ('${textoPublicacao}', now(), ${fkUsuario})`)
+    return db.exec(`INSERT INTO Publicacao (textoPublicacao, dataPublicacao, fkUsuario) VALUES ('${textoPublicacao}', now(), ${fkUsuario})`)
 }
 
 function buscarFeedForYou() {
@@ -9,7 +9,7 @@ function buscarFeedForYou() {
     u.fotoPerfilUsuario, u.nomeExibicaoUsuario
         FROM Publicacao p
         LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao
-        JOIN Usuario u ON p.fkUsuario = u.idUsuario 
+        JOIN Usuario u ON p.fkUsuario = u.idUsuario
         ORDER BY dataPublicacao DESC`)
 }
 
