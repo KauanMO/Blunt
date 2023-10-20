@@ -9,7 +9,8 @@
 }
 
 .publicacao_container:hover {
-    background-color: var(--cinza);
+    background-color: rgb(32, 32, 32);
+    cursor: pointer;
 }
 
 .info_usuario {
@@ -39,4 +40,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+}
+
+.dataPub { 
+    color: var(--cinza);
 }

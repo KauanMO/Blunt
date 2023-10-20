@@ -1,13 +1,19 @@
 .container {
     width: 100vw;
     height: 100vh;
-    
     display: flex;
+}
+
+.left_side {
+    display: flex;
+
 }
 
 .left_side,
 .right_side {
+    position: relative;
     width: 35%;
+    background-color: var(--preto_002);
 }
 
 .center {

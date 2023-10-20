@@ -23,7 +23,7 @@
 }
 
 .mini_perfil_container {
-    width: 10rem;
+    width: 12rem;
     height: 3rem;
     border-radius: 1rem;
     padding: .3rem;
@@ -33,7 +33,9 @@
     transition: all 200ms;
     cursor: pointer;
     position: absolute;
-    bottom: 0;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .mini_perfil_container:hover {
@@ -44,7 +46,7 @@
 .mini_perfil_options {
     display: none;
     flex-direction: column;
-    width: 10rem;
+    width: 12rem;
     height: 7rem;
     position: absolute;
     top: 0;
