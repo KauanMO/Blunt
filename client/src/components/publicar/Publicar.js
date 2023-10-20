@@ -4,6 +4,7 @@ import Button from '../button/Button'
 import styles from './Publicar.module.css'
 import TextArea from '../textArea/TextArea'
 import { useState } from 'react'
+import FotoPerfil from '../../components/fotoPerfil/FotoPerfil'
 
 function ModalPublicar() {
     const [textoPub, setTextoPub] = useState('')
@@ -84,6 +85,7 @@ function ModalPublicar() {
 
     return (
         <div id='publicar_container' className={styles.publicar_container}>
+            <FotoPerfil imageClassName='foto_perfil_pub w_2rem h_2rem' />
             <TextArea handleOnBlur={fecharPublicar} handleOnFocus={abrirPublicar}
                 placeholder="Publique o que está pensando" name='iTextoPub'
                 className="w_100p texto_publicacao"

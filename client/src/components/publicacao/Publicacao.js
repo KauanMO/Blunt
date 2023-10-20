@@ -9,7 +9,7 @@ function Publicacao({ pubInfo }) {
     if (tempoPubPassado > 30) { tempoPubPassado /= 30 + 'm' }
 
     return (
-        <div className={styles.publicacao_container}>
+        <div id={pubInfo.idPublicacao} className={styles.publicacao_container}>
             <div className={styles.topo_pub}>
                 <Imagem imageClassName="foto_usuario_pub w_2rem h_2rem" src={pubInfo.fotoPerfilUsuario} />
                 <div className={styles.publicacao_textos}>

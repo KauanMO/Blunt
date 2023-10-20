@@ -5,7 +5,7 @@ function publicar(textoPublicacao, fkUsuario) {
 }
 
 function buscarFeedForYou() {
-    return db.exec(`SELECT p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
+    return db.exec(`SELECT p.idPublicacao, p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
     u.fotoPerfilUsuario, u.nomeExibicaoUsuario
         FROM Publicacao p
         LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao

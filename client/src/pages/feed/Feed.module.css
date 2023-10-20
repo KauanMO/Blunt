@@ -6,14 +6,20 @@
 
 .left_side {
     display: flex;
+    left: 0;
+    width: 17%;
+}
 
+.right_side {
+    right: 0;
+    width: 20%;
 }
 
 .left_side,
 .right_side {
-    position: relative;
-    width: 35%;
+    position: fixed;
     background-color: var(--preto_002);
+    height: 100%;
 }
 
 .center {
