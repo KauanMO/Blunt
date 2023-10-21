@@ -4,9 +4,10 @@ import Imagem from '../imagem/Imagem'
 
 function Publicacao({ pubInfo }) {
     // pubInfo = dataPublicacao, fotoPerfilUsuario, fotoPublicacao, nomeExibicaoUsuario, textoPublicacao
-    let tempoPubPassado = Math.round((new Date() - new Date(pubInfo.dataPublicacao)) / (1000 * 60 * 60)) + 'h'
-    if (tempoPubPassado > 24) { tempoPubPassado /= 24 + 'd' }
-    if (tempoPubPassado > 30) { tempoPubPassado /= 30 + 'm' }
+    let tempoPubPassado = Math.round((new Date() - new Date(pubInfo.dataPublicacao)) / (1000 * 60 * 60))
+    if (tempoPubPassado < 24) { tempoPubPassado += 'h' }
+    if (tempoPubPassado >= 24) { tempoPubPassado = Math.round(tempoPubPassado / 24) + 'd' }
+    if (tempoPubPassado >= 24) { tempoPubPassado = Math.round(tempoPubPassado / 30) + 'm' }
 
     const [curtido, setCurtido] = useState(null)
 
