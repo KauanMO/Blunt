@@ -20,6 +20,7 @@
 
 .imagem_pub{
     width: 20rem;
+    max-height: 20rem;
 }
 
 .w_2rem {

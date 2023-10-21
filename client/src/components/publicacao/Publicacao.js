@@ -4,12 +4,13 @@ import Imagem from '../imagem/Imagem'
 
 function Publicacao({ pubInfo }) {
     // pubInfo = dataPublicacao, fotoPerfilUsuario, fotoPublicacao, nomeExibicaoUsuario, textoPublicacao
-    let tempoPubPassado = Math.round((new Date() - new Date(pubInfo.dataPublicacao)) / (1000 * 60 * 60))
-    if (tempoPubPassado < 24) { tempoPubPassado += 'h' }
-    if (tempoPubPassado >= 24) { tempoPubPassado = Math.round(tempoPubPassado / 24) + 'd' }
-    if (tempoPubPassado >= 24) { tempoPubPassado = Math.round(tempoPubPassado / 30) + 'm' }
+    let tempoPubPassado = Math.round((new Date() - new Date(pubInfo.dataPublicacao)) / (1000 * 60))
+    if (tempoPubPassado > 1440) { tempoPubPassado = Math.round(tempoPubPassado / 1440) + 'd' }
+    if (tempoPubPassado > 60) { tempoPubPassado = Math.round(tempoPubPassado / 60) + 'h' }
+    if (tempoPubPassado < 60) { tempoPubPassado = tempoPubPassado + 'm' }
 
-    const [curtido, setCurtido] = useState(null)
+
+        const [curtido, setCurtido] = useState(null)
 
     useEffect(() => {
         const url = `http://localhost:5000/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${pubInfo.idPublicacao}`
