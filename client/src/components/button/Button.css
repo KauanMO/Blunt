@@ -28,6 +28,15 @@
     background-color: var(--lilás);
 }
 
+.bt_comentar{
+    position: absolute;
+    right: 0;
+    bottom: -1rem;
+    opacity: 0;
+    display: none;
+    transition: all 100ms;
+}
+
 .w_80p {
     width: 80%;
 }

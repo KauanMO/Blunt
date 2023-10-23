@@ -31,6 +31,10 @@
     position: relative;
 }
 
+/* .texto_comentario{
+    margin-bottom: 1rem;
+} */
+
 .texto_publicacao::-webkit-scrollbar {
     display: none;
 }

@@ -3,6 +3,7 @@ import styles from './Publicacao.module.css'
 import Imagem from '../imagem/Imagem'
 import FotoPerfil from '../fotoPerfil/FotoPerfil'
 import TextArea from '../textArea/TextArea'
+import Button from '../button/Button'
 
 function Publicacao({ pubInfo }) {
     // pubInfo = dataPublicacao, fotoPerfilUsuario, fotoPublicacao, nomeExibicaoUsuario, textoPublicacao
@@ -49,12 +50,24 @@ function Publicacao({ pubInfo }) {
         })
     }
 
-    function animacoesAbrirCom() {
-        document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '3rem'
+    const comentar = e => {
+
     }
 
+    function animacoesAbrirCom() {
+        document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '4rem'
+        document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.display = 'flex'
+        setTimeout(() => {
+            document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.opacity = '1'
+        }, 100);
+    }
+    
     function animacoesFecharCom() {
-        document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '1rem'
+        document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '2rem'
+        document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.opacity = '0'
+        setTimeout(() => {
+            document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.display = 'none'
+        }, 100);
     }
 
     const abrirComentario = e => {
@@ -108,6 +121,12 @@ function Publicacao({ pubInfo }) {
                     maxLength='155'
                     handleOnFocus={abrirComentario}
                     handleOnBlur={fecharComentario}
+                />
+                <Button
+                    text='Comentar'
+                    id={`bt_comentar_${pubInfo.idPublicacao}`}
+                    className='bt_comentar'
+                    handleOnClick={comentar}
                 />
             </div>
         </div>

@@ -71,4 +71,6 @@
 
 .comentar_container{
     display: flex;
+    transition: all 100ms;
+    position: relative;
 }

@@ -13,7 +13,8 @@ function TextArea({ name, className, handleOnFocus, handleOnBlur, placeholder, r
             maxLength={maxLength}
             rows={rows} 
             onChange={handleOnChange}
-            spellCheck='false'/>
+            spellCheck='false'
+            />
     )
 }
 
