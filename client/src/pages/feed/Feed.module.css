@@ -4,12 +4,6 @@
     display: flex;
 }
 
-.left_side {
-    display: flex;
-    left: 0;
-    width: 17%;
-}
-
 .right_side {
     right: 0;
     width: 20%;

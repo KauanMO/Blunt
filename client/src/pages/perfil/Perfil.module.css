@@ -1,4 +1,39 @@
-.perfil_container{
-    width: 100vw;
+.perfil_container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 17%);
+    margin-left: 17%;
     height: 100vh;
+}
+
+.perfil_header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.textos_header {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.nomes_header {
+    display: flex;
+    gap: 1rem;
+    font-size: 1.3rem;
+}
+
+.username_header {
+    color: white;
+}
+
+.nomeExib_header {
+    color: var(--cinza);
+}
+
+.seguidores_header {
+    display: flex;
+    gap: 1rem;
+    color: white;
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Feed.module.css'
-import MiniPerfil from '../../components/miniPerfil/MiniPerfil'
 import Publicar from '../../components/publicar/Publicar'
 import Publicacao from '../../components/publicacao/Publicacao'
+import Navbar from '../../components/navbar/Navbar'
 
 function Feed() {
     if (!sessionStorage.getItem('idUsuario')) { window.location.href = window.location.origin }
@@ -26,9 +26,7 @@ function Feed() {
 
     return (
         <div className={styles.container}>
-            <div className={styles.left_side}>
-                <MiniPerfil />
-            </div>
+            <Navbar />
             <div className={styles.center}>
                 <div className={styles.publicar_container}>
                     <Publicar />

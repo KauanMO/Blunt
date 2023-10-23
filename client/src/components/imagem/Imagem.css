@@ -1,3 +1,9 @@
+.foto_perfil_perfil {
+    border-radius: 50%;
+    background-color: var(--lilás);
+    width: 10rem;
+}
+
 .foto_perfil_pub {
     border-radius: 50%;
     position: absolute;

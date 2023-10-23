@@ -1,11 +1,12 @@
 import React from "react";
 import styles from './Navbar.module.css'
+import MiniPerfil from '../../components/miniPerfil/MiniPerfil'
 
 function Navbar() {
     return (
-        <nav className={styles.nav}>
-            
-        </nav>
+        <div className={styles.nav}>
+            <MiniPerfil />
+        </div>
     )
 }
 
