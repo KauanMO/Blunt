@@ -90,12 +90,13 @@ function ModalPublicar() {
                 placeholder="Publique o que está pensando" name='iTextoPub'
                 className="w_100p texto_publicacao"
                 handleOnChange={attTextoPub}
+                maxLength='200'
             />
             <label className={styles.publicar_imagem_icon} id='publicar_imagem_icon' htmlFor='iFotoPub'>
                 <i className="fa-regular fa-image" />
             </label>
             <Input style={{ display: 'none' }} type='file' name='iFotoPub' />
-            <Button id='bt_publicar' className={styles.btCadastrar} handleOnClick={publicar} text="Publicar" />
+            <Button id='bt_publicar' className='bt_publicar' handleOnClick={publicar} text="Publicar" />
         </div>
     )
 }

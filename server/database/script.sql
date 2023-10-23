@@ -55,7 +55,7 @@ create table FotoPublicacao (
 
 create table Comentario (
 	idComentario int primary key auto_increment,
-    textoComentario varchar(55),
+    textoComentario varchar(155),
     dataComentario datetime,
     fkPublicacao int,
     fkUsuario int,
@@ -115,10 +115,3 @@ create table Denuncia (
     constraint denunciaPublicacao foreign key (fkPublicacao) references Publicacao(idPublicacao),
     constraint denunciaComentario foreign key (fkComentario) references Comentario(idComentario)
 );
-
-SELECT p.idPublicacao, p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
-    u.fotoPerfilUsuario, u.nomeExibicaoUsuario
-        FROM Publicacao p
-        LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao
-        JOIN Usuario u ON p.fkUsuario = u.idUsuario
-        ORDER BY dataPublicacao DESC;

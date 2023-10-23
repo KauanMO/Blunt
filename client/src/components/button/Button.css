@@ -19,6 +19,15 @@
     border: 1px solid;
 }
 
+.bt_publicar{
+    position: absolute;
+    bottom: 1rem;
+    right: 0;
+    display: none;
+    opacity: 0;
+    background-color: var(--lilás);
+}
+
 .w_80p {
     width: 80%;
 }

@@ -19,7 +19,7 @@
     width: 100%;
 }
 
-.texto_publicacao {
+.texto_publicacao, .texto_comentario {
     padding: .5rem 1rem;
     background-color: unset;
     border: 3px solid var(--raisin-black);
@@ -32,5 +32,9 @@
 }
 
 .texto_publicacao::-webkit-scrollbar {
+    display: none;
+}
+
+.texto_comentario::-webkit-scrollbar {
     display: none;
 }

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Publicacao.module.css'
 import Imagem from '../imagem/Imagem'
+import FotoPerfil from '../fotoPerfil/FotoPerfil'
+import TextArea from '../textArea/TextArea'
 
 function Publicacao({ pubInfo }) {
     // pubInfo = dataPublicacao, fotoPerfilUsuario, fotoPublicacao, nomeExibicaoUsuario, textoPublicacao
@@ -9,8 +11,7 @@ function Publicacao({ pubInfo }) {
     if (tempoPubPassado > 60) { tempoPubPassado = Math.round(tempoPubPassado / 60) + 'h' }
     if (tempoPubPassado < 60) { tempoPubPassado = tempoPubPassado + 'm' }
 
-
-        const [curtido, setCurtido] = useState(null)
+    const [curtido, setCurtido] = useState(null)
 
     useEffect(() => {
         const url = `http://localhost:5000/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${pubInfo.idPublicacao}`
@@ -48,6 +49,24 @@ function Publicacao({ pubInfo }) {
         })
     }
 
+    function animacoesAbrirCom() {
+        document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '3rem'
+    }
+
+    function animacoesFecharCom() {
+        document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '1rem'
+    }
+
+    const abrirComentario = e => {
+        e.target.style.height = '2.8rem'
+        animacoesAbrirCom()
+    }
+
+    const fecharComentario = e => {
+        e.target.style.height = '0.9rem'
+        animacoesFecharCom()
+    }
+
     return (
         <div id={pubInfo.idPublicacao} className={styles.publicacao_container}>
             <div className={styles.topo_pub}>
@@ -80,6 +99,16 @@ function Publicacao({ pubInfo }) {
                     <i className="fa-regular fa-comment"></i>
                     <span>Comentarios</span>
                 </div>
+            </div>
+            <div id={`comentar_container_${pubInfo.idPublicacao}`} className={styles.comentar_container}>
+                <FotoPerfil imageClassName='foto_perfil_com w_2rem h_2rem' />
+                <TextArea
+                    className='w_80p texto_comentario'
+                    placeholder='Adicione um comentário'
+                    maxLength='155'
+                    handleOnFocus={abrirComentario}
+                    handleOnBlur={fecharComentario}
+                />
             </div>
         </div>
     )

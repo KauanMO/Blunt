@@ -28,11 +28,3 @@
     transition: all 100ms;
     background-color: var(--raisin-black);
 }
-
-.btCadastrar {
-    position: absolute;
-    bottom: 1rem;
-    right: 0;
-    display: none;
-    opacity: 0;
-}

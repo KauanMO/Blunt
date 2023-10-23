@@ -1,6 +1,6 @@
 import './TextArea.css'
 
-function TextArea({ name, className, handleOnFocus, handleOnBlur, placeholder, rows, handleOnChange }) {
+function TextArea({ name, className, handleOnFocus, handleOnBlur, placeholder, rows, handleOnChange, maxLength }) {
     return (
         <textarea
             placeholder={placeholder}
@@ -10,7 +10,7 @@ function TextArea({ name, className, handleOnFocus, handleOnBlur, placeholder, r
             id={name}
             name={name}
             autoComplete='off'
-            maxLength='200'
+            maxLength={maxLength}
             rows={rows} 
             onChange={handleOnChange}
             spellCheck='false'/>

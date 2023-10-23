@@ -4,6 +4,10 @@
     left: -4rem;
 }
 
+.foto_perfil_com {
+    border-radius: 50%;
+}
+
 .mini_perfil_feed {
     border-radius: 50%;
     user-select: none;
@@ -13,12 +17,12 @@
     -ms-user-select: none;
 }
 
-.foto_usuario_pub{
+.foto_usuario_pub {
     border-radius: 50%;
     background-color: var(--lilás);
 }
 
-.imagem_pub{
+.imagem_pub {
     width: 20rem;
     max-height: 20rem;
 }
@@ -39,6 +43,6 @@
     height: 4rem;
 }
 
-.as_fe{
+.as_fe {
     align-self: flex-end;
 }
