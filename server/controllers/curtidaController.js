@@ -27,8 +27,18 @@ function verificarCurtida(req, res) {
     })
 }
 
+function contarCurtidasPub(req, res) {
+    model.contarCurtidasPub(req.params.fkPublicacao).then(result => {
+        res.send(result[0])
+    }).catch(e=>{
+        console.log(e)
+        res.status(500).json
+    })
+}
+
 module.exports = {
     curtir,
     descurtir,
-    verificarCurtida
+    verificarCurtida,
+    contarCurtidasPub
 }

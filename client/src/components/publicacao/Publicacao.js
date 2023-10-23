@@ -13,13 +13,14 @@ function Publicacao({ pubInfo }) {
     if (tempoPubPassado < 60) { tempoPubPassado = tempoPubPassado + 'm' }
 
     const [curtido, setCurtido] = useState(null)
+    const [qtdCurtidas, setQtdCurtidas] = useState(null)
 
     useEffect(() => {
-        const url = `http://localhost:5000/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${pubInfo.idPublicacao}`
+        const urlVerificarCurtida = `http://localhost:5000/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${pubInfo.idPublicacao}`
 
-        const fetchData = async () => {
+        const fetchDataVerificarCurtida = async () => {
             try {
-                const response = await fetch(url)
+                const response = await fetch(urlVerificarCurtida)
                 const curtidoRes = await response.json()
                 setCurtido(curtidoRes)
             } catch (error) {
@@ -27,8 +28,22 @@ function Publicacao({ pubInfo }) {
             }
         }
 
-        fetchData()
-    }, [pubInfo.idPublicacao])
+        fetchDataVerificarCurtida()
+
+        const urlContarCurtidas = `http://localhost:5000/curtidas/ccp/${pubInfo.idPublicacao}`
+
+        const fetchDataContarCurtidas = async () => {
+            try {
+                const response = await fetch(urlContarCurtidas)
+                const curtidasRes = await response.json()
+                setQtdCurtidas(curtidasRes.curtidas)
+            } catch (error) {
+                console.log("error", error)
+            }
+        }
+
+        fetchDataContarCurtidas()
+    }, [pubInfo.idPublicacao, curtido])
 
     const curtirDescurtir = e => {
         fetch(`http://localhost:5000/curtidas/${curtido ? 'descurtir' : 'curtir'}`, {
@@ -39,7 +54,6 @@ function Publicacao({ pubInfo }) {
                 fkPublicacao: pubInfo.idPublicacao
             })
         }).then(res => {
-            console.log(res)
             if (res.ok) {
                 setCurtido(!curtido)
             } else {
@@ -118,6 +132,7 @@ function Publicacao({ pubInfo }) {
             {pubInfo.fotoPublicacao ? <Imagem imageClassName="imagem_pub as_fe" src={pubInfo.fotoPublicacao} /> : ''}
             <div className={styles.publicacoes_opcoes}>
                 <div onClick={curtirDescurtir} id={'curtir_' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
+                    {qtdCurtidas}
                     <i className={curtido ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
                 </div>
                 <div id={'repostar' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>

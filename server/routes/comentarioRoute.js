@@ -7,7 +7,7 @@ router.post('/comentar', (req, res) => {
 })
 
 // Listar comentários publicação
-router.get('/lcp', (req, res) => {
+router.get('/lcp/:fkPublicacao', (req, res) => {
     controller.listarComentariosPub(req, res)
 })
 
