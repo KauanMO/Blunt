@@ -115,3 +115,5 @@ create table Denuncia (
     constraint denunciaPublicacao foreign key (fkPublicacao) references Publicacao(idPublicacao),
     constraint denunciaComentario foreign key (fkComentario) references Comentario(idComentario)
 );
+
+select * from Comentario;

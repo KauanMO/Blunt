@@ -51,7 +51,22 @@ function Publicacao({ pubInfo }) {
     }
 
     const comentar = e => {
-
+        let textoComentario = document.querySelector(`#texto_comentario_${pubInfo.idPublicacao}`).value
+        fetch('http://localhost:5000/comentarios/comentar', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                textoComentario: textoComentario,
+                fkPublicacao: pubInfo.idPublicacao,
+                fkUsuario: sessionStorage.getItem('idUsuario')
+            }),
+        }).then(res => {
+            if (!res.ok) { console.log(res) }
+        }).catch(e => {
+            console.log(e)
+        })
     }
 
     function animacoesAbrirCom() {
@@ -61,7 +76,7 @@ function Publicacao({ pubInfo }) {
             document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.opacity = '1'
         }, 100);
     }
-    
+
     function animacoesFecharCom() {
         document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '2rem'
         document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.opacity = '0'
@@ -76,8 +91,10 @@ function Publicacao({ pubInfo }) {
     }
 
     const fecharComentario = e => {
-        e.target.style.height = '0.9rem'
-        animacoesFecharCom()
+        if (!e.target.value) {
+            e.target.style.height = '0.9rem'
+            animacoesFecharCom()
+        }
     }
 
     return (
@@ -116,6 +133,7 @@ function Publicacao({ pubInfo }) {
             <div id={`comentar_container_${pubInfo.idPublicacao}`} className={styles.comentar_container}>
                 <FotoPerfil imageClassName='foto_perfil_com w_2rem h_2rem' />
                 <TextArea
+                    name={`texto_comentario_${pubInfo.idPublicacao}`}
                     className='w_80p texto_comentario'
                     placeholder='Adicione um comentário'
                     maxLength='155'
