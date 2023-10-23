@@ -119,15 +119,12 @@ function Publicacao({ pubInfo }) {
             <div className={styles.publicacoes_opcoes}>
                 <div onClick={curtirDescurtir} id={'curtir_' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
                     <i className={curtido ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
-                    <span>Curtidas</span>
                 </div>
                 <div id={'repostar' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
                     <i className="fa-solid fa-repeat"></i>
-                    <span>Repostagens</span>
                 </div>
                 <div id={'comentar' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
                     <i className="fa-regular fa-comment"></i>
-                    <span>Comentarios</span>
                 </div>
             </div>
             <div id={`comentar_container_${pubInfo.idPublicacao}`} className={styles.comentar_container}>
