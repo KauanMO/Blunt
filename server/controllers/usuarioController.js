@@ -51,6 +51,15 @@ function buscarUsuarioPorCampo(req, res) {
     })
 }
 
+function buscarInfoUsuarioUsername(req, res) {
+    model.buscarInfoUsuarioUsername(req.params.username).then(result => {
+        res.json(result)
+    }).catch(e => {
+        console.log(e)
+        res.status(500).json
+    })
+}
+
 function atualizarUsuario(req, res) {
     model.atualizarUsuario(req.params.campo, req.params.valor, req.params.idUsuario).then(result => {
         res.json(result)
@@ -87,6 +96,7 @@ function deletar(req, res) {
 module.exports = {
     listarUsuarios,
     buscarInfoUsuario,
+    buscarInfoUsuarioUsername,
     buscarFotoUsuario,
     cadastrarUsuario,
     buscarUsuarioPorCampo,

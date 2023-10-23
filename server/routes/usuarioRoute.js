@@ -11,6 +11,12 @@ router.get('/biu/:idUsuario', (req, res) => {
     controller.buscarInfoUsuario(req, res)
 })
 
+// Buscar info usuario por username
+router.get('/biuu/:username', (req, res) => {
+    controller.buscarInfoUsuarioUsername(req, res)
+})
+
+
 // Buscar foto usuario
 router.get('/bfu/:idUsuario', (req, res) => {
     controller.buscarFotoUsuario(req, res)

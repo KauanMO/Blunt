@@ -31,7 +31,6 @@ function Feed() {
             </div>
             <div className={styles.center}>
                 <div className={styles.publicar_container}>
-                    
                     <Publicar />
                 </div>
                 {feed[0]

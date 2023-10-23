@@ -8,6 +8,10 @@ function buscarInfoUsuario(idUsuario) {
     return db.exec(`SELECT username, nomeExibicaoUsuario, bioUsuario, dataNasc, dataCadastro FROM Usuario WHERE idUsuario = ${idUsuario}`)
 }
 
+function buscarInfoUsuarioUsername(username) {
+    return db.exec(`SELECT idUsuario, username, fotoPerfilUsuario, nomeExibicaoUsuario, bioUsuario, dataCadastro FROM Usuario WHERE username = '${username}'`)
+}
+
 function buscarFotoUsuario(idUsuario) {
     return db.exec(`SELECT fotoPerfilUsuario from Usuario WHERE idUsuario = ${idUsuario}`)
 }
@@ -36,6 +40,7 @@ function deletar(idUsuario, senha) {
 module.exports = {
     listarUsuarios,
     buscarInfoUsuario,
+    buscarInfoUsuarioUsername,
     buscarFotoUsuario,
     cadastrarUsuario,
     buscarUsuarioPorCampo,
