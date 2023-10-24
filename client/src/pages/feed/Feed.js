@@ -3,6 +3,7 @@ import styles from './Feed.module.css'
 import Publicar from '../../components/publicar/Publicar'
 import Publicacao from '../../components/publicacao/Publicacao'
 import Navbar from '../../components/navbar/Navbar'
+import Rightside from '../../components/rightside/Rightside'
 
 function Feed() {
     if (!sessionStorage.getItem('idUsuario')) { window.location.href = window.location.origin }
@@ -38,7 +39,7 @@ function Feed() {
                     : 'loading'
                 }
             </div>
-            <div className={styles.right_side}></div>
+            <Rightside/>
         </div>
     )
 }

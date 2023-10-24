@@ -1,7 +1,7 @@
 .perfil_container {
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 17%);
+    width: calc(100vw - 17% - 20%);
     margin-left: 17%;
     height: 100vh;
 }
@@ -36,4 +36,10 @@
     display: flex;
     gap: 1rem;
     color: white;
+}
+
+.perfil_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
