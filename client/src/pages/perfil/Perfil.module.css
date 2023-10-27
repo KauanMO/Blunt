@@ -1,9 +1,47 @@
+@keyframes conteudoCentralOut {
+    0% {
+        display: flex;
+        opacity: 1;
+    }
+
+    99% {
+        display: flex;
+        opacity: 0;
+    }
+
+    100% {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@keyframes conteudoCentralIn {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: flex;
+        opacity: 0;
+    }
+
+    100% {
+        display: flex;
+        opacity: 1;
+    }
+}
+
 .perfil_container {
     display: flex;
     flex-direction: column;
-    width: calc(100vw - 17% - 20%);
-    margin-left: 17%;
+    width: 100vw;
     height: 100vh;
+    align-items: center;
+}
+
+.perfil_central {
+    width: calc(100% - 37%);
 }
 
 .perfil_header {
@@ -32,6 +70,13 @@
     color: var(--cinza);
 }
 
+.bio_header {
+    display: flex;
+    gap: 1rem;
+    color: var(--cinza);
+    align-items: center;
+}
+
 .seguidores_header {
     display: flex;
     gap: 1rem;
@@ -45,7 +90,7 @@
     margin-top: 14rem;
 }
 
-.imagem_capa_perfil{
+.imagem_capa_perfil {
     top: 1rem;
     border-radius: 1rem;
     width: 55%;
@@ -55,4 +100,68 @@
     height: 14rem;
     background-image: url('../../assets/default-capa-perfil.png');
     z-index: -1;
+}
+
+.opcoes_navegacao_perfil {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    margin: 1.3rem 0;
+    height: 1.7rem;
+}
+
+.opcoes_navegacao_perfil span {
+    position: relative;
+    cursor: pointer;
+}
+
+.underline_publicacoes_perfil {
+    position: absolute;
+    background-color: var(--lilás);
+    height: 4px;
+    width: 5.2rem;
+    border-radius: 5px;
+    bottom: -1px;
+    transition: all 100ms;
+}
+
+.underline_curtidas_perfil {
+    position: absolute;
+    background-color: var(--lilás);
+    height: 4px;
+    width: 0;
+    border-radius: 5px;
+    bottom: -1px;
+    transition: all 100ms;
+}
+
+.underline_comentarios_perfil {
+    position: absolute;
+    background-color: var(--lilás);
+    height: 4px;
+    width: 0;
+    border-radius: 5px;
+    bottom: -1px;
+    transition: all 100ms;
+}
+
+.publicacoes_usuario, .curtidas_usuario, .comentarios_usuario {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    transition: all 300ms;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    opacity: 0;
+}
+
+.publicacoes_usuario{
+    display: flex;
+    opacity: 1;
+}
+
+.conteudo_central {
+    position: relative;
 }

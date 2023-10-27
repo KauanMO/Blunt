@@ -32,6 +32,7 @@
 .imagem_pub {
     width: 20rem;
     max-height: 20rem;
+    border-radius: .5rem;
 }
 
 .w_2rem {
