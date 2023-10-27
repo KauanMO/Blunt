@@ -18,7 +18,7 @@ function Perfil() {
     })
 
     const [pubsUsuario, setPubsUsuario] = useState([])
-
+    const [curtidasUsuario, setCurtidasUsuario] = useState([])
     const [meuPerfil, setMeuPerfil] = useState(false)
 
     useEffect(() => {
@@ -41,12 +41,24 @@ function Perfil() {
             } catch (e) {
                 console.log(e)
             }
+        }
 
+        const fetchCurtidasUsuario = async () => {
+            if (!infoUsuario.idUsuario) { return }
+            try {
+                const response = await fetch(`http://localhost:5000/publicacoes/bpcu/${infoUsuario.idUsuario}`)
+                const curtidasUsuarioRes = await response.json()
+                setCurtidasUsuario(curtidasUsuarioRes)
+            } catch (e) {
+                console.log(e)
+            }
         }
 
         if (infoUsuario.idUsuario === Number(sessionStorage.getItem('idUsuario'))) { setMeuPerfil(true) }
+
         fetchDataInfoUsuario()
         fetchPublicacoesUsuario()
+        fetchCurtidasUsuario()
     }, [infoUsuario.idUsuario])
 
     function animacaoUnderlineOpcaoNavegacao(opcao) {
@@ -82,14 +94,17 @@ function Perfil() {
 
         switch (conteudo) {
             case 'publicacoes':
+                document.querySelector('#central_curtidas').style.display = 'flex'
                 document.querySelector('#central_publicacoes').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
                 document.querySelector('#central_publicacoes').setAttribute("centralativo", "true")
                 break
-            case 'curtidas':
+                case 'curtidas':
+                    document.querySelector('#central_curtidas').style.display = 'flex'
                 document.querySelector('#central_curtidas').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
                 document.querySelector('#central_curtidas').setAttribute("centralativo", "true")
                 break
-            case 'comentarios':
+                case 'comentarios':
+                document.querySelector('#central_curtidas').style.display = 'flex'
                 document.querySelector('#central_comentarios').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
                 document.querySelector('#central_comentarios').setAttribute("centralativo", "true")
                 break
@@ -155,7 +170,11 @@ function Perfil() {
                             : 'Carregando publicações...'}
                     </div>
                     <div centralativo='false' id='central_curtidas' className={styles.curtidas_usuario}>
-
+                        {curtidasUsuario[0] ?
+                            curtidasUsuario.map((post, i) => {
+                                return (<Publicacao key={i} pubInfo={post} />)
+                            })
+                            : 'Carregando publicações...'}
                     </div>
                     <div centralativo='false' id='central_comentarios' className={styles.comentarios_usuario}>
 
