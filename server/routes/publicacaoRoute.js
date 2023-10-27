@@ -10,9 +10,14 @@ router.get('/foryou', (req, res) => {
     controller.buscarFeedForYou(req, res)
 })
 
-//Buscar publicações usuário
+// Buscar publicações usuário
 router.get('/bpu/:idUsuario', (req, res) => {
     controller.buscarPublicacoesUsuario(req, res)
+})
+
+// Buscar publicações curtidas por usuário
+router.get('/bpcu/:idUsuario', (req, res) => {
+    controller.buscarPublicacoesCurtidasUsuario(req, res)
 })
 
 module.exports = router

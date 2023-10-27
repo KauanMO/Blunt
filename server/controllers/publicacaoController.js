@@ -24,8 +24,18 @@ function buscarPublicacoesUsuario(req, res) {
     })
 }
 
+function buscarPublicacoesCurtidasUsuario(req,res){
+    model.buscarPublicacoesCurtidasUsuario(req.params.idUsuario).then(result=>{
+        res.json(result)
+    }).catch(e=>{
+        console.log(e)
+        res.status(500).json
+    })
+}
+
 module.exports = {
     publicar,
     buscarFeedForYou,
-    buscarPublicacoesUsuario
+    buscarPublicacoesUsuario,
+    buscarPublicacoesCurtidasUsuario
 }
