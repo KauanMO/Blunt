@@ -6,11 +6,12 @@ import Rightside from '../../components/rightside/Rightside'
 import Button from '../../components/button/Button'
 
 function Perfil() {
-    // infoUsuario = bioUsuario, dataCadastro, fotoPerfilUsuario, idUsuario, nomeExibicaoUsuario, username
+    // infoUsuario = bioUsuario, dataCadastro, fotoCapaUsuario, fotoPerfilUsuario, idUsuario, nomeExibicaoUsuario, username
     const [infoUsuario, setInfoUsuario] = useState({
         idUsuario: '',
         username: '',
         nomeExibicaoUsuario: '',
+        fotoCapaUsuario: '',
         fotoPerfilUsuario: '',
         bioUsuario: ''
     })
@@ -34,6 +35,9 @@ function Perfil() {
     return (
         <div className={styles.perfil_container}>
             <Navbar />
+            <div className={styles.imagem_capa_perfil}>
+                <Imagem src={infoUsuario.fotoCapaUsuario ? infoUsuario.fotoCapaUsuario : '' }/>
+            </div>
             <div className={styles.perfil_info}>
                 <div className={styles.perfil_header}>
                     <Imagem imageClassName='foto_perfil_perfil' src={infoUsuario.fotoPerfilUsuario} />

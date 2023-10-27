@@ -9,7 +9,7 @@ function buscarInfoUsuario(idUsuario) {
 }
 
 function buscarInfoUsuarioUsername(username) {
-    return db.exec(`SELECT idUsuario, username, fotoPerfilUsuario, nomeExibicaoUsuario, bioUsuario, dataCadastro FROM Usuario WHERE username = '${username}'`)
+    return db.exec(`SELECT idUsuario, username, fotoPerfilUsuario, fotoCapaUsuario, nomeExibicaoUsuario, bioUsuario, dataCadastro FROM Usuario WHERE username = '${username}'`)
 }
 
 function buscarFotoUsuario(idUsuario) {

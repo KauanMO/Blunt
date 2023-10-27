@@ -1,7 +1,8 @@
 .foto_perfil_perfil {
     border-radius: 50%;
     background-color: var(--lilás);
-    width: 10rem;
+    width: 9rem;
+    height: 9rem;
 }
 
 .foto_perfil_pub {
