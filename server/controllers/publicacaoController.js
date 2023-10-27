@@ -7,7 +7,16 @@ function publicar(req, res) {
 }
 
 function buscarFeedForYou(req, res) {
-    model.buscarFeedForYou(req, res).then(result => {
+    model.buscarFeedForYou().then(result => {
+        res.json(result)
+    }).catch(e => {
+        console.log(e)
+        res.status(500).json
+    })
+}
+
+function buscarPublicacoesUsuario(req, res) {
+    model.buscarPublicacoesUsuario(req.params.idUsuario).then(result => {
         res.json(result)
     }).catch(e => {
         console.log(e)
@@ -17,5 +26,6 @@ function buscarFeedForYou(req, res) {
 
 module.exports = {
     publicar,
-    buscarFeedForYou
+    buscarFeedForYou,
+    buscarPublicacoesUsuario
 }

@@ -7,7 +7,12 @@ router.post('/publicar', (req, res) => {
 })
 
 router.get('/foryou', (req, res) => {
-    controller.buscarFeedForYou(req,res)
+    controller.buscarFeedForYou(req, res)
+})
+
+//Buscar publicações usuário
+router.get('/bpu/:idUsuario', (req, res) => {
+    controller.buscarPublicacoesUsuario(req, res)
 })
 
 module.exports = router

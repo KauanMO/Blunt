@@ -36,7 +36,7 @@ function Perfil() {
         <div className={styles.perfil_container}>
             <Navbar />
             <div className={styles.imagem_capa_perfil}>
-                <Imagem src={infoUsuario.fotoCapaUsuario ? infoUsuario.fotoCapaUsuario : '' }/>
+                <Imagem src={infoUsuario.fotoCapaUsuario ? infoUsuario.fotoCapaUsuario : ''} />
             </div>
             <div className={styles.perfil_info}>
                 <div className={styles.perfil_header}>
