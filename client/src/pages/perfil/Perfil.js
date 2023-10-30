@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Perfil.module.css'
 import Imagem from '../../components/imagem/Imagem'
+import FotoCapaPerfil from '../../components/fotoCapaPerfil/FotoCapaPerfil'
 import Navbar from '../../components/navbar/Navbar'
 import Rightside from '../../components/rightside/Rightside'
 import Button from '../../components/button/Button'
@@ -98,12 +99,12 @@ function Perfil() {
                 document.querySelector('#central_publicacoes').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
                 document.querySelector('#central_publicacoes').setAttribute("centralativo", "true")
                 break
-                case 'curtidas':
-                    document.querySelector('#central_curtidas').style.display = 'flex'
+            case 'curtidas':
+                document.querySelector('#central_curtidas').style.display = 'flex'
                 document.querySelector('#central_curtidas').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
                 document.querySelector('#central_curtidas').setAttribute("centralativo", "true")
                 break
-                case 'comentarios':
+            case 'comentarios':
                 document.querySelector('#central_curtidas').style.display = 'flex'
                 document.querySelector('#central_comentarios').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
                 document.querySelector('#central_comentarios').setAttribute("centralativo", "true")
@@ -122,9 +123,7 @@ function Perfil() {
         <div className={styles.perfil_container}>
             <Navbar />
             <div className={styles.perfil_central}>
-                <div className={styles.imagem_capa_perfil}>
-                    <Imagem src={infoUsuario.fotoCapaUsuario ? infoUsuario.fotoCapaUsuario : ''} />
-                </div>
+                <FotoCapaPerfil meuPerfil={meuPerfil} className='capa_perfil' img={infoUsuario.fotoCapaUsuario} />
                 <div className={styles.perfil_info}>
                     <div className={styles.perfil_header}>
                         <Imagem imageClassName='foto_perfil_perfil' src={infoUsuario.fotoPerfilUsuario} />

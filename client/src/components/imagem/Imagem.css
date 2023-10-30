@@ -1,6 +1,7 @@
 .foto_perfil_perfil {
     border-radius: 50%;
     background-color: var(--lilás);
+    z-index: 2;
     width: 9rem;
     height: 9rem;
 }

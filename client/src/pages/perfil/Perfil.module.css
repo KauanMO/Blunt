@@ -90,18 +90,6 @@
     margin-top: 14rem;
 }
 
-.imagem_capa_perfil {
-    top: 1rem;
-    border-radius: 1rem;
-    width: 55%;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 14rem;
-    background-image: url('../../assets/default-capa-perfil.png');
-    z-index: -1;
-}
-
 .opcoes_navegacao_perfil {
     position: relative;
     display: flex;
