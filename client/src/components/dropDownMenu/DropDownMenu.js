@@ -6,8 +6,8 @@ function DropDownmenu({ opcoes, name }) {
         {opcoes[0]
             ? opcoes.map((opcao, i) => {
                 return (
-                    <div style={opcao.style} key={i}>
-                        <span>{opcao.label}</span>
+                    <div windowonclickbypass="true" onClick={opcao.handleOnClick} style={opcao.style} key={i}>
+                        <span className='opcao_span'>{opcao.label}</span>
                         {opcao.i}
                     </div>
                 )

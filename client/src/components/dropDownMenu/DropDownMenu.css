@@ -55,3 +55,8 @@
     background-color: var(--cinza);
     cursor: pointer;
 }
+
+.opcao_span {
+    user-select: none;
+    pointer-events: none;
+}

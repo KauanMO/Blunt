@@ -26,25 +26,33 @@ function FotoCapaPerfil({ img, className, imgClassName, meuPerfil }) {
         dropDownMenu.style.left = `calc(${e.pageX}px - 40%)`
         dropDownMenu.style.animation = `dropdownOn 100ms forwards`
     }
-    
+
     const abrirDropDownMenu = ed => {
         let dropDownMenu = document.querySelector('#dropDown_menu')
         animacaoAbrirDropDownMenu(dropDownMenu, ed)
 
-        setTimeout(() => {
-            window.addEventListener('click', e => {
-                console.log();
-                if (e.target !== ed.target) {
-                    dropDownMenu.style.animation = `dropdownOut 100ms forwards`
-                }
-            }, { once: true })
-        }, 50);
+        aplicarOnClickAway(ed, dropDownMenu)
+    }
+
+    function aplicarOnClickAway(ed, dropDownMenu) {
+        window.addEventListener('click', e => {
+            if (e.target !== ed.target && !e.target.getAttribute('windowonclickbypass')) {
+                dropDownMenu.style.animation = `dropdownOut 100ms forwards`
+            } else {
+                aplicarOnClickAway(ed, dropDownMenu)
+            }
+        }, { once: true })
+    }
+
+    const editarCapa = e => {
+        console.log(e.target)
     }
 
     const dropDownOpcoes = [
         {
             label: 'Editar capa',
-            i: <i className="fa-regular fa-pen-to-square"></i>
+            i: <i className="fa-regular fa-pen-to-square"></i>,
+            handleOnCLick: editarCapa
         },
         {
             label: 'Visualizar capa',
