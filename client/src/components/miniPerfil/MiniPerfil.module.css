@@ -57,6 +57,11 @@
     opacity: 0;
 }
 
+.mini_perfil_options a {
+    color: white;
+    text-decoration: none;
+}
+
 .mini_perfil_option {
     display: flex;
     gap: .3rem;

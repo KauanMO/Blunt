@@ -57,7 +57,7 @@ function MiniPerfil() {
     return (
         <div id='mini_perfil_container' className={styles.mini_perfil_container}>
             <div id='mini_perfil_options' className={styles.mini_perfil_options}>
-                <li className={styles.mini_perfil_option}>Meu perfil</li>
+                <a href={dadosPerfil.username}><li className={styles.mini_perfil_option}>Meu perfil</li></a>
                 <li onClick={logout} style={{ color: 'red' }} className={styles.mini_perfil_option}> <i className="fa-solid fa-right-from-bracket"></i>Sair</li>
             </div>
             <FotoPerfil imageClassName='mini_perfil_feed w_2rem h_2rem' />

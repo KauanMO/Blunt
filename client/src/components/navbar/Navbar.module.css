@@ -1,8 +1,45 @@
+.logo {
+    color: white;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+}
+
 .nav {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     left: 0;
     width: 17%;
     position: fixed;
     background-color: var(--preto_002);
     height: 100%;
+}
+
+.navegacao {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    width: 100%;
+}
+
+.navegacao a {
+    text-decoration: none;
+}
+
+.opcao_navbar {
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 1rem;
+    font-size: 1.1rem;
+    border-radius: .2rem;
+    cursor: pointer;
+    padding: 1rem;
+    transition: all 200ms;
+}
+
+.opcao_navbar:hover {
+    background-color: var(--raisin-black);
+    transition: all 200ms;
 }
