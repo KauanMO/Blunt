@@ -35,7 +35,7 @@ function ModalPublicar() {
             })
         }).then(res => res.json().then(pub => {
             if (res.ok) {
-                notificarPublicacao()
+                notificarPublicado()
                 if (document.querySelector('#iFotoPub').files[0]) {
                     publicarFoto(`http://localhost:5000/azureUpload/uploadFotoPub/${pub.insertId}`, document.querySelector('#iFotoPub').files[0])
                 }
@@ -43,7 +43,7 @@ function ModalPublicar() {
         }))
     }
 
-    const notificarPublicacao = () => {
+    const notificarPublicado = () => {
         document.querySelector('#iTextoPub').style.animation = 'check 600ms'
         setTimeout(() => {
             document.querySelector('#iTextoPub').value = ''

@@ -33,8 +33,6 @@ router.post('/uploadFotoPub/:idPub', upload.single('fotoPublicacaoUpload'), asyn
     const containerClient = blobServiceClient.getContainerClient(containerName)
     const blobName = new Date().getTime() + req.file.originalname
 
-    console.log(req.file)
-
     const blockBlobClient = containerClient.getBlockBlobClient(blobName)
 
     const content = req.file.buffer
@@ -42,6 +40,20 @@ router.post('/uploadFotoPub/:idPub', upload.single('fotoPublicacaoUpload'), asyn
     blockBlobClient.upload(content, content.length)
 
     fotoPublicacaoModel.cadastrarFoto(req.params.idPub, blockBlobClient.url)
+    res.status(200)
+})
+
+router.post('/uploadCapaUsuario/:idUsuario', upload.single('fotoCapaUsuario'), async function (req, res) {
+    const containerClient = blobServiceClient.getContainerClient(containerName)
+    const blobName = new Date().getTime() + req.file.originalname
+
+    const blockBlobClient = containerClient.getBlockBlobClient(blobName)
+
+    const content = req.file.buffer
+
+    blockBlobClient.upload(content, content.length)
+
+    usuarioModel.cadastrarFotoCapa(req.params.idUsuario, blockBlobClient.url)
     res.status(200)
 })
 

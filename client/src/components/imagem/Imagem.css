@@ -55,3 +55,12 @@
 .as_fe {
     align-self: flex-end;
 }
+
+.foto_capa_perfil {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+}

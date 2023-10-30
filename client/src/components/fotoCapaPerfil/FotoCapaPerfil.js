@@ -4,13 +4,17 @@ import DropDownmenu from '../dropDownMenu/DropDownMenu'
 import './FotoCapaPerfil.css'
 import { useState, useEffect } from 'react'
 
-
 function FotoCapaPerfil({ img, className, imgClassName, meuPerfil }) {
     const [editavel, setEditavel] = useState(meuPerfil)
+    const [capa, setCapa] = useState(img)
 
     useEffect(() => {
         setEditavel(meuPerfil)
     }, [meuPerfil])
+
+    useEffect(() => {
+        setCapa(img)
+    }, [img])
 
     const hoverEditarCapaOn = e => {
         e.target.style.opacity = '1'
@@ -44,15 +48,30 @@ function FotoCapaPerfil({ img, className, imgClassName, meuPerfil }) {
         }, { once: true })
     }
 
-    const editarCapa = e => {
-        console.log(e.target)
+    function abrirConfirmCapa() {
+        let confirmCapa = document.querySelector('#dropDown_confirm_capa')
+        confirmCapa.style.display = 'flex'
+        confirmCapa.style.top = '50%'
+        confirmCapa.style.left = '100%'
+        confirmCapa.style.animation = `dropdownOn 100ms forwards`
     }
 
-    const dropDownOpcoes = [
+    const editarCapa = e => {
+        document.querySelector('#input_foto_capa_perfil').click()
+    }
+
+    const previewCapa = e => {
+        if (e.target.files[0]) {
+            setCapa(URL.createObjectURL(e.target.files[0]))
+            abrirConfirmCapa()
+        }
+    }
+
+    const dropDownOpcoesCapa = [
         {
             label: 'Editar capa',
             i: <i className="fa-regular fa-pen-to-square"></i>,
-            handleOnCLick: editarCapa
+            handleOnClick: editarCapa
         },
         {
             label: 'Visualizar capa',
@@ -69,16 +88,55 @@ function FotoCapaPerfil({ img, className, imgClassName, meuPerfil }) {
         },
     ]
 
+    const uploadCapa = async e => {
+        const formData = new FormData()
+        formData.append('fotoCapaUsuario', document.querySelector('#input_foto_capa_perfil').files[0])
+
+        let confirmCapa = document.querySelector('#dropDown_confirm_capa')
+        confirmCapa.style.animation = `dropdownOut 100ms forwards`
+        document.querySelector('#input_foto_capa_perfil').value = ''
+
+        await fetch(`http://localhost:5000/azureUpload/uploadCapaUsuario/${sessionStorage.getItem('idUsuario')}`, {
+            method: 'POST',
+            body: formData
+        })
+    }
+
+    const cancelarUpload = e => {
+        let confirmCapa = document.querySelector('#dropDown_confirm_capa')
+        confirmCapa.style.animation = `dropdownOut 100ms forwards`
+        document.querySelector('#input_foto_capa_perfil').value = ''
+        setCapa(img)
+    }
+
+    const dropDownConfirmCapa = [
+        {
+            label: 'Está otimo!',
+            i: <i style={{ color: 'green' }} className="fa-solid fa-check"></i>,
+            handleOnClick: uploadCapa
+        },
+        {
+            label: 'Essa não',
+            i: <i style={{ color: 'red' }} className="fa-solid fa-x"></i>,
+            handleOnClick: cancelarUpload
+        }
+    ]
+
     return (
-        <div className={className}>
-            <DropDownmenu name='dropDown_menu' opcoes={dropDownOpcoes} />
+        <div id='foto_capa_perfil' className={className}>
+            <input accept='image/*' onChange={previewCapa} type='file' style={{ display: 'none' }} id='input_foto_capa_perfil' name='input_foto_capa_perfil' />
+            <DropDownmenu name='dropDown_menu' opcoes={dropDownOpcoesCapa} />
+            <DropDownmenu name='dropDown_confirm_capa' opcoes={dropDownConfirmCapa} />
             {editavel
                 ? <div onClick={abrirDropDownMenu} onMouseLeave={hoverEditarCapaOff} onMouseOver={hoverEditarCapaOn} className='icone_editavel'>
                     <i className="fa-regular fa-pen-to-square"></i>
                 </div>
                 : ''
             }
-            <Imagem imageClassName={imgClassName} src={img} />
+            {capa
+                ? <Imagem name='foto_capa_perfil' src={capa} imageClassName='foto_capa_perfil' />
+                : ''
+            }
         </div>
     )
 }

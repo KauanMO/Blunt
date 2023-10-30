@@ -28,7 +28,6 @@ function CadastroImagem() {
             {sessionStorage.getItem('idUsuario')
                 ? (
                     <main className={styles.container}>
-                        
                         <div className={styles.input_preview_image_container}>
                             <span>Escolha sua foto de perfil</span>
                             <label id='label_preview_image' className={styles.label_preview_image}>

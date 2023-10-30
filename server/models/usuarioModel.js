@@ -37,6 +37,10 @@ function deletar(idUsuario, senha) {
     return db.exec(`DELETE FROM Usuario WHERE idUsuario = ${idUsuario} AND senhaUsuario = '${senha}'`)
 }
 
+function cadastrarFotoCapa(idUsuario, fotoCapa) {
+    return db.exec(`UPDATE Usuario SET fotoCapaUsuario = '${fotoCapa}' WHERE idUsuario = ${idUsuario}`)
+}
+
 module.exports = {
     listarUsuarios,
     buscarInfoUsuario,
@@ -46,5 +50,6 @@ module.exports = {
     buscarUsuarioPorCampo,
     atualizarUsuario,
     login,
-    deletar
+    deletar,
+    cadastrarFotoCapa
 }

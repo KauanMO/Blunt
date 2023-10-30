@@ -18,6 +18,8 @@
     cursor: pointer;
     transition: all 150ms;
     opacity: 0;
+    z-index: 4;
+    position: absolute;
 }
 
 .icone_editavel i {
