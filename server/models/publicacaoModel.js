@@ -1,11 +1,12 @@
 const db = require('../database/config')
 
-function publicar(textoPublicacao, fkUsuario) {
-    return db.exec(`INSERT INTO Publicacao (textoPublicacao, dataPublicacao, fkUsuario) VALUES ('${textoPublicacao}', now(), ${fkUsuario})`)
+
+function publicar(textoPublicacao, fkUsuario, nanoId) {
+    return db.exec(`INSERT INTO Publicacao (textoPublicacao, nanoId, dataPublicacao, fkUsuario) VALUES ('${textoPublicacao}', '${nanoId}', now(), ${fkUsuario})`)
 }
 
 function buscarFeedForYou() {
-    return db.exec(`SELECT p.idPublicacao, p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
+    return db.exec(`SELECT p.idPublicacao, p.nanoId, p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
     u.fotoPerfilUsuario, u.nomeExibicaoUsuario
         FROM Publicacao p
         LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao
@@ -14,7 +15,7 @@ function buscarFeedForYou() {
 }
 
 function buscarPublicacoesUsuario(idUsuario) {
-    return db.exec(`SELECT p.idPublicacao, p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
+    return db.exec(`SELECT p.idPublicacao, p.nanoId,p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
     u.fotoPerfilUsuario, u.nomeExibicaoUsuario
         FROM Publicacao p
         LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao
@@ -24,7 +25,7 @@ function buscarPublicacoesUsuario(idUsuario) {
 }
 
 function buscarPublicacoesCurtidasUsuario(idUsuario) {
-    return db.exec(`SELECT p.idPublicacao, p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
+    return db.exec(`SELECT p.idPublicacao, p.nanoId, p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username, 
     u.fotoPerfilUsuario, u.nomeExibicaoUsuario
         FROM Publicacao p
         LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao

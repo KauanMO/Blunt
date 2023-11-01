@@ -5,6 +5,7 @@ import FormularioCadastroUsuario from '../../components/formularioCadastroUsuari
 import FormularioLoginUsuario from '../../components/formularioLoginUsuario/FormularioLoginUsuario'
 import Button from '../../components/button/Button'
 
+
 function Cadastro() {
   const cadastrarOuEntrar = e => {
     e.target.innerText === 'Cadastrar'

@@ -5,6 +5,7 @@ import styles from './Publicar.module.css'
 import TextArea from '../textArea/TextArea'
 import { useState } from 'react'
 import FotoPerfil from '../../components/fotoPerfil/FotoPerfil'
+import { nanoid } from 'nanoid'
 
 function ModalPublicar() {
     const [textoPub, setTextoPub] = useState('')
@@ -31,7 +32,8 @@ function ModalPublicar() {
             },
             body: JSON.stringify({
                 textoUsuarioServer: textoPub,
-                fkUsuarioServer: sessionStorage.getItem('idUsuario')
+                fkUsuarioServer: sessionStorage.getItem('idUsuario'),
+                nanoIdServer: `${nanoid()}-${sessionStorage.getItem('idUsuario')}`
             })
         }).then(res => res.json().then(pub => {
             if (res.ok) {

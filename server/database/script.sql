@@ -29,6 +29,7 @@ create table Seguidor (
 
 create table Publicacao (
 	idPublicacao int primary key auto_increment,
+    nanoId varchar(255),
     textoPublicacao varchar(200),
     fixada tinyint default 0,
     dataPublicacao datetime,
@@ -115,3 +116,6 @@ create table Denuncia (
     constraint denunciaPublicacao foreign key (fkPublicacao) references Publicacao(idPublicacao),
     constraint denunciaComentario foreign key (fkComentario) references Comentario(idComentario)
 );
+
+SET FOREIGN_KEY_CHECKS=0;
+SET FOREIGN_KEY_CHECKS=1;
