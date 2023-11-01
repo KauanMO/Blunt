@@ -6,7 +6,7 @@ import TextArea from '../textArea/TextArea'
 import Button from '../button/Button'
 
 function Publicacao({ pubInfo }) {
-    // pubInfo = dataPublicacao, fotoPerfilUsuario, fotoPublicacao, nomeExibicaoUsuario, textoPublicacao
+    // pubInfo = nanoId, dataPublicacao, fotoPerfilUsuario, fotoPublicacao, nomeExibicaoUsuario, textoPublicacao
     let tempoPubPassado = Math.round((new Date() - new Date(pubInfo.dataPublicacao)) / (1000 * 60))
     if (tempoPubPassado > 1440) { tempoPubPassado = Math.round(tempoPubPassado / 1440) + 'd' }
     if (tempoPubPassado > 60) { tempoPubPassado = Math.round(tempoPubPassado / 60) + 'h' }
@@ -111,10 +111,14 @@ function Publicacao({ pubInfo }) {
         }
     }
 
+    const abrirPublicacao = () => {
+        console.log('bora')
+    }
+
     return (
-        <div id={pubInfo.idPublicacao} className={styles.publicacao_container}>
+        <div onClick={abrirPublicacao} publicacao={pubInfo.nanoId} id={pubInfo.idPublicacao} className={styles.publicacao_container}>
             <div className={styles.topo_pub}>
-                <Imagem imageClassName="foto_usuario_pub w_2rem h_2rem" src={pubInfo.fotoPerfilUsuario} />
+                <a href={`/${pubInfo.username}`}><Imagem className="foto_usuario_pub w_2rem h_2rem" src={pubInfo.fotoPerfilUsuario} /></a>
                 <div className={styles.publicacao_textos}>
                     <div className={styles.info_usuario}>
                         <span className={styles.nome_username}>
@@ -129,7 +133,7 @@ function Publicacao({ pubInfo }) {
                     <span>{pubInfo.textoPublicacao}</span>
                 </div>
             </div>
-            {pubInfo.fotoPublicacao ? <Imagem imageClassName="imagem_pub as_fe" src={pubInfo.fotoPublicacao} /> : ''}
+            {pubInfo.fotoPublicacao ? <Imagem className="imagem_pub as_fe" src={pubInfo.fotoPublicacao} /> : ''}
             <div className={styles.publicacoes_opcoes}>
                 <div onClick={curtirDescurtir} id={'curtir_' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
                     {qtdCurtidas}

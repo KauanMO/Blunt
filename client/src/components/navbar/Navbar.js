@@ -32,8 +32,8 @@ function Navbar() {
             <div className={styles.navegacao}>
                 {navBarOpcoes.map((opcao, i) => {
                     return (
-                        <a href={opcao.path}>
-                            <div className={styles.opcao_navbar} key={i}>
+                        <a href={opcao.path} key={i}>
+                            <div className={styles.opcao_navbar}>
                                 {opcao.i}
                                 <span>{opcao.span}</span>
                             </div>

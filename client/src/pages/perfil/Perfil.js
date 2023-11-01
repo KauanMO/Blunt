@@ -126,7 +126,7 @@ function Perfil() {
                 <FotoCapaPerfil meuPerfil={meuPerfil} className='capa_perfil' img={infoUsuario.fotoCapaUsuario} />
                 <div className={styles.perfil_info}>
                     <div className={styles.perfil_header}>
-                        <Imagem imageClassName='foto_perfil_perfil' src={infoUsuario.fotoPerfilUsuario} />
+                        <Imagem className='foto_perfil_perfil' src={infoUsuario.fotoPerfilUsuario} />
                         <div className={styles.textos_header}>
                             <div className={styles.nomes_header}>
                                 <span className={styles.username_header}>{infoUsuario.username}</span>

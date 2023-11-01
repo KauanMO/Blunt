@@ -24,7 +24,7 @@ function FotoPerfil({ imageClassName }) {
 
     return (
         <div>
-            <Imagem alt='' imageClassName={imageClassName} src={fotoUsuario} />
+            <Imagem alt='' className={imageClassName} src={fotoUsuario} />
         </div>
     )
 }
