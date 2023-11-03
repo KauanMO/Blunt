@@ -4,8 +4,15 @@ import Imagem from '../imagem/Imagem'
 import FotoPerfil from '../fotoPerfil/FotoPerfil'
 import TextArea from '../textArea/TextArea'
 import Button from '../button/Button'
+import { useNavigate } from "react-router-dom";
 
 function Publicacao({ pubInfo }) {
+    const navigate = useNavigate();
+
+    const redirecionar = e => {
+        navigate('/' + e.target.getAttribute('redirecionamento'));
+    }
+
     // pubInfo = nanoId, dataPublicacao, fotoPerfilUsuario, fotoPublicacao, nomeExibicaoUsuario, textoPublicacao
     let tempoPubPassado = Math.round((new Date() - new Date(pubInfo.dataPublicacao)) / (1000 * 60))
     if (tempoPubPassado > 1440) { tempoPubPassado = Math.round(tempoPubPassado / 1440) + 'd' }
@@ -118,7 +125,7 @@ function Publicacao({ pubInfo }) {
     return (
         <div onClick={abrirPublicacao} publicacao={pubInfo.nanoId} id={pubInfo.idPublicacao} className={styles.publicacao_container}>
             <div className={styles.topo_pub}>
-                <a href={`/${pubInfo.username}`}><Imagem className="foto_usuario_pub w_2rem h_2rem" src={pubInfo.fotoPerfilUsuario} /></a>
+                <Imagem onClick={redirecionar} redirecionamento={pubInfo.username} className="foto_usuario_pub w_2rem h_2rem" src={pubInfo.fotoPerfilUsuario} />
                 <div className={styles.publicacao_textos}>
                     <div className={styles.info_usuario}>
                         <span className={styles.nome_username}>

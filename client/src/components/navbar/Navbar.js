@@ -1,28 +1,36 @@
 import React from "react";
 import styles from './Navbar.module.css'
 import MiniPerfil from '../../components/miniPerfil/MiniPerfil'
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+    const navigate = useNavigate();
+
+    const redirecionar = e => {
+        const redirecionamento = e.target.getAttribute('redirecionamento')
+        navigate('/' + redirecionamento.toLowerCase());
+    }
+
     const navBarOpcoes = [
         {
             span: 'Principal',
             i: <i className="fa-solid fa-house"></i>,
-            path: '/feed'
+            redirecionamento: 'feed'
         },
         {
             span: 'Pesquisar',
             i: <i className="fa-solid fa-magnifying-glass"></i>,
-            path: '/pesquisar'
+            redirecionamento: 'pesquisar'
         },
         {
             span: 'Notificações',
             i: <i className="fa-regular fa-bell"></i>,
-            path: '/notificacoes'
+            redirecionamento: 'notificacoes'
         },
         {
             span: 'Configurações',
             i: <i className="fa-solid fa-gear"></i>,
-            path: '/configuracoes'
+            redirecionamento: 'configuracoes'
         }
     ]
 
@@ -32,12 +40,10 @@ function Navbar() {
             <div className={styles.navegacao}>
                 {navBarOpcoes.map((opcao, i) => {
                     return (
-                        <a href={opcao.path} key={i}>
-                            <div className={styles.opcao_navbar}>
-                                {opcao.i}
-                                <span>{opcao.span}</span>
-                            </div>
-                        </a>
+                        <div key={i} onClick={redirecionar} redirecionamento={opcao.redirecionamento} className={styles.opcao_navbar}>
+                            {opcao.i}
+                            <span>{opcao.span}</span>
+                        </div>
                     )
                 })}
             </div>
