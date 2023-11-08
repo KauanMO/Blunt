@@ -14,6 +14,7 @@
     bottom: 0;
     font-size: .8rem;
     color: red;
+    user-select: none;
     -webkit-user-select: none;
 }
 
@@ -27,4 +28,12 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+}
+
+.df {
+    display: flex;
+}
+
+.fdr {
+    flex-direction: row;
 }

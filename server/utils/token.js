@@ -5,7 +5,7 @@ function criarToken(idUsuario) {
 }
 
 function autenticarToken(req, res, next) {
-    const token = req.headers['token-auth']
+    const token = req.headers['token_auth']
 
     if (token == null) return res.status(401).end()
 

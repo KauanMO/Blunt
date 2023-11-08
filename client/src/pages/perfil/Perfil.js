@@ -25,7 +25,7 @@ function Perfil() {
     useEffect(() => {
         const fetchDataInfoUsuario = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/usuarios/biuu/${window.location.href.split('/')[3]}`)
+                const response = await fetch(`http://localhost:5000/usuarios/biuu/${window.location.href.split('/')[3]}`, {headers: {auth_token: localStorage.getItem('jwt')}})
                 const infoUsuarioRes = await response.json()
                 setInfoUsuario(infoUsuarioRes[0])
             } catch (e) {

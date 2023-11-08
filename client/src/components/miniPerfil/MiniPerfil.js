@@ -2,8 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import FotoPerfil from '../../components/fotoPerfil/FotoPerfil'
 import styles from './MiniPerfil.module.css'
+import { useNavigate } from 'react-router-dom'
 
 function MiniPerfil() {
+    const navigate = useNavigate()
+
     const [dadosPerfil, setDadosPerfil] = useState({
         nomeExib: '',
         username: ''
@@ -14,7 +17,7 @@ function MiniPerfil() {
 
         const fetchData = async () => {
             try {
-                const response = await fetch(url)
+                const response = await fetch(url, { headers: { token_auth: localStorage.getItem('jwt') } })
                 const info = await response.json()
                 setDadosPerfil({
                     nomeExib: info[0].nomeExibicaoUsuario,
@@ -51,7 +54,9 @@ function MiniPerfil() {
 
     const logout = () => {
         sessionStorage.clear()
-        window.location.href = window.location.origin
+        localStorage.clear()
+
+        navigate('/')
     }
 
     return (

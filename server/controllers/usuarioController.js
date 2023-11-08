@@ -36,7 +36,7 @@ function cadastrarUsuario(req, res) {
         req.body.dtNascServer,
         req.body.nomeExibServer
     ).then(result => {
-        res.json(result)
+        res.send({ idUsuario: result.insertId, userToken: token.criarToken(result.insertId) })
     }).catch(e => {
         console.log(e)
         res.status(500).json

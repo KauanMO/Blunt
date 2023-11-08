@@ -8,7 +8,7 @@
         opacity: 0;
         transform: translateX(-10rem);
     }
-    
+
     100% {
         opacity: 0;
         transform: translateX(-10rem);
@@ -20,7 +20,7 @@
     from {
         opacity: 0;
     }
-    
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -42,5 +42,16 @@
 
 .form_login_container form {
     display: flex;
+    justify-content: center;
     gap: 1rem;
+    width: 70%;
+}
+
+.form_login_container form div {
+    width: 100%;
+}
+
+.manter_conectado_container {
+    display: flex;
+    width: 100%;
 }

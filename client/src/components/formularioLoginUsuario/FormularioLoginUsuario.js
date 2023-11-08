@@ -42,8 +42,8 @@ function FormularioLoginUsuario({ id }) {
         fetch(`http://localhost:5000/usuarios/login/${dados.iEmailUsernameLogin}/${dados.iSenhaLogin}`).then(res => {
             if (res.status === 200) {
                 res.json().then(cred => {
-                    localStorage.setItem('idUsuario', cred.idUsuario)
-                    localStorage.setItem('username', cred.username)
+                    if (document.querySelector('#manter_conectado').checked) localStorage.setItem('idUsuario', cred.idUsuario)
+                    sessionStorage.setItem('idUsuario', cred.idUsuario)
                     localStorage.setItem('jwt', cred.userToken)
                     navigate('/feed')
                 })
@@ -71,6 +71,9 @@ function FormularioLoginUsuario({ id }) {
                             />
                         </div>
                     ))}
+                    <div className='manter_conectado_container'>
+                        <Input type='checkbox' name='manter_conectado' label='Manter Conectado' />
+                    </div>
                 </div>
                 <input style={{ display: 'none' }} id="form_login_submit" type="submit"></input>
             </form>

@@ -1,9 +1,9 @@
 import React from 'react'
 import './Input.css'
 
-function Input({ label, type, name, placeholder, value, handleOnChange, className, required, accept, handleOnFocus, handleOnBlur }) {
+function Input({ containerClassName, label, type, name, placeholder, value, handleOnChange, className, required, accept, handleOnFocus, handleOnBlur }) {
     return (
-        <div className='label_input'>
+        <div className={'label_input ' + containerClassName}>
             <label htmlFor={name}>{label}{required === true ? <span className='campo_obrigatorio'>*</span> : ''}</label>
             <input
                 className={className}

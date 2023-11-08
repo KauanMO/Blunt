@@ -1,8 +1,11 @@
 import { useState } from "react";
 import './FormularioCadastroUsuario.css'
 import Input from '../input/Input'
+import { useNavigate } from "react-router-dom";
 
 function FormularioCadastroUsuario({ id }) {
+    const navigate = useNavigate()
+
     const [dados, setDados] = useState({
         iUsername: '',
         iNomeExib: '',
@@ -106,8 +109,9 @@ function FormularioCadastroUsuario({ id }) {
                         }).then(res => {
                             if (res.ok) {
                                 res.json().then(cadastro => {
-                                    sessionStorage.setItem('idUsuario', cadastro.insertId)
-                                    window.location.href = '/cadastro-imagem'
+                                    sessionStorage.setItem('idUsuario', cadastro.idUsuario)
+                                    localStorage.setItem('jwt', cadastro.userToken)
+                                    navigate('/cadastro-imagem')
                                 })
                             }
                         }).catch(e => {
@@ -222,7 +226,7 @@ function FormularioCadastroUsuario({ id }) {
                         </div>
                     ))}
                 </div>
-                <input style={{display: 'none'}} id="form_cadastro_submit" type="submit"></input>
+                <input style={{ display: 'none' }} id="form_cadastro_submit" type="submit"></input>
             </form>
         </div>
     )

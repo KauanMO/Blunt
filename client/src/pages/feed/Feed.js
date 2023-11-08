@@ -4,9 +4,11 @@ import Publicar from '../../components/publicar/Publicar'
 import Publicacao from '../../components/publicacao/Publicacao'
 import Navbar from '../../components/navbar/Navbar'
 import Rightside from '../../components/rightside/Rightside'
+import { useNavigate } from 'react-router-dom'
 
 function Feed() {
-    if (!sessionStorage.getItem('idUsuario')) { window.location.href = window.location.origin }
+    const navigate = useNavigate()
+    if (!sessionStorage.getItem('idUsuario')) navigate('/')
 
     const [feed, setFeed] = useState([])
 
@@ -39,7 +41,7 @@ function Feed() {
                     : 'loading'
                 }
             </div>
-            <Rightside/>
+            <Rightside />
         </div>
     )
 }
