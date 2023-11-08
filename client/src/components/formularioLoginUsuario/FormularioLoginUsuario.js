@@ -2,8 +2,10 @@ import React from 'react'
 import { useState } from "react"
 import Input from '../input/Input'
 import './FormularioLoginUsuario.css'
+import { useNavigate } from "react-router-dom";
 
 function FormularioLoginUsuario({ id }) {
+    const navigate = useNavigate();
     const [dados, setDados] = useState({
         iEmailUsernameLogin: '',
         iSenhaLogin: ''
@@ -38,16 +40,16 @@ function FormularioLoginUsuario({ id }) {
         e.preventDefault()
         cookie.innerText = ''
         fetch(`http://localhost:5000/usuarios/login/${dados.iEmailUsernameLogin}/${dados.iSenhaLogin}`).then(res => {
-            res.json().then(cred => {
-                if (cred.login) {
-                    console.log(cred);
-                    sessionStorage.setItem('idUsuario', cred.idUsuario)
-                    sessionStorage.setItem('username', cred.username)
-                    window.location.href += 'feed'
-                } else {
-                    cookie.innerText = errorMessage.usuarioNaoEncontrado
-                }
-            })
+            if (res.status === 200) {
+                res.json().then(cred => {
+                    localStorage.setItem('idUsuario', cred.idUsuario)
+                    localStorage.setItem('username', cred.username)
+                    localStorage.setItem('jwt', cred.userToken)
+                    navigate('/feed')
+                })
+            } else {
+                cookie.innerText = errorMessage.usuarioNaoEncontrado
+            }
         })
     }
 

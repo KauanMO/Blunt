@@ -1,13 +1,14 @@
 const express = require('express')
 const controller = require('../controllers/usuarioController')
 const router = express.Router()
+const token = require('../utils/token')
 
 router.get('/listar', (req, res) => {
     controller.listarUsuarios(req, res)
 })
 
 // Buscar info usuario
-router.get('/biu/:idUsuario', (req, res) => {
+router.get('/biu/:idUsuario', token.autenticarToken, (req, res) => {
     controller.buscarInfoUsuario(req, res)
 })
 

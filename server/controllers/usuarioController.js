@@ -1,4 +1,5 @@
 const model = require('../models/usuarioModel')
+const token = require('../utils/token')
 
 function listarUsuarios(req, res) {
     model.listarUsuarios().then(result => {
@@ -71,16 +72,18 @@ function atualizarUsuario(req, res) {
 
 function login(req, res) {
     model.login(req.params.email, req.params.senha).then(result => {
-        res.send(
-            {
-                login: result.length > 0,
+        if (result.length > 0) {
+            res.status(200).send({
                 idUsuario: result[0].idUsuario,
-                username: result[0].username
-            }
-        )
+                username: result[0].username,
+                userToken: token.criarToken(result[0].idUsuario)
+            })
+        }
+
+        res.status(201).end()
     }).catch(e => {
         console.log(e)
-        res.status(500).json
+        res.status(500).end()
     })
 }
 
