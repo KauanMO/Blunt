@@ -70,22 +70,21 @@ function atualizarUsuario(req, res) {
     })
 }
 
-function login(req, res) {
-    model.login(req.params.email, req.params.senha).then(result => {
+async function login(req, res) {
+    try {
+        const result = await model.login(req.params.email, req.params.senha)
         if (result.length > 0) {
             res.status(200).send({
                 idUsuario: result[0].idUsuario,
                 username: result[0].username,
-                userToken: token.criarToken(result[0].idUsuario)
+                userToken: await token.localizarCriarRefreshToken(result[0].idUsuario)
             })
         }
-
-        token.criarRefreshToken(result[0].idUsuario)
         res.status(201).end()
-    }).catch(e => {
+    } catch (e) {
         console.log(e)
         res.status(500).end()
-    })
+    }
 }
 
 function deletar(req, res) {

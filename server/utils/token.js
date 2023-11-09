@@ -3,7 +3,7 @@ const { createHmac } = require('crypto')
 const db = require('../database/mongodb')
 const date = require('dayjs')
 
-function criarToken(idUsuario) {
+async function criarToken(idUsuario) {
     return jwt.sign({ idUsuario: idUsuario }, process.env.JWT_SECRET, {
         expiresIn: '30s',
         audience: 'urn:jwt:type:access',
@@ -11,7 +11,7 @@ function criarToken(idUsuario) {
     })
 }
 
-async function criarRefreshToken(idUsuario) {
+async function localizarCriarRefreshToken(idUsuario) {
     let expires = date().add(30, "day").unix()
 
     const token = jwt.sign({ idUsuario: idUsuario }, process.env.JWT_SECRET, {
@@ -26,14 +26,16 @@ async function criarRefreshToken(idUsuario) {
     try {
         exiteRefreshToken
             ? db.atualizarRefreshToken(tokenHash, idUsuario, expires)
-            : db.criarRefreshToken(tokenHash, idUsuario, expires)
+            : db.localizarCriarRefreshToken(tokenHash, idUsuario, expires)
     } catch (e) {
         console.log(e)
     }
 
     setTimeout(() => {
-        criarRefreshToken(idUsuario)
-    }, 15000)
+        localizarCriarRefreshToken(idUsuario)
+    }, 1000000)
+
+    return await criarToken(idUsuario)
 }
 
 function autenticarToken(req, res, next) {
@@ -61,6 +63,6 @@ function setRefreshCookie(res, token) {
 module.exports = {
     criarToken,
     autenticarToken,
-    criarRefreshToken,
+    localizarCriarRefreshToken,
     setRefreshCookie
 }
