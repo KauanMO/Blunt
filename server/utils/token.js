@@ -4,10 +4,9 @@ const db = require('../database/mongodb')
 const date = require('dayjs')
 
 async function criarToken(idUsuario) {
+    let expires = date().add(30, "second").unix()
     return jwt.sign({ idUsuario: idUsuario }, process.env.JWT_SECRET, {
-        expiresIn: '30s',
-        audience: 'urn:jwt:type:access',
-        issuer: 'urn:system:token-issuer:type:access'
+        expiresIn: expires,
     })
 }
 
@@ -15,16 +14,14 @@ async function localizarCriarRefreshToken(idUsuario) {
     let expires = date().add(30, "day").unix()
 
     const token = jwt.sign({ idUsuario: idUsuario }, process.env.JWT_SECRET, {
-        expiresIn: expires,
-        audience: 'urn:jwt:type:access',
-        issuer: 'urn:system:token-issuer:type:access'
+        expiresIn: expires
     })
     const tokenHash = createHmac('sha512', process.env.JWT_SECRET).update(token).digest('hex')
 
-    const exiteRefreshToken = await db.buscarRefreshToken(idUsuario)
+    const existeRefreshToken = await db.buscarRefreshToken(idUsuario)
 
     try {
-        exiteRefreshToken
+        existeRefreshToken
             ? db.atualizarRefreshToken(tokenHash, idUsuario, expires)
             : localizarCriarRefreshToken(tokenHash, idUsuario, expires)
     } catch (e) {
@@ -33,7 +30,7 @@ async function localizarCriarRefreshToken(idUsuario) {
 
     setTimeout(() => {
         localizarCriarRefreshToken(idUsuario)
-    }, 1000000)
+    }, 15000)
 
     return await criarToken(idUsuario)
 }

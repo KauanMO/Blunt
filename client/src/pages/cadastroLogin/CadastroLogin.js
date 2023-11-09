@@ -1,4 +1,4 @@
-import React from 'react'
+import { React } from 'react'
 import styles from './CadastroLogin.module.css'
 import '../../Global.css'
 import FormularioCadastroUsuario from '../../components/formularioCadastroUsuario/FormularioCadastroUsuario'
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 function Cadastro() {
   const navigate = useNavigate()
 
-  if (localStorage.getItem('idUsuario')) {
+  if (localStorage.getItem('idUsuario') && localStorage.getItem('jwt')) {
     sessionStorage.setItem('idUsuario', localStorage.getItem('idUsuario'))
     navigate('/feed')
   }

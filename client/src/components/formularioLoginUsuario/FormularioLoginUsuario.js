@@ -5,7 +5,8 @@ import './FormularioLoginUsuario.css'
 import { useNavigate } from "react-router-dom";
 
 function FormularioLoginUsuario({ id }) {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
     const [dados, setDados] = useState({
         iEmailUsernameLogin: '',
         iSenhaLogin: ''
