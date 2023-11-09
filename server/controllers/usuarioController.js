@@ -28,19 +28,26 @@ function buscarFotoUsuario(req, res) {
     })
 }
 
-function cadastrarUsuario(req, res) {
-    model.cadastrarUsuario(
-        req.body.usernameServer,
-        req.body.emailServer,
-        req.body.senhaServer,
-        req.body.dtNascServer,
-        req.body.nomeExibServer
-    ).then(result => {
-        res.send({ idUsuario: result.insertId, userToken: token.criarToken(result.insertId) })
-    }).catch(e => {
+async function cadastrarUsuario(req, res) {
+    try {
+        await model.cadastrarUsuario(
+            req.body.usernameServer,
+            req.body.emailServer,
+            req.body.senhaServer,
+            req.body.dtNascServer,
+            req.body.nomeExibServer
+        )
+
+        const login = await model.login(req.body.usernameServer, req.body.senhaServer)
+        res.status(200).send({
+            idUsuario: login[0].idUsuario,
+            username: login[0].username,
+            userToken: await token.localizarCriarRefreshToken(login[0].idUsuario)
+        })
+    }catch(e){
         console.log(e)
-        res.status(500).json
-    })
+        res.status(500).end()
+    }
 }
 
 function buscarUsuarioPorCampo(req, res) {

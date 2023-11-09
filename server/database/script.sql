@@ -5,7 +5,7 @@ create database Blunt;
 use Blunt;
 
 create table Usuario (
-	idUsuario int primary key auto_increment,
+	idUsuario char(36) primary key,
     username varchar(20),
     emailUsuario varchar(45),
     senhaUsuario varchar(255),
@@ -21,8 +21,8 @@ create table Usuario (
 create table Seguidor (
 	idSeguidor int primary key auto_increment,
     notificar tinyint,
-    seguidor int,
-    seguido int,
+    seguidor char(36),
+    seguido char(36),
     constraint usuarioSeguidor foreign key (seguidor) references Usuario(idUsuario),
     constraint usuarioSeguido foreign key (seguido) references Usuario(idUsuario)
 );
@@ -33,7 +33,7 @@ create table Publicacao (
     textoPublicacao varchar(200),
     fixada tinyint default 0,
     dataPublicacao datetime,
-    fkUsuario int,
+    fkUsuario char(36),
     constraint publicacaoUsuario foreign key (fkUsuario) references Usuario(idUsuario)
 );
 
@@ -41,7 +41,7 @@ create table Republicacao (
     idRepublicacao int primary key auto_increment,
     textoRepublicacao varchar(200),
     dataRepublicacao datetime,
-    fkUsuario int,
+    fkUsuario char(36),
     fkPublicacao int,
     constraint republicacaoUsuario foreign key (fkUsuario) references Usuario(idUsuario),
     constraint RepublicacaoPublicacao foreign key (fkPublicacao) references Publicacao(idPublicacao)
@@ -59,7 +59,7 @@ create table Comentario (
     textoComentario varchar(155),
     dataComentario datetime,
     fkPublicacao int,
-    fkUsuario int,
+    fkUsuario char(36),
     constraint ComentarioPublicacao foreign key (fkPublicacao) references Publicacao(idPublicacao),
     constraint ComentarioUsuario foreign key (fkUsuario) references Usuario(idUsuario)
 );
@@ -73,7 +73,7 @@ create table FotoComentario (
 
 create table Curtida (
 	idCurtida int primary key auto_increment,
-    fkUsuario int,
+    fkUsuario char(36),
     fkPublicacao int,
     fkComentario int,
     constraint curtidaUsuario foreign key (fkUsuario) references Usuario(idUsuario),
@@ -85,7 +85,7 @@ create table Notificacao (
 	idNotificacao int primary key auto_increment,
     textoNotificacao varchar(45),
     dataNotificacao datetime,
-    notificado int,
+    notificado char(36),
     constraint notificacaoUsuario foreign key (notificado) references Usuario(idUsuario)
 );
 
@@ -105,8 +105,8 @@ create table Denuncia (
     statusDenuncia tinyint,
     fkTipoDenuncia int,
     fkClassificacaoDenuncia int,
-    denunciador int,
-    denunciado int,
+    denunciador char(36),
+    denunciado char(36),
     fkPublicacao int,
     fkComentario int,
     constraint denunciaTipoDenuncia foreign key (fkTipoDenuncia) references TipoDenuncia(idTipoDenuncia),
@@ -119,5 +119,3 @@ create table Denuncia (
 
 SET FOREIGN_KEY_CHECKS=0;
 SET FOREIGN_KEY_CHECKS=1;
-
-delete from usuario where idUsuario = 7

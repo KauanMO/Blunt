@@ -5,7 +5,7 @@ function listarUsuarios() {
 }
 
 function buscarInfoUsuario(idUsuario) {
-    return db.exec(`SELECT username, nomeExibicaoUsuario, bioUsuario, dataNasc, dataCadastro FROM Usuario WHERE idUsuario = ${idUsuario}`)
+    return db.exec(`SELECT username, nomeExibicaoUsuario, bioUsuario, dataNasc, dataCadastro FROM Usuario WHERE idUsuario = '${idUsuario}'`)
 }
 
 function buscarInfoUsuarioUsername(username) {
@@ -13,12 +13,12 @@ function buscarInfoUsuarioUsername(username) {
 }
 
 function buscarFotoUsuario(idUsuario) {
-    return db.exec(`SELECT fotoPerfilUsuario from Usuario WHERE idUsuario = ${idUsuario}`)
+    return db.exec(`SELECT fotoPerfilUsuario from Usuario WHERE idUsuario = '${idUsuario}'`)
 }
 
 function cadastrarUsuario(username, email, senha, dataNasc, nomeExibicao) {
-    return db.exec(`INSERT INTO Usuario (username, emailUsuario, senhaUsuario, dataNasc, nomeExibicaoUsuario) VALUES
-    ('${username}', '${email}', '${senha}', '${dataNasc}', '${nomeExibicao}')`)
+    return db.exec(`INSERT INTO Usuario (idUsuario, username, emailUsuario, senhaUsuario, dataNasc, nomeExibicaoUsuario) VALUES
+    (uuid(), '${username}', '${email}', '${senha}', '${dataNasc}', '${nomeExibicao}')`)
 }
 
 function buscarUsuarioPorCampo(campo, valor) {
@@ -26,7 +26,7 @@ function buscarUsuarioPorCampo(campo, valor) {
 }
 
 function atualizarUsuario(campo, valor, idUsuario) {
-    return db.exec(`UPDATE Usuario SET ${campo} = '${valor}' WHERE idUsuario = ${idUsuario}`)
+    return db.exec(`UPDATE Usuario SET ${campo} = '${valor}' WHERE idUsuario = '${idUsuario}'`)
 }
 
 function login(emailUsername, senha) {
@@ -34,11 +34,11 @@ function login(emailUsername, senha) {
 }
 
 function deletar(idUsuario, senha) {
-    return db.exec(`DELETE FROM Usuario WHERE idUsuario = ${idUsuario} AND senhaUsuario = '${senha}'`)
+    return db.exec(`DELETE FROM Usuario WHERE idUsuario = '${idUsuario}' AND senhaUsuario = '${senha}'`)
 }
 
 function cadastrarFotoCapa(idUsuario, fotoCapa) {
-    return db.exec(`UPDATE Usuario SET fotoCapaUsuario = '${fotoCapa}' WHERE idUsuario = ${idUsuario}`)
+    return db.exec(`UPDATE Usuario SET fotoCapaUsuario = '${fotoCapa}' WHERE idUsuario = '${idUsuario}'`)
 }
 
 module.exports = {

@@ -26,7 +26,7 @@ async function localizarCriarRefreshToken(idUsuario) {
     try {
         exiteRefreshToken
             ? db.atualizarRefreshToken(tokenHash, idUsuario, expires)
-            : db.localizarCriarRefreshToken(tokenHash, idUsuario, expires)
+            : localizarCriarRefreshToken(tokenHash, idUsuario, expires)
     } catch (e) {
         console.log(e)
     }
