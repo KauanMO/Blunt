@@ -2,7 +2,7 @@ const db = require('../database/config')
 
 
 function publicar(textoPublicacao, fkUsuario, nanoId) {
-    return db.exec(`INSERT INTO Publicacao (textoPublicacao, nanoId, dataPublicacao, fkUsuario) VALUES ('${textoPublicacao}', '${nanoId}', now(), ${fkUsuario})`)
+    return db.exec(`INSERT INTO Publicacao (textoPublicacao, nanoId, dataPublicacao, fkUsuario) VALUES ('${textoPublicacao}', '${nanoId}', now(), '${fkUsuario}')`)
 }
 
 function buscarFeedForYou() {
@@ -20,7 +20,7 @@ function buscarPublicacoesUsuario(idUsuario) {
         FROM Publicacao p
         LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao
         JOIN Usuario u ON p.fkUsuario = u.idUsuario
-        WHERE p.fkUsuario = ${idUsuario}
+        WHERE p.fkUsuario = '${idUsuario}'
         ORDER BY dataPublicacao DESC`)
 }
 
@@ -30,7 +30,7 @@ function buscarPublicacoesCurtidasUsuario(idUsuario) {
         FROM Publicacao p
         LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao
         JOIN Usuario u ON p.fkUsuario = u.idUsuario
-        AND p.idPublicacao IN (SELECT fkPublicacao FROM Curtida WHERE fkUsuario = ${idUsuario})
+        AND p.idPublicacao IN (SELECT fkPublicacao FROM Curtida WHERE fkUsuario = '${idUsuario}')
         ORDER BY dataPublicacao DESC`)
 }
 

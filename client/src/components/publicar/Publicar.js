@@ -24,25 +24,26 @@ function ModalPublicar() {
         })
     }
 
-    const publicar = () => {
-        fetch('http://localhost:5000/publicacoes/publicar', {
+    const publicar = async () => {
+        const resPub = await fetch('http://localhost:5000/publicacoes/publicar', {
             method: 'POST',
             headers: {
-                'Content-type': 'application/json'
+                'Content-type': 'application/json',
+                'token_auth': localStorage.getItem('jwt')
             },
             body: JSON.stringify({
                 textoUsuarioServer: textoPub,
                 fkUsuarioServer: sessionStorage.getItem('idUsuario'),
                 nanoIdServer: `${nanoid()}-${sessionStorage.getItem('idUsuario')}`
             })
-        }).then(res => res.json().then(pub => {
-            if (res.ok) {
-                notificarPublicado()
-                if (document.querySelector('#iFotoPub').files[0]) {
-                    publicarFoto(`http://localhost:5000/azureUpload/uploadFotoPub/${pub.insertId}`, document.querySelector('#iFotoPub').files[0])
-                }
+        })
+        const pub = await resPub.json()
+        if (resPub.ok) {
+            notificarPublicado()
+            if (document.querySelector('#iFotoPub').files[0]) {
+                publicarFoto(`http://localhost:5000/azureUpload/uploadFotoPub/${pub.insertId}`, document.querySelector('#iFotoPub').files[0])
             }
-        }))
+        }
     }
 
     const notificarPublicado = () => {

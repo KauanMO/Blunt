@@ -22,7 +22,7 @@ router.get('/bfu/:idUsuario', (req, res) => {
     controller.buscarFotoUsuario(req, res)
 })
 
-router.get('/buscarUsuario/:campo/:valor', (req, res) => {
+router.get('/buscarUsuario/:campo/:valor', token.autenticarToken, (req, res) => {
     controller.buscarUsuarioPorCampo(req, res)
 })
 
@@ -34,7 +34,7 @@ router.post('/login', (req, res) => {
     controller.login(req, res)
 })
 
-router.delete('/deletar/:idUsuario/:senha', (req, res) => {
+router.delete('/deletar/:idUsuario/:senha', token.autenticarToken, (req, res) => {
     controller.deletar(req, res)
 })
 

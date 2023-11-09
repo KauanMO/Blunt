@@ -1,8 +1,9 @@
 const express = require('express')
 const controller = require('../controllers/publicacaoController')
 const router = express.Router()
+const token = require('../utils/token')
 
-router.post('/publicar', (req, res) => {
+router.post('/publicar', token.autenticarToken, (req, res) => {
     controller.publicar(req, res)
 })
 
