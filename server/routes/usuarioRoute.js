@@ -17,7 +17,6 @@ router.get('/biuu/:username', (req, res) => {
     controller.buscarInfoUsuarioUsername(req, res)
 })
 
-
 // Buscar foto usuario
 router.get('/bfu/:idUsuario', (req, res) => {
     controller.buscarFotoUsuario(req, res)
@@ -31,7 +30,7 @@ router.post('/cadastrar', (req, res) => {
     controller.cadastrarUsuario(req, res)
 })
 
-router.get('/login/:email/:senha', (req, res) => {
+router.post('/login', (req, res) => {
     controller.login(req, res)
 })
 

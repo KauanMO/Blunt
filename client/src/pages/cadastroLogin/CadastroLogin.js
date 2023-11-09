@@ -4,16 +4,8 @@ import '../../Global.css'
 import FormularioCadastroUsuario from '../../components/formularioCadastroUsuario/FormularioCadastroUsuario'
 import FormularioLoginUsuario from '../../components/formularioLoginUsuario/FormularioLoginUsuario'
 import Button from '../../components/button/Button'
-import { useNavigate } from 'react-router-dom'
 
 function Cadastro() {
-  const navigate = useNavigate()
-
-  if (localStorage.getItem('idUsuario') && localStorage.getItem('jwt')) {
-    sessionStorage.setItem('idUsuario', localStorage.getItem('idUsuario'))
-    navigate('/feed')
-  }
-
   const cadastrarOuEntrar = e => {
     e.target.innerText === 'Cadastrar'
       ? document.querySelector('#form_cadastro_submit').click()

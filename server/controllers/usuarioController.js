@@ -79,15 +79,16 @@ function atualizarUsuario(req, res) {
 
 async function login(req, res) {
     try {
-        const result = await model.login(req.params.email, req.params.senha)
+        const result = await model.login(req.body.emailServer, req.body.senhaServer)
         if (result.length > 0) {
             res.status(200).send({
                 idUsuario: result[0].idUsuario,
                 username: result[0].username,
-                userToken: await token.localizarCriarRefreshToken(result[0].idUsuario)
+                userToken: await token.criarToken(result[0].idUsuario)
             })
+        } else {
+            res.status(201).end()
         }
-        res.status(201).end()
     } catch (e) {
         console.log(e)
         res.status(500).end()
