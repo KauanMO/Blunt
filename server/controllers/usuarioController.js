@@ -80,6 +80,7 @@ function login(req, res) {
             })
         }
 
+        token.criarRefreshToken(result[0].idUsuario)
         res.status(201).end()
     }).catch(e => {
         console.log(e)
