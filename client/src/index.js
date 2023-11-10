@@ -4,7 +4,7 @@ import CadastroLogin from './pages/cadastroLogin/CadastroLogin'
 import CadastroImagem from './pages/cadastroImagem/CadastroImagem'
 import Feed from './pages/feed/Feed'
 import Perfil from './pages/perfil/Perfil'
-import Publicacao from './pages/publicacao/Publicacao'
+import VizPublicacao from './pages/vizPublicacao/VizPublicacao'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/:usuario/:idPublicacao',
-    element: <Publicacao />
+    element: <VizPublicacao />
   },
 ])
 

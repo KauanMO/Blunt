@@ -118,8 +118,8 @@ function Publicacao({ pubInfo }) {
         }
     }
 
-    const abrirPublicacao = () => {
-        console.log('bora')
+    const abrirPublicacao = e => {
+        if (!e.target.getAttribute('redirecionamento')) navigate(`/${pubInfo.username}/${pubInfo.nanoId}`)
     }
 
     return (
@@ -129,8 +129,8 @@ function Publicacao({ pubInfo }) {
                 <div className={styles.publicacao_textos}>
                     <div className={styles.info_usuario}>
                         <span className={styles.nome_username}>
-                            <span className={styles.nome_exibicao}>{pubInfo.nomeExibicaoUsuario}</span>
-                            <span className={styles.username}>
+                            <span onClick={redirecionar} redirecionamento={pubInfo.username} className={styles.nome_exibicao}>{pubInfo.nomeExibicaoUsuario}</span>
+                            <span onClick={redirecionar} redirecionamento={pubInfo.username} className={styles.username}>
                                 @{pubInfo.username}
                             </span>
                             <span style={{ color: 'var(--cinza)' }}>•</span>

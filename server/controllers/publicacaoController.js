@@ -24,18 +24,29 @@ function buscarPublicacoesUsuario(req, res) {
     })
 }
 
-function buscarPublicacoesCurtidasUsuario(req,res){
-    model.buscarPublicacoesCurtidasUsuario(req.params.idUsuario).then(result=>{
+function buscarPublicacoesCurtidasUsuario(req, res) {
+    model.buscarPublicacoesCurtidasUsuario(req.params.idUsuario).then(result => {
         res.json(result)
-    }).catch(e=>{
+    }).catch(e => {
         console.log(e)
         res.status(500).json
     })
+}
+
+async function buscarPublicacoesPorNanoId(req, res) {
+    try {
+        result = await model.buscarPublicacoesPorNanoId(req.params.nanoId)
+        res.status(200).send(result[0])
+    } catch (e) {
+        console.log(e)
+        res.status(500).end()
+    }
 }
 
 module.exports = {
     publicar,
     buscarFeedForYou,
     buscarPublicacoesUsuario,
-    buscarPublicacoesCurtidasUsuario
+    buscarPublicacoesCurtidasUsuario,
+    buscarPublicacoesPorNanoId
 }

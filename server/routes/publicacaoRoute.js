@@ -21,4 +21,9 @@ router.get('/bpcu/:idUsuario', (req, res) => {
     controller.buscarPublicacoesCurtidasUsuario(req, res)
 })
 
+// Buscar publicação por nano ID
+router.get('/bpnid/:nanoId', (req, res) => {
+    controller.buscarPublicacoesPorNanoId(req, res)
+})
+
 module.exports = router
