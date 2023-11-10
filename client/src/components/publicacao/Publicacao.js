@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import styles from './Publicacao.module.css'
 import Imagem from '../imagem/Imagem'
-import FotoPerfil from '../fotoPerfil/FotoPerfil'
-import TextArea from '../textArea/TextArea'
-import Button from '../button/Button'
+import Comentar from '../comentar/Comentar'
 import { useNavigate } from "react-router-dom";
 
-function Publicacao({ pubInfo, clicavel = true }) {
+function Publicacao({ pubInfo, clicavel = true, container_comentar = true }) {
     const navigate = useNavigate();
 
     const redirecionar = e => {
@@ -71,53 +69,6 @@ function Publicacao({ pubInfo, clicavel = true }) {
         })
     }
 
-    const comentar = e => {
-        let textoComentario = document.querySelector(`#texto_comentario_${pubInfo.idPublicacao}`).value
-        fetch('http://localhost:5000/comentarios/comentar', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                textoComentario: textoComentario,
-                fkPublicacao: pubInfo.idPublicacao,
-                fkUsuario: sessionStorage.getItem('idUsuario')
-            }),
-        }).then(res => {
-            if (!res.ok) { console.log(res) }
-        }).catch(e => {
-            console.log(e)
-        })
-    }
-
-    function animacoesAbrirCom() {
-        document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '4rem'
-        document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.display = 'flex'
-        setTimeout(() => {
-            document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.opacity = '1'
-        }, 100);
-    }
-
-    function animacoesFecharCom() {
-        document.querySelector(`#comentar_container_${pubInfo.idPublicacao}`).style.height = '2rem'
-        document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.opacity = '0'
-        setTimeout(() => {
-            document.querySelector(`#bt_comentar_${pubInfo.idPublicacao}`).style.display = 'none'
-        }, 100);
-    }
-
-    const abrirComentario = e => {
-        e.target.style.height = '2.8rem'
-        animacoesAbrirCom()
-    }
-
-    const fecharComentario = e => {
-        if (!e.target.value) {
-            e.target.style.height = '0.9rem'
-            animacoesFecharCom()
-        }
-    }
-
     const abrirPublicacao = e => {
         if (!e.target.classList.contains('bypass')) navigate(`/${pubInfo.username}/${pubInfo.nanoId}`)
     }
@@ -153,23 +104,10 @@ function Publicacao({ pubInfo, clicavel = true }) {
                     <i className="fa-regular fa-comment bypass"></i>
                 </div>
             </div>
-            <div id={`comentar_container_${pubInfo.idPublicacao}`} className={styles.comentar_container}>
-                <FotoPerfil imageClassName='foto_perfil_com w_2rem h_2rem bypass' />
-                <TextArea
-                    name={`texto_comentario_${pubInfo.idPublicacao}`}
-                    className='w_80p texto_comentario bypass'
-                    placeholder='Adicione um comentário'
-                    maxLength='155'
-                    handleOnFocus={abrirComentario}
-                    handleOnBlur={fecharComentario}
-                />
-                <Button
-                    text='Comentar'
-                    id={`bt_comentar_${pubInfo.idPublicacao}`}
-                    className='bt_comentar bypass'
-                    handleOnClick={comentar}
-                />
-            </div>
+            {container_comentar ? (
+                <Comentar pubInfo={pubInfo} className={'comentar_container'} />
+            ) : ''}
+
         </div>
     )
 }

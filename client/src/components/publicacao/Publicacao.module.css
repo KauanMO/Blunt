@@ -68,9 +68,3 @@
 .publicacao_opcao_container:hover{
     color: var(--lilás);
 }
-
-.comentar_container{
-    display: flex;
-    transition: all 100ms;
-    position: relative;
-}

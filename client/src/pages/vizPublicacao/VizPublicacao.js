@@ -18,7 +18,8 @@ function VizPublicacao() {
 
     return (
         <div className={styles.publicacao_container}>
-            {pubInfo ? (<Publicacao pubInfo={pubInfo} clicavel={false} />) : '...'}
+            {pubInfo ? (<Publicacao pubInfo={pubInfo} clicavel={false} container_comentar={false} />) : '...'}
+            
         </div>
     )
 }
