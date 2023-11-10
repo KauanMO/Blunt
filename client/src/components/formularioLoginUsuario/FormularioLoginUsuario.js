@@ -9,6 +9,7 @@ function FormularioLoginUsuario({ id }) {
 
     useEffect(() => {
         if (localStorage.getItem('idUsuario') && localStorage.getItem('jwt')) {
+            sessionStorage.setItem('idUsuario', localStorage.getItem('idUsuario'))
             navigate('/feed')
         }
     }, [navigate])

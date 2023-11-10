@@ -119,18 +119,18 @@ function Publicacao({ pubInfo, clicavel = true }) {
     }
 
     const abrirPublicacao = e => {
-        if (!e.target.getAttribute('redirecionamento')) navigate(`/${pubInfo.username}/${pubInfo.nanoId}`)
+        if (!e.target.classList.contains('bypass')) navigate(`/${pubInfo.username}/${pubInfo.nanoId}`)
     }
 
     return (
-        <div onClick={clicavel ? abrirPublicacao : console.log('parabens') } publicacao={pubInfo.nanoId} id={pubInfo.idPublicacao} className={styles.publicacao_container}>
+        <div onClick={clicavel ? abrirPublicacao : console.log('parabens')} publicacao={pubInfo.nanoId} id={pubInfo.idPublicacao} className={styles.publicacao_container}>
             <div className={styles.topo_pub}>
-                <Imagem onClick={redirecionar} redirecionamento={pubInfo.username} className="foto_usuario_pub w_2rem h_2rem" src={pubInfo.fotoPerfilUsuario} />
+                <Imagem onClick={redirecionar} redirecionamento={pubInfo.username} className="foto_usuario_pub w_2rem h_2rem bypass" src={pubInfo.fotoPerfilUsuario} />
                 <div className={styles.publicacao_textos}>
                     <div className={styles.info_usuario}>
                         <span className={styles.nome_username}>
-                            <span onClick={redirecionar} redirecionamento={pubInfo.username} className={styles.nome_exibicao}>{pubInfo.nomeExibicaoUsuario}</span>
-                            <span onClick={redirecionar} redirecionamento={pubInfo.username} className={styles.username}>
+                            <span onClick={redirecionar} redirecionamento={pubInfo.username} className={styles.nome_exibicao + ' bypass'}>{pubInfo.nomeExibicaoUsuario}</span>
+                            <span onClick={redirecionar} redirecionamento={pubInfo.username} className={styles.username + ' bypass'}>
                                 @{pubInfo.username}
                             </span>
                             <span style={{ color: 'var(--cinza)' }}>•</span>
@@ -144,20 +144,20 @@ function Publicacao({ pubInfo, clicavel = true }) {
             <div className={styles.publicacoes_opcoes}>
                 <div onClick={curtirDescurtir} id={'curtir_' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
                     {qtdCurtidas}
-                    <i className={curtido ? "fa-solid fa-heart" : "fa-regular fa-heart"}></i>
+                    <i className={curtido ? "fa-solid fa-heart bypass" : "fa-regular fa-heart bypass"}></i>
                 </div>
                 <div id={'repostar' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
-                    <i className="fa-solid fa-repeat"></i>
+                    <i className="fa-solid fa-repeat bypass"></i>
                 </div>
                 <div id={'comentar' + pubInfo.idPublicacao} className={styles.publicacao_opcao_container}>
-                    <i className="fa-regular fa-comment"></i>
+                    <i className="fa-regular fa-comment bypass"></i>
                 </div>
             </div>
             <div id={`comentar_container_${pubInfo.idPublicacao}`} className={styles.comentar_container}>
-                <FotoPerfil imageClassName='foto_perfil_com w_2rem h_2rem' />
+                <FotoPerfil imageClassName='foto_perfil_com w_2rem h_2rem bypass' />
                 <TextArea
                     name={`texto_comentario_${pubInfo.idPublicacao}`}
-                    className='w_80p texto_comentario'
+                    className='w_80p texto_comentario bypass'
                     placeholder='Adicione um comentário'
                     maxLength='155'
                     handleOnFocus={abrirComentario}
@@ -166,7 +166,7 @@ function Publicacao({ pubInfo, clicavel = true }) {
                 <Button
                     text='Comentar'
                     id={`bt_comentar_${pubInfo.idPublicacao}`}
-                    className='bt_comentar'
+                    className='bt_comentar bypass'
                     handleOnClick={comentar}
                 />
             </div>

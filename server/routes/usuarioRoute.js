@@ -22,7 +22,7 @@ router.get('/bfu/:idUsuario', (req, res) => {
     controller.buscarFotoUsuario(req, res)
 })
 
-router.get('/buscarUsuario/:campo/:valor', token.autenticarToken, (req, res) => {
+router.get('/buscarUsuario/:campo/:valor', (req, res) => {
     controller.buscarUsuarioPorCampo(req, res)
 })
 

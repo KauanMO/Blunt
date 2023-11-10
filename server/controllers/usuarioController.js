@@ -42,7 +42,7 @@ async function cadastrarUsuario(req, res) {
         res.status(200).send({
             idUsuario: login[0].idUsuario,
             username: login[0].username,
-            userToken: await token.localizarCriarRefreshToken(login[0].idUsuario)
+            userToken: await token.criarToken(login[0].idUsuario)
         })
     } catch (e) {
         console.log(e)
