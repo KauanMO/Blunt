@@ -6,7 +6,7 @@ import TextArea from '../textArea/TextArea'
 import Button from '../button/Button'
 import { useNavigate } from "react-router-dom";
 
-function Publicacao({ pubInfo }) {
+function Publicacao({ pubInfo, clicavel = true }) {
     const navigate = useNavigate();
 
     const redirecionar = e => {
@@ -123,7 +123,7 @@ function Publicacao({ pubInfo }) {
     }
 
     return (
-        <div onClick={abrirPublicacao} publicacao={pubInfo.nanoId} id={pubInfo.idPublicacao} className={styles.publicacao_container}>
+        <div onClick={clicavel ? abrirPublicacao : console.log('parabens') } publicacao={pubInfo.nanoId} id={pubInfo.idPublicacao} className={styles.publicacao_container}>
             <div className={styles.topo_pub}>
                 <Imagem onClick={redirecionar} redirecionamento={pubInfo.username} className="foto_usuario_pub w_2rem h_2rem" src={pubInfo.fotoPerfilUsuario} />
                 <div className={styles.publicacao_textos}>
