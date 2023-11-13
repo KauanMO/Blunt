@@ -38,4 +38,9 @@ router.delete('/deletar/:idUsuario/:senha', token.autenticarToken, (req, res) =>
     controller.deletar(req, res)
 })
 
+// Editar usuario por campo
+router.put('/euc', token.autenticarToken, (req, res) => {
+    controller.editarPerfilPorCampo(req, res)
+})
+
 module.exports = router

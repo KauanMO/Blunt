@@ -41,6 +41,10 @@ function cadastrarFotoCapa(idUsuario, fotoCapa) {
     return db.exec(`UPDATE Usuario SET fotoCapaUsuario = '${fotoCapa}' WHERE idUsuario = '${idUsuario}'`)
 }
 
+function editarPerfilPorCampo(idUsuario, campo, valor) {
+    return db.exec(`UPDATE Usuario SET ${campo} = '${valor}' WHERE idUsuario = '${idUsuario}'`)
+}
+
 module.exports = {
     listarUsuarios,
     buscarInfoUsuario,
@@ -51,5 +55,6 @@ module.exports = {
     atualizarUsuario,
     login,
     deletar,
-    cadastrarFotoCapa
+    cadastrarFotoCapa,
+    editarPerfilPorCampo
 }

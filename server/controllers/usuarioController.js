@@ -104,6 +104,17 @@ function deletar(req, res) {
     })
 }
 
+async function editarPerfilPorCampo(req, res) {
+    try {
+        results = await model.editarPerfilPorCampo(req.body.idUsuario, req.body.campo, req.body.valor)
+        res.send(200).end()
+    } catch (e) {
+        res.send(500).end()
+        console.log(e)
+    }
+
+}
+
 module.exports = {
     listarUsuarios,
     buscarInfoUsuario,
@@ -113,5 +124,6 @@ module.exports = {
     buscarUsuarioPorCampo,
     atualizarUsuario,
     login,
-    deletar
+    deletar,
+    editarPerfilPorCampo
 }
