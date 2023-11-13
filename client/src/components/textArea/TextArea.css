@@ -2,6 +2,7 @@
     50% {
         color: green;
     }
+
     100% {
         color: unset;
     }
@@ -19,7 +20,13 @@
     width: 100%;
 }
 
-.texto_publicar, .texto_comentar {
+.h_3rem {
+    height: 3rem;
+}
+
+.texto_publicar,
+.texto_comentar,
+.texto_editar_bio {
     padding: .5rem 1rem;
     background-color: unset;
     border: 3px solid var(--raisin-black);
@@ -35,10 +42,8 @@
     margin-bottom: 1rem;
 } */
 
-.texto_publicar::-webkit-scrollbar {
-    display: none;
-}
-
-.texto_comentar::-webkit-scrollbar {
+.texto_publicar::-webkit-scrollbar,
+.texto_comentar::-webkit-scrollbar,
+.texto_editar_bio::-webkit-scrollbar {
     display: none;
 }

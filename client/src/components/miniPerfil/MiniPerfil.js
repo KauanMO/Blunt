@@ -20,8 +20,8 @@ function MiniPerfil() {
                 const response = await fetch(url, { headers: { token_auth: localStorage.getItem('jwt') } })
                 const info = await response.json()
                 setDadosPerfil({
-                    nomeExib: info[0].nomeExibicaoUsuario,
-                    username: info[0].username
+                    nomeExib: info.nomeExibicaoUsuario,
+                    username: info.username
                 })
             } catch (error) {
                 console.log("error", error)

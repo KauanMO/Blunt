@@ -12,7 +12,7 @@ function listarUsuarios(req, res) {
 
 function buscarInfoUsuario(req, res) {
     model.buscarInfoUsuario(req.params.idUsuario).then(result => {
-        res.json(result)
+        res.send(result[0])
     }).catch(e => {
         console.log(e)
         res.status(500).json

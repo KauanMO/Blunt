@@ -155,3 +155,11 @@
 .conteudo_central {
     position: relative;
 }
+
+.editar_biografia_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    color: white;
+}

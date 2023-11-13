@@ -7,12 +7,11 @@ import Rightside from '../../components/rightside/Rightside'
 import Button from '../../components/button/Button'
 import Publicacao from '../../components/publicacao/Publicacao'
 import Comentario from '../../components/comentario/Comentario'
-import { useNavigate } from 'react-router-dom'
 import Modal from '../../components/modal/Modal'
+import Input from '../../components/input/Input'
+import TextArea from '../../components/textArea/TextArea'
 
 function Perfil() {
-    const navigate = useNavigate()
-
     // infoUsuario = bioUsuario, dataCadastro, fotoCapaUsuario, fotoPerfilUsuario, idUsuario, nomeExibicaoUsuario, username
     const [infoUsuario, setInfoUsuario] = useState({
         idUsuario: '',
@@ -140,9 +139,34 @@ function Perfil() {
     const seguir = () => {
     }
 
+    const buscarInfoEditar = async () => {
+        try {
+            const infoUsuarioRes = await fetch(`http://localhost:5000/usuarios/biu/${sessionStorage.getItem('idUsuario')}`, { headers: { token_auth: localStorage.getItem('jwt') } })
+            const infoUsuario = await infoUsuarioRes.json()
+            document.querySelector('#editar_nome_usuario').value = infoUsuario.username
+            document.querySelector('#editar_nome_exibicao').value = infoUsuario.nomeExibicaoUsuario
+        } catch (e) {
+            console.log(e)
+        }
+    }
+    const EditarPerfil = () => {
+        return (
+            <div>
+                <Input name={'editar_nome_usuario'} className={'editar_perfil'} labelColor='white' label={'Nome de usuário'} />
+                <Input name={'editar_nome_exibicao'} className={'editar_perfil'} labelColor='white' label={'Nome de exibição'} />
+                <div className={styles.editar_biografia_container}>
+                    <label>Biografia</label>
+                    <TextArea className={'texto_editar_bio w_50p h_3rem'} />
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className={styles.perfil_container}>
-            <Modal closeIconOnClick={() => { document.querySelector('.modal_editar_perfil').style.display = 'none' }} className={'modal_editar_perfil'} />
+            <Modal closeIconOnClick={() => { document.querySelector('.modal_editar_perfil').style.display = 'none' }} className={'modal_editar_perfil'} >
+                <EditarPerfil />
+            </Modal>
             <Navbar />
             <div className={styles.perfil_central}>
                 <FotoCapaPerfil meuPerfil={meuPerfil} className='capa_perfil' img={infoUsuario.fotoCapaUsuario} />
@@ -162,7 +186,7 @@ function Perfil() {
                             </div>
                         </div>
                     </div>
-                    <Button handleOnClick={meuPerfil ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex' } : seguir} text={meuPerfil ? 'Editar perfil' : 'Seguir'} />
+                    <Button handleOnClick={meuPerfil ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex'; buscarInfoEditar() } : seguir} text={meuPerfil ? 'Editar perfil' : 'Seguir'} />
                 </div>
 
                 <div id='opcoes_navegacao_perfil' className={styles.opcoes_navegacao_perfil}>
