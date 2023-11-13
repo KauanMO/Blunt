@@ -57,7 +57,7 @@ function Comentar({ pubInfo, className }) {
             <FotoPerfil imageClassName='foto_perfil_com w_2rem h_2rem bypass' />
             <TextArea
                 name={`texto_comentario_${pubInfo.idPublicacao}`}
-                className='w_80p texto_comentario bypass'
+                className='w_80p texto_comentar bypass'
                 placeholder='Adicione um comentário'
                 maxLength='155'
                 handleOnFocus={abrirComentario}

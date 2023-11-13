@@ -91,7 +91,7 @@ function ModalPublicar() {
             <FotoPerfil imageClassName='foto_perfil_pub w_2rem h_2rem' />
             <TextArea handleOnBlur={fecharPublicar} handleOnFocus={abrirPublicar}
                 placeholder="Publique o que está pensando" name='iTextoPub'
-                className="w_100p texto_publicacao"
+                className="w_100p texto_publicar"
                 handleOnChange={attTextoPub}
                 maxLength='200'
             />

@@ -21,7 +21,7 @@ function Publicacao({ pubInfo, clicavel = true, container_comentar = true }) {
     const [qtdCurtidas, setQtdCurtidas] = useState(null)
 
     useEffect(() => {
-        const urlVerificarCurtida = `http://localhost:5000/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${pubInfo.idPublicacao}`
+        const urlVerificarCurtida = `http://localhost:5000/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${pubInfo.idPublicacao}/fkPublicacao`
 
         const fetchDataVerificarCurtida = async () => {
             try {
@@ -56,6 +56,7 @@ function Publicacao({ pubInfo, clicavel = true, container_comentar = true }) {
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
                 fkUsuario: sessionStorage.getItem('idUsuario'),
+                campo: 'fkPublicacao',
                 fkPublicacao: pubInfo.idPublicacao
             })
         }).then(res => {
@@ -73,10 +74,14 @@ function Publicacao({ pubInfo, clicavel = true, container_comentar = true }) {
         if (!e.target.classList.contains('bypass')) navigate(`/${pubInfo.username}/${pubInfo.nanoId}`)
     }
 
+    const easterEgg = async () => {
+        console.log('parabens')
+    }
+
     return (
-        <div onClick={clicavel ? abrirPublicacao : console.log('parabens')} publicacao={pubInfo.nanoId} id={pubInfo.idPublicacao} className={styles.publicacao_container}>
+        <div onClick={clicavel ? abrirPublicacao : easterEgg} publicacao={pubInfo.nanoId} id={pubInfo.idPublicacao} className={styles.publicacao_container}>
             <div className={styles.topo_pub}>
-                <Imagem onClick={redirecionar} redirecionamento={pubInfo.username} className="foto_usuario_pub w_2rem h_2rem bypass" src={pubInfo.fotoPerfilUsuario} />
+                <Imagem onClick={redirecionar} redirecionamento={pubInfo.username} className="foto_usuario_pub w_3rem h_3rem bypass" src={pubInfo.fotoPerfilUsuario} />
                 <div className={styles.publicacao_textos}>
                     <div className={styles.info_usuario}>
                         <span className={styles.nome_username}>

@@ -2,4 +2,5 @@
     display: flex;
     transition: all 100ms;
     position: relative;
+    gap: 1rem;
 }

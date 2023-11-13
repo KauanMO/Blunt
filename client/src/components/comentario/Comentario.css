@@ -1,0 +1,40 @@
+.comentario_container {
+    display: flex;
+    gap: .5rem;
+    margin-top: .5rem;
+    align-items: center;
+    color: white;
+    transition: all 600ms;
+    border-radius: 5px;
+    width: 20rem;
+    padding: 0.8rem 0.8rem 0.8rem 1rem;
+}
+
+.comentario_container:hover {
+    background-color: rgb(17, 17, 17);
+    transition: all 600ms;
+}
+
+.username_nomeExib_comentario {
+    display: flex;
+    gap: .5rem;
+}
+
+.nome_exib_comentario {
+    color: var(--lilás);
+}
+
+.username_comentario {
+    color: var(--cinza);
+}
+
+.texto_comentario {
+    display: flex;
+    line-break: anywhere;
+}
+
+.comentario_opcao{
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}

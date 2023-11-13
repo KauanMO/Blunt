@@ -5,7 +5,10 @@ function comentar(textoComentario, fkPublicacao, fkUsuario) {
 }
 
 function listarComentariosPub(fkPublicacao) {
-    return db.exec(`SELECT * from Comentario WHERE fkPublicacao = ${fkPublicacao}`)
+    return db.exec(`SELECT c.idComentario, c.textoComentario, c.dataComentario, u.username, u.fotoPerfilUsuario, u.nomeExibicaoUsuario
+    from Comentario c JOIN Usuario u 
+    ON c.fkUsuario = u.idUsuario 
+    WHERE fkPublicacao = ${fkPublicacao}`)
 }
 
 module.exports = {

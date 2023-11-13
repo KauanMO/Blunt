@@ -19,7 +19,7 @@
     width: 100%;
 }
 
-.texto_publicacao, .texto_comentario {
+.texto_publicar, .texto_comentar {
     padding: .5rem 1rem;
     background-color: unset;
     border: 3px solid var(--raisin-black);
@@ -31,14 +31,14 @@
     position: relative;
 }
 
-/* .texto_comentario{
+/* .texto_comentar{
     margin-bottom: 1rem;
 } */
 
-.texto_publicacao::-webkit-scrollbar {
+.texto_publicar::-webkit-scrollbar {
     display: none;
 }
 
-.texto_comentario::-webkit-scrollbar {
+.texto_comentar::-webkit-scrollbar {
     display: none;
 }
