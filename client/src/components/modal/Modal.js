@@ -1,9 +1,13 @@
-function Modal() {
+import React from "react"
+import './Modal.css'
 
+function Modal({ className, closeIconOnClick }) {
     return (
-        <div>
-            
-        </div>
+        <div className={className + ' modal_container'} >
+            <div className='modal_conteudo'>
+                <span className='fechar_modal' onClick={closeIconOnClick}>X</span>
+            </div>
+        </div >
     )
 }
 

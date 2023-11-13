@@ -11,7 +11,12 @@ function listarComentariosPub(fkPublicacao) {
     WHERE fkPublicacao = ${fkPublicacao}`)
 }
 
+function listarComentariosUsuario(fkUsuario) {
+    return db.exec(`SELECT * FROM Comentario WHERE fkUsuario = '${fkUsuario}'`)
+}
+
 module.exports = {
     comentar,
-    listarComentariosPub
+    listarComentariosPub,
+    listarComentariosUsuario
 }

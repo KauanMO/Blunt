@@ -18,7 +18,18 @@ function listarComentariosPub(req, res) {
     })
 }
 
+async function listarComentariosUsuario(req,res) {
+    try{
+        const results = model.listarComentariosUsuario(req.params.fkUsuario)
+        res.send(results)
+    }catch(e) {
+        console.log(e)
+        res.status(500).send(e)
+    }
+}
+
 module.exports = {
     comentar,
-    listarComentariosPub
+    listarComentariosPub,
+    listarComentariosUsuario
 }

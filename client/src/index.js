@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   {
     path: 'cadastro-imagem',
     element: <CadastroImagem />
-  }, 
+  },
   {
     path: 'feed',
     element: <Feed />
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
   {
     path: '/:usuario/:idPublicacao',
     element: <VizPublicacao />
-  },
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(

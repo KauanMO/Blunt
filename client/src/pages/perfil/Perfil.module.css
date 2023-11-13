@@ -134,7 +134,9 @@
     transition: all 100ms;
 }
 
-.publicacoes_usuario, .curtidas_usuario, .comentarios_usuario {
+.publicacoes_usuario,
+.curtidas_usuario,
+.comentarios_usuario {
     display: none;
     flex-direction: column;
     align-items: center;
@@ -145,7 +147,7 @@
     opacity: 0;
 }
 
-.publicacoes_usuario{
+.publicacoes_usuario {
     display: flex;
     opacity: 1;
 }

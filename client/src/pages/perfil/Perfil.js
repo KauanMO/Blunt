@@ -6,8 +6,13 @@ import Navbar from '../../components/navbar/Navbar'
 import Rightside from '../../components/rightside/Rightside'
 import Button from '../../components/button/Button'
 import Publicacao from '../../components/publicacao/Publicacao'
+import Comentario from '../../components/comentario/Comentario'
+import { useNavigate } from 'react-router-dom'
+import Modal from '../../components/modal/Modal'
 
 function Perfil() {
+    const navigate = useNavigate()
+
     // infoUsuario = bioUsuario, dataCadastro, fotoCapaUsuario, fotoPerfilUsuario, idUsuario, nomeExibicaoUsuario, username
     const [infoUsuario, setInfoUsuario] = useState({
         idUsuario: '',
@@ -20,12 +25,13 @@ function Perfil() {
 
     const [pubsUsuario, setPubsUsuario] = useState([])
     const [curtidasUsuario, setCurtidasUsuario] = useState([])
+    const [comentariosUsuario, setComentariosUsuario] = useState([])
     const [meuPerfil, setMeuPerfil] = useState(false)
 
     useEffect(() => {
         const fetchDataInfoUsuario = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/usuarios/biuu/${window.location.href.split('/')[3]}`, {headers: {auth_token: localStorage.getItem('jwt')}})
+                const response = await fetch(`http://localhost:5000/usuarios/biuu/${window.location.href.split('/')[3]}`, { headers: { auth_token: localStorage.getItem('jwt') } })
                 const infoUsuarioRes = await response.json()
                 setInfoUsuario(infoUsuarioRes[0])
             } catch (e) {
@@ -55,10 +61,22 @@ function Perfil() {
             }
         }
 
-        if (infoUsuario.idUsuario === Number(sessionStorage.getItem('idUsuario'))) { setMeuPerfil(true) }
+        const fetchComentariosUsuario = async () => {
+            if (!infoUsuario.idUsuario) { return }
+            try {
+                const comentariosUsuarioRes = await fetch(`http://localhost:5000/comentarios/lcu/${infoUsuario.idUsuario}`)
+                const comentariosUsuario = await comentariosUsuarioRes.json()
+                setComentariosUsuario(comentariosUsuario)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+        if (infoUsuario.idUsuario === sessionStorage.getItem('idUsuario')) { setMeuPerfil(true) }
 
         fetchDataInfoUsuario()
         fetchPublicacoesUsuario()
+        fetchComentariosUsuario()
         fetchCurtidasUsuario()
     }, [infoUsuario.idUsuario])
 
@@ -119,8 +137,12 @@ function Perfil() {
         mudarConteudoCentral(e.target.id)
     }
 
+    const seguir = () => {
+    }
+
     return (
         <div className={styles.perfil_container}>
+            <Modal closeIconOnClick={() => { document.querySelector('.modal_editar_perfil').style.display = 'none' }} className={'modal_editar_perfil'} />
             <Navbar />
             <div className={styles.perfil_central}>
                 <FotoCapaPerfil meuPerfil={meuPerfil} className='capa_perfil' img={infoUsuario.fotoCapaUsuario} />
@@ -129,12 +151,10 @@ function Perfil() {
                         <Imagem className='foto_perfil_perfil' src={infoUsuario.fotoPerfilUsuario} />
                         <div className={styles.textos_header}>
                             <div className={styles.nomes_header}>
-                                <span className={styles.username_header}>{infoUsuario.username}</span>
-                                <span className={styles.nomeExib_header}>@{infoUsuario.nomeExibicaoUsuario}</span>
+                                <span className={styles.nomeExib_header}>{infoUsuario.nomeExibicaoUsuario}</span>
+                                <span className={styles.username_header}>@{infoUsuario.username}</span>
                             </div>
                             <div className={styles.bio_header}>
-                                {infoUsuario.bioUsuario ? infoUsuario.bioUsuario : meuPerfil ? 'Informe mais sobre você' : ''}
-                                {meuPerfil ? <i style={{ cursor: 'pointer' }} className="fa-regular fa-pen-to-square"></i> : ''}
                             </div>
                             <div className={styles.seguidores_header}>
                                 <span className={styles.seguidores}>0 seguidores</span>
@@ -142,7 +162,7 @@ function Perfil() {
                             </div>
                         </div>
                     </div>
-                    <Button text={meuPerfil ? 'Editar perfil' : 'Seguir'} />
+                    <Button handleOnClick={meuPerfil ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex' } : seguir} text={meuPerfil ? 'Editar perfil' : 'Seguir'} />
                 </div>
 
                 <div id='opcoes_navegacao_perfil' className={styles.opcoes_navegacao_perfil}>
@@ -176,7 +196,11 @@ function Perfil() {
                             : 'Carregando publicações...'}
                     </div>
                     <div centralativo='false' id='central_comentarios' className={styles.comentarios_usuario}>
-
+                        {comentariosUsuario[0] ?
+                            comentariosUsuario.map((comentario, i) => {
+                                return (<Comentario comentario={comentario} key={1} />)
+                            })
+                            : 'Carregando comentários'}
                     </div>
                 </div>
             </div>

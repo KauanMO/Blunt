@@ -7,8 +7,7 @@ function Navbar() {
     const navigate = useNavigate();
 
     const redirecionar = e => {
-        const redirecionamento = e.target.getAttribute('redirecionamento')
-        navigate('/' + redirecionamento.toLowerCase());
+        navigate('/' + e.target.getAttribute('redirecionamento'))
     }
 
     const navBarOpcoes = [

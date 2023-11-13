@@ -11,4 +11,9 @@ router.get('/lcp/:fkPublicacao', (req, res) => {
     controller.listarComentariosPub(req, res)
 })
 
+// Listar comentários por usuário
+router.get('/lcu/:fkUsuario', (req, res) => {
+    controller.listarComentariosUsuario(req, res)
+})
+
 module.exports = router
