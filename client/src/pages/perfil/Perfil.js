@@ -26,6 +26,7 @@ function Perfil() {
     const [curtidasUsuario, setCurtidasUsuario] = useState([])
     const [comentariosUsuario, setComentariosUsuario] = useState([])
     const [meuPerfil, setMeuPerfil] = useState(false)
+    const [seguido, setSeguido] = useState(false)
 
     useEffect(() => {
         const fetchDataInfoUsuario = async () => {
@@ -71,12 +72,25 @@ function Perfil() {
             }
         }
 
+        const fetchVerificarSeguidor = async () => {
+            if (!infoUsuario.idUsuario) return
+
+            try {
+                const verificarSeguidorRes = await fetch(`http://localhost:5000/seguidores/vs/${sessionStorage.getItem('idUsuario')}/${infoUsuario.idUsuario}`, { headers: { token_auth: localStorage.getItem('jwt') } })
+                const verificarSeguidor = await verificarSeguidorRes.json()
+                setSeguido(verificarSeguidor)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
         if (infoUsuario.idUsuario === sessionStorage.getItem('idUsuario')) { setMeuPerfil(true) }
 
         fetchDataInfoUsuario()
         fetchPublicacoesUsuario()
         fetchComentariosUsuario()
         fetchCurtidasUsuario()
+        fetchVerificarSeguidor()
     }, [infoUsuario.idUsuario])
 
     function animacaoUnderlineOpcaoNavegacao(opcao) {
@@ -136,7 +150,27 @@ function Perfil() {
         mudarConteudoCentral(e.target.id)
     }
 
-    const seguir = () => {
+    const seguir = async e => {
+        try {
+            const urlSeguir = `http://localhost:5000/seguidores/${seguido ? 'dds' : 'seguir'}`
+
+            await fetch(urlSeguir, {
+                method: 'POST',
+                headers: {
+                    token_auth: localStorage.getItem('jwt'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    fkSeguidor: sessionStorage.getItem('idUsuario'),
+                    fkSeguido: infoUsuario.idUsuario
+                })
+            })
+            e.target.classList = seguido ? ['button w_6rem negative_colored'] : ['button w_6rem full_colored']
+            e.target.innerText = seguido ? 'Seguir' : 'Seguindo'
+            setSeguido(!seguido)
+        } catch (er) {
+            console.log(er)
+        }
     }
 
     const buscarInfoEditar = async () => {
@@ -149,17 +183,20 @@ function Perfil() {
             console.log(e)
         }
     }
+
     const EditarPerfil = () => {
-        return (
-            <div>
-                <Input name={'editar_nome_usuario'} className={'editar_perfil'} labelColor='white' label={'Nome de usuário'} />
-                <Input name={'editar_nome_exibicao'} className={'editar_perfil'} labelColor='white' label={'Nome de exibição'} />
-                <div className={styles.editar_biografia_container}>
-                    <label>Biografia</label>
-                    <TextArea className={'texto_editar_bio w_50p h_3rem'} />
+        if (meuPerfil) {
+            return (
+                <div>
+                    <Input name={'editar_nome_usuario'} className={'editar_perfil'} labelColor='white' label={'Nome de usuário'} />
+                    <Input name={'editar_nome_exibicao'} className={'editar_perfil'} labelColor='white' label={'Nome de exibição'} />
+                    <div className={styles.editar_biografia_container}>
+                        <label>Biografia</label>
+                        <TextArea className={'texto_editar_bio w_50p h_3rem'} />
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 
     return (
@@ -186,7 +223,7 @@ function Perfil() {
                             </div>
                         </div>
                     </div>
-                    <Button handleOnClick={meuPerfil ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex'; buscarInfoEditar() } : seguir} text={meuPerfil ? 'Editar perfil' : 'Seguir'} />
+                    <Button className={`w_6rem ${seguido ? 'full_colored' : 'negative_colored'}`} handleOnClick={meuPerfil ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex'; buscarInfoEditar() } : seguir} text={meuPerfil ? 'Editar perfil' : seguido ? 'Seguindo' : 'Seguir'} />
                 </div>
 
                 <div id='opcoes_navegacao_perfil' className={styles.opcoes_navegacao_perfil}>
