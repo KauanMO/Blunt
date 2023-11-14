@@ -163,3 +163,16 @@
     align-items: center;
     color: white;
 }
+
+.icone_notificar {
+    color: white;
+    border: 1px solid white;
+    padding: .3rem .4rem;
+    border-radius: 50%;
+    background-color: none;
+    cursor: pointer;
+    position: absolute;
+    left: -3rem;
+    top: 50%;
+    transform: translateY(-50%);
+}

@@ -52,3 +52,7 @@
 .w_6rem {
     width: 6rem;
 }
+
+.pr {
+    position: relative;
+}

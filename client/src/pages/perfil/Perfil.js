@@ -165,7 +165,7 @@ function Perfil() {
                     fkSeguido: infoUsuario.idUsuario
                 })
             })
-            e.target.classList = seguido ? ['button w_6rem negative_colored'] : ['button w_6rem full_colored']
+            e.target.classList = seguido ? ['button pr w_6rem negative_colored'] : ['button pr w_6rem full_colored']
             e.target.innerText = seguido ? 'Seguir' : 'Seguindo'
             setSeguido(!seguido)
         } catch (er) {
@@ -199,6 +199,12 @@ function Perfil() {
         }
     }
 
+    const IconeNotificar = () => {
+        return (
+            <i className={`fa-regular fa-bell ${styles.icone_notificar}`} />
+        )
+    }
+
     return (
         <div className={styles.perfil_container}>
             <Modal closeIconOnClick={() => { document.querySelector('.modal_editar_perfil').style.display = 'none' }} className={'modal_editar_perfil'} >
@@ -223,7 +229,14 @@ function Perfil() {
                             </div>
                         </div>
                     </div>
-                    <Button className={`w_6rem ${seguido ? 'full_colored' : 'negative_colored'}`} handleOnClick={meuPerfil ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex'; buscarInfoEditar() } : seguir} text={meuPerfil ? 'Editar perfil' : seguido ? 'Seguindo' : 'Seguir'} />
+                    <Button
+                        className={`w_6rem pr ${seguido ? 'full_colored' : 'negative_colored'}`}
+                        handleOnClick={meuPerfil
+                            ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex'; buscarInfoEditar() }
+                            : seguir}
+                        text={meuPerfil ? 'Editar perfil' : seguido ? 'Seguindo' : 'Seguir'} >
+                        {seguido ? <IconeNotificar /> : ''}
+                    </Button>
                 </div>
 
                 <div id='opcoes_navegacao_perfil' className={styles.opcoes_navegacao_perfil}>
