@@ -173,18 +173,69 @@ function Perfil() {
         }
     }
 
+    let nomeUsuarioInicial, nomeExibicaoUsuarioInicial, bioUsuarioInicial
+
     const buscarInfoEditar = async () => {
         try {
             const infoUsuarioRes = await fetch(`http://localhost:5000/usuarios/biu/${sessionStorage.getItem('idUsuario')}`, { headers: { token_auth: localStorage.getItem('jwt') } })
             const infoUsuario = await infoUsuarioRes.json()
             document.querySelector('#editar_nome_usuario').value = infoUsuario.username
             document.querySelector('#editar_nome_exibicao').value = infoUsuario.nomeExibicaoUsuario
+            document.querySelector('#editar_bio').value = infoUsuario.bioUsuario
+
+            nomeUsuarioInicial = infoUsuario.username
+            nomeExibicaoUsuarioInicial = infoUsuario.nomeExibicaoUsuario
+            bioUsuarioInicial = infoUsuario.bioUsuario
         } catch (e) {
             console.log(e)
         }
     }
 
     const EditarPerfil = () => {
+        async function editarPerfil() {
+            let edicao = [
+                {
+                    campo: 'username',
+                    valorInicial: nomeUsuarioInicial,
+                    valorEditar: document.querySelector('#editar_nome_usuario').value
+                },
+                {
+                    campo: 'nomeExibicaoUsuario',
+                    valorInicial: nomeExibicaoUsuarioInicial,
+                    valorEditar: document.querySelector('#editar_nome_exibicao').value
+                },
+                {
+                    campo: 'bioUsuario',
+                    valorInicial: bioUsuarioInicial,
+                    valorEditar: document.querySelector('#editar_bio').value
+                }
+            ]
+
+            const fetchEditarPerfil = async (idUsuario, campo, valor) => {
+                const resEditarPerfil = await fetch(`http://localhost:5000/usuarios/euc`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-type': 'application/json',
+                        token_auth: localStorage.getItem('jwt')
+                    },
+                    body: JSON.stringify({
+                        idUsuario: idUsuario,
+                        campo: campo,
+                        valor: valor
+                    })
+                })
+
+                if (!resEditarPerfil.ok) {
+                    
+                }
+            }
+
+            edicao.forEach(edit => {
+                if (edit.valorInicial !== edit.valorEditar) fetchEditarPerfil(sessionStorage.getItem('idUsuario'), edit.campo, edit.valorEditar)
+                //window.location.reload()
+            })
+        }
+
         if (meuPerfil) {
             return (
                 <div>
@@ -192,8 +243,9 @@ function Perfil() {
                     <Input name={'editar_nome_exibicao'} className={'editar_perfil'} labelColor='white' label={'Nome de exibição'} />
                     <div className={styles.editar_biografia_container}>
                         <label>Biografia</label>
-                        <TextArea className={'texto_editar_bio w_50p h_3rem'} />
+                        <TextArea name={'editar_bio'} className={'texto_editar_bio w_50p h_3rem'} />
                     </div>
+                    <Button handleOnClick={editarPerfil} className={'negative_colored'} text={'Editar'} />
                 </div>
             )
         }

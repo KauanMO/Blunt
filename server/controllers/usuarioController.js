@@ -105,14 +105,22 @@ function deletar(req, res) {
 }
 
 async function editarPerfilPorCampo(req, res) {
+    if (req.body.campo == 'username') {
+        const buscaUsuario = await model.buscarUsuarioPorCampo(req.body.campo, req.body.valor)
+        if (buscaUsuario.length > 0) {
+            res.status(409).send('Nome de usuário já ocupado')
+            
+            return
+        }
+    }
+
     try {
         results = await model.editarPerfilPorCampo(req.body.idUsuario, req.body.campo, req.body.valor)
-        res.send(200).end()
+        res.status(200).end()
     } catch (e) {
         res.send(500).end()
         console.log(e)
     }
-
 }
 
 module.exports = {
