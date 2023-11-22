@@ -226,14 +226,16 @@ function Perfil() {
                 })
 
                 if (!resEditarPerfil.ok) {
-                    
+                    const mensagemEditarPerfil = await resEditarPerfil.json()
+                    console.log(mensagemEditarPerfil.mensagem)
                 }
             }
 
             edicao.forEach(edit => {
-                if (edit.valorInicial !== edit.valorEditar) fetchEditarPerfil(sessionStorage.getItem('idUsuario'), edit.campo, edit.valorEditar)
-                //window.location.reload()
+                if (edit.valorInicial !== edit.valorEditar) { fetchEditarPerfil(sessionStorage.getItem('idUsuario'), edit.campo, edit.valorEditar) }
             })
+
+            window.location.href = edicao[0].valorEditar
         }
 
         if (meuPerfil) {
@@ -282,7 +284,7 @@ function Perfil() {
                         </div>
                     </div>
                     <Button
-                        className={`w_6rem pr ${seguido ? 'full_colored' : 'negative_colored'}`}
+                        className={`w_7rem pr ${seguido ? 'full_colored' : 'negative_colored'}`}
                         handleOnClick={meuPerfil
                             ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex'; buscarInfoEditar() }
                             : seguir}

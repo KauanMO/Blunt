@@ -108,8 +108,7 @@ async function editarPerfilPorCampo(req, res) {
     if (req.body.campo == 'username') {
         const buscaUsuario = await model.buscarUsuarioPorCampo(req.body.campo, req.body.valor)
         if (buscaUsuario.length > 0) {
-            res.status(409).send('Nome de usuário já ocupado')
-            
+            res.status(409).send({ mensagem: 'Nome de usuário já ocupado' })
             return
         }
     }
