@@ -134,7 +134,7 @@ function FotoCapaPerfil({ img, className, imgClassName, meuPerfil }) {
                 : ''
             }
             {capa
-                ? <Imagem name='foto_capa_perfil' src={capa} imageClassName='foto_capa_perfil' />
+                ? <Imagem name='foto_capa_perfil' src={capa} className='foto_capa_perfil' />
                 : ''
             }
         </div>

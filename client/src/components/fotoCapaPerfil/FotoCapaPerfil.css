@@ -4,8 +4,10 @@
     left: 50%;
     border-radius: 1rem;
     width: 55%;
-    transform: translateX(-50%);
+    max-width: 55%;
     height: 14rem;
+    max-height: 14rem;
+    transform: translateX(-50%);
     background-image: url('../../assets/default-capa-perfil.png');
     transition: all 150ms;
     z-index: 1;
