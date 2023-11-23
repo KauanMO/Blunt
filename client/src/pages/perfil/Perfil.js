@@ -276,6 +276,9 @@ function Perfil() {
                                 <span className={styles.username_header}>@{infoUsuario.username}</span>
                             </div>
                             <div className={styles.bio_header}>
+                                {infoUsuario.bioUsuario
+                                    ? infoUsuario.bioUsuario
+                                    : ''}
                             </div>
                             <div className={styles.seguidores_header}>
                                 <span className={styles.seguidores}>0 seguidores</span>

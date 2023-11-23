@@ -73,7 +73,7 @@
 .bio_header {
     display: flex;
     gap: 1rem;
-    color: var(--cinza);
+    color: var(--branco);
     align-items: center;
 }
 
