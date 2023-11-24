@@ -10,6 +10,32 @@
     color: white;
 }
 
-.resultados_pesquisa{
+.resultados_pesquisa {
+    display: flex;
     width: 30%;
+    margin-top: .5rem;
+    gap: .3rem;
+    flex-direction: column;
+    box-shadow: .1rem .1rem var(--cinza);
+    border: 1px solid var(--raisin-black);
+    border-radius: 1rem;
+}
+
+.resultado_pesquisa {
+    padding: .6rem;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    transition: all 500ms;
+    cursor: pointer;
+}
+
+.resultado_pesquisa:hover {
+    background-color: rgb(17, 17, 17);
+}
+
+.username_nomeExib_pesquisa {
+    display: flex;
+    flex-direction: column;
+    margin-left: .6rem;
 }

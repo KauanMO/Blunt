@@ -12,6 +12,12 @@
     left: -4rem;
 }
 
+.foto_perfil_pesquisa {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
 .foto_perfil_com {
     border-radius: 50%;
 }
