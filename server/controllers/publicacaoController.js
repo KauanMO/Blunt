@@ -43,10 +43,21 @@ async function buscarPublicacoesPorNanoId(req, res) {
     }
 }
 
+async function pesquisarPublicacoes(req, res) {
+    try {
+        results = await model.pesquisarPublicacoes(req.params.valorPesquisa)
+        res.status(200).send(results)
+    } catch (e) {
+        console.log(e)
+        res.status(500).end()
+    }
+}
+
 module.exports = {
     publicar,
     buscarFeedForYou,
     buscarPublicacoesUsuario,
     buscarPublicacoesCurtidasUsuario,
-    buscarPublicacoesPorNanoId
+    buscarPublicacoesPorNanoId,
+    pesquisarPublicacoes
 }

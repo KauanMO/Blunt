@@ -21,7 +21,7 @@
     border-radius: 1rem;
 }
 
-.resultado_pesquisa {
+.resultado_pesquisa, .opcao_pesquisar_pubs {
     padding: .6rem;
     display: flex;
     align-items: center;
@@ -30,7 +30,11 @@
     cursor: pointer;
 }
 
-.resultado_pesquisa:hover {
+.opcao_pesquisar_pubs {
+    justify-content: center;
+}
+
+.resultado_pesquisa:hover, .opcao_pesquisar_pubs:hover {
     background-color: rgb(17, 17, 17);
 }
 

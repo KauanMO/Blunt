@@ -7,6 +7,7 @@ import Pesquisa from '../../components/pesquisa/Pesquisa'
 
 function Pesquisar() {
     const [resultadoPesquisa, setResultadoPesquisa] = useState([])
+    const [resultadoPesquisaPubs, setResultadoPesquisaPubs] = useState([])
 
     const pesquisar = async () => {
         let valorPesquisa = document.querySelector('#iPesquisa').value, resultadosPesquisa = document.querySelector('.resultados_pesquisa_container')
@@ -27,11 +28,23 @@ function Pesquisar() {
         resultadosPesquisa.classList.remove('none')
     }
 
+    const pesquisarPubs = async () => {
+        let valorPesquisa = document.querySelector('#iPesquisa').value
+
+        const resPesquisaPub = await fetch(`/publicacoes/pesquisar/${valorPesquisa}`, {
+            headers: {
+                token_auth: localStorage.getItem('jwt')
+            }
+        })
+        const pesquisarPub = await resPesquisaPub.json()
+        setResultadoPesquisaPubs(pesquisarPub)
+    }
+
     return (
         <div className={styles.pesquisar_container}>
             <Navbar />
             <Input name={'iPesquisa'} handleOnChange={pesquisar} className={'pesquisar w_30p mt_1rem'} />
-            <Pesquisa resPesquisa={resultadoPesquisa} className={'none'} />
+            <Pesquisa pesquisarPubs={pesquisarPubs} resPesquisa={resultadoPesquisa} className={'none'} />
             <Rightside />
         </div>
     )

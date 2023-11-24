@@ -3,7 +3,7 @@ import './Pesquisa.css'
 import Imagem from '../imagem/Imagem'
 import { useNavigate } from "react-router-dom";
 
-function Pesquisa({ className, resPesquisa }) {
+function Pesquisa({ className, resPesquisa, pesquisarPubs }) {
     //resPesquisa = idUsuario, username, fotoPerfilUsuario, nomeExibicaoUsuario
     const navigate = useNavigate()
 
@@ -24,6 +24,9 @@ function Pesquisa({ className, resPesquisa }) {
                     })
                     : ''
                 }
+                <div onClick={pesquisarPubs} className={'opcao_pesquisar_pubs'}>
+                    <span>Pesquisar publicações com este filtro</span>
+                </div>
             </div>
         </ div >
     )

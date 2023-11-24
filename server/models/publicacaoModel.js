@@ -44,10 +44,21 @@ function buscarPublicacoesCurtidasUsuario(idUsuario) {
         ORDER BY dataPublicacao DESC`)
 }
 
+function pesquisarPublicacoes(valorPesquisa) {
+    return db.exec(`SELECT p.idPublicacao, p.nanoId, p.textoPublicacao, p.dataPublicacao, fp.fotoPublicacao, u.username,
+    u.fotoPerfilUsuario, u.nomeExibicaoUsuario
+        FROM Publicacao p
+        LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao
+        JOIN Usuario u ON p.fkUsuario = u.idUsuario
+        WHERE p.textoPublicacao LIKE %${valorPesquisa}%
+        ORDER BY dataPublicacao DESC`)
+}
+
 module.exports = {
     publicar,
     buscarFeedForYou,
     buscarPublicacoesUsuario,
     buscarPublicacoesCurtidasUsuario,
-    buscarPublicacoesPorNanoId
+    buscarPublicacoesPorNanoId,
+    pesquisarPublicacoes
 }

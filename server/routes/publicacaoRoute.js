@@ -26,4 +26,8 @@ router.get('/bpnid/:nanoId', (req, res) => {
     controller.buscarPublicacoesPorNanoId(req, res)
 })
 
+router.get('/pesquisar/:valorPesquisa', token.autenticarToken, (req, res) => {
+    controller.pesquisarPublicacoes(req, res)
+})
+
 module.exports = router
