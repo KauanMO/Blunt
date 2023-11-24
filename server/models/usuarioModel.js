@@ -46,7 +46,7 @@ function editarPerfilPorCampo(idUsuario, campo, valor) {
 }
 
 function pesquisarUsuario(valorPesquisa) {
-    return db.exec(`SELECT idUsuario, username, fotoPerfilUsuario, nomeExibicaoUsuario FROM Usuario WHERE username LIKE '%${valorPesquisa}%' OR nomeExibicao LIKE '%${valorPesquisa}%'`)
+    return db.exec(`SELECT idUsuario, username, fotoPerfilUsuario, nomeExibicaoUsuario FROM Usuario WHERE username LIKE '%${valorPesquisa}%' OR nomeExibicaoUsuario LIKE '%${valorPesquisa}%'`)
 }
 
 module.exports = {

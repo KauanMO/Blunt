@@ -124,7 +124,7 @@ async function editarPerfilPorCampo(req, res) {
 
 async function pesquisarUsuario(req, res) {
     try {
-        const results = await model.pesquisarUsuario(req.params.valorBusca)
+        const results = await model.pesquisarUsuario(req.params.valorPesquisa)
         res.status(200).send(results)
     } catch (e) {
         console.log(e)

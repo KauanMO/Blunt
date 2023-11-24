@@ -1,0 +1,15 @@
+.none {
+    display: none !important;
+}
+
+.resultados_pesquisa_container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.resultados_pesquisa{
+    width: 30%;
+}

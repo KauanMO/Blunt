@@ -43,7 +43,7 @@ router.put('/euc', token.autenticarToken, (req, res) => {
     controller.editarPerfilPorCampo(req, res)
 })
 
-router.get('/pesquisar', token.autenticarToken, (req, res) => {
+router.get('/pesquisar/:valorPesquisa', token.autenticarToken, (req, res) => {
     controller.pesquisarUsuario(req, res)
 })
 
