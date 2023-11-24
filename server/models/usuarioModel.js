@@ -45,6 +45,10 @@ function editarPerfilPorCampo(idUsuario, campo, valor) {
     return db.exec(`UPDATE Usuario SET ${campo} = '${valor}' WHERE idUsuario = '${idUsuario}'`)
 }
 
+function pesquisarUsuario(valorPesquisa) {
+    return db.exec(`SELECT idUsuario, username, fotoPerfilUsuario, nomeExibicaoUsuario FROM Usuario WHERE username LIKE '%${valorPesquisa}%' OR nomeExibicao LIKE '%${valorPesquisa}%'`)
+}
+
 module.exports = {
     listarUsuarios,
     buscarInfoUsuario,
@@ -56,5 +60,6 @@ module.exports = {
     login,
     deletar,
     cadastrarFotoCapa,
-    editarPerfilPorCampo
+    editarPerfilPorCampo,
+    pesquisarUsuario
 }

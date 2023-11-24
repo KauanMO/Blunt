@@ -122,6 +122,16 @@ async function editarPerfilPorCampo(req, res) {
     }
 }
 
+async function pesquisarUsuario(req, res) {
+    try {
+        const results = await model.pesquisarUsuario(req.params.valorBusca)
+        res.status(200).send(results)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ clientMessage: 'Erro ao pesquisar usuário', serverMessage: `Erro ao pesquisar usuário: ${e}` })
+    }
+}
+
 module.exports = {
     listarUsuarios,
     buscarInfoUsuario,
@@ -132,5 +142,6 @@ module.exports = {
     atualizarUsuario,
     login,
     deletar,
-    editarPerfilPorCampo
+    editarPerfilPorCampo,
+    pesquisarUsuario
 }

@@ -38,10 +38,18 @@
     flex-direction: row;
 }
 
-.editar_perfil {
+.editar_perfil, .pesquisar {
     padding: .5rem 1rem;
     background-color: unset;
     border: 3px solid var(--raisin-black);
     border-radius: 1rem;
     color: white;
+}
+
+.w_30p{
+    width: 30%;
+}
+
+.mt_1rem {
+    margin-top: 1rem;
 }
