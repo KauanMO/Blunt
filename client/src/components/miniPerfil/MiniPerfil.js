@@ -59,10 +59,15 @@ function MiniPerfil() {
         navigate('/')
     }
 
+    const redirecionarPerfil = e => {
+        navigate(`/${e.target.getAttribute('username')}`)
+        window.location.reload()
+    }
+
     return (
         <div id='mini_perfil_container' className={styles.mini_perfil_container}>
             <div id='mini_perfil_options' className={styles.mini_perfil_options}>
-                <a href={dadosPerfil.username}><li className={styles.mini_perfil_option}>Meu perfil</li></a>
+                <li username={dadosPerfil.username} onClick={redirecionarPerfil} className={styles.mini_perfil_option}>Meu perfil</li>
                 <li onClick={logout} style={{ color: 'red' }} className={styles.mini_perfil_option}> <i className="fa-solid fa-right-from-bracket"></i>Sair</li>
             </div>
             <FotoPerfil imageClassName='mini_perfil_feed w_2rem h_2rem' />
