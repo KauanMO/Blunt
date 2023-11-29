@@ -43,11 +43,11 @@ function Comentario(comentario) {
 
     return (
         <div className='comentario_container'>
-            <Imagem src={comentario.comentario.fotoPerfilUsuario} className='foto_perfil_com w_3rem h_3rem' />
+            <Imagem src={comentario.comentario.fotoPerfilUsuario || comentario.comentario.fotoPerfilUsuarioComentario} className='foto_perfil_com w_3rem h_3rem' />
             <div>
                 <div className='username_nomeExib_comentario'>
-                    <span className='nome_exib_comentario'>{comentario.comentario.nomeExibicaoUsuario}</span>
-                    <span className='username_comentario'>@{comentario.comentario.username}</span>
+                    <span className='nome_exib_comentario'>{comentario.comentario.nomeExibicaoUsuario || comentario.comentario.nomeExibicaoUsuarioComentario}</span>
+                    <span className='username_comentario'>@{comentario.comentario.username || comentario.comentario.usernameComentario}</span>
                 </div>
                 <span className='texto_comentario'>{comentario.comentario.textoComentario}</span>
                 <div className='comentario_opcoes'>

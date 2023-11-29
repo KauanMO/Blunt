@@ -67,7 +67,6 @@ function Perfil() {
                 const comentariosUsuarioRes = await fetch(`http://localhost:5000/comentarios/lcu/${infoUsuario.idUsuario}`)
                 const comentariosUsuario = await comentariosUsuarioRes.json()
                 setComentariosUsuario(comentariosUsuario)
-                console.log(comentariosUsuario);
             } catch (e) {
                 console.log(e)
             }
@@ -334,7 +333,22 @@ function Perfil() {
                     <div centralativo='false' id='central_comentarios' className={styles.comentarios_usuario}>
                         {comentariosUsuario[0] ?
                             comentariosUsuario.map((comentario, i) => {
-                                return (<Comentario comentario={comentario} key={1} />)
+                                return (
+                                    <div className={styles.comentario_usuario_container} key={i}>
+                                        <Publicacao key={i} pubInfo={{
+                                            idPublicacao: comentario.fkPublicacao,
+                                            nanoId: comentario.nanoId,
+                                            dataPublicacao: comentario.dataPublicacao,
+                                            fotoPublicacao: comentario.fotoPublicacao,
+                                            textoPublicacao: comentario.textoPublicacao,
+                                            fotoPerfilUsuario: comentario.fotoPerfilUsuarioPublicacao,
+                                            nomeExibicaoUsuario: comentario.nomeExibicaoUsuarioPublicacao,
+                                            username: comentario.usernamePublicacao
+                                        }} container_comentar={false} />
+                                        <i className={`fa-solid fa-up-long ${styles.icon_sinalizador_comentario}`}></i>
+                                        <Comentario comentario={comentario} />
+                                    </div>
+                                )
                             })
                             : 'Carregando comentários'}
                     </div>

@@ -10,19 +10,19 @@ function comentar(req, res) {
 }
 
 function listarComentariosPub(req, res) {
-    model.listarComentariosPub(req.params.fkPublicacao).then(result=>{
+    model.listarComentariosPub(req.params.fkPublicacao).then(result => {
         res.send(result)
-    }).catch(e=>{
+    }).catch(e => {
         console.log(e)
         res.status(500).json
     })
 }
 
-async function listarComentariosUsuario(req,res) {
-    try{
+async function listarComentariosUsuario(req, res) {
+    try {
         const results = await model.listarComentariosUsuario(req.params.fkUsuario)
         res.send(results)
-    }catch(e) {
+    } catch (e) {
         console.log(e)
         res.status(500).send(e)
     }

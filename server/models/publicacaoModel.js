@@ -30,8 +30,7 @@ function buscarPublicacoesPorNanoId(nanoId) {
         FROM Publicacao p
         LEFT JOIN fotoPublicacao fp ON fp.fkPublicacao = p.idPublicacao
         JOIN Usuario u ON p.fkUsuario = u.idUsuario
-        WHERE p.nanoId = '${nanoId}'
-        ORDER BY dataPublicacao DESC`)
+        WHERE p.nanoId = '${nanoId}'`)
 }
 
 function buscarPublicacoesCurtidasUsuario(idUsuario) {
