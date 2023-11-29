@@ -67,6 +67,7 @@ function Perfil() {
                 const comentariosUsuarioRes = await fetch(`http://localhost:5000/comentarios/lcu/${infoUsuario.idUsuario}`)
                 const comentariosUsuario = await comentariosUsuarioRes.json()
                 setComentariosUsuario(comentariosUsuario)
+                console.log(comentariosUsuario);
             } catch (e) {
                 console.log(e)
             }
@@ -118,27 +119,31 @@ function Perfil() {
     }
 
     function mudarConteudoCentral(conteudo) {
-        const centralAtivo = document.querySelector('#conteudo_central').querySelector("[centralativo='true']")
+        const centralAtivo = document.querySelector('#conteudo_central').querySelector("[centralativo='true']"),
+            centralPublicacoes = document.querySelector('#central_publicacoes'),
+            centralCurtidas = document.querySelector('#central_curtidas'),
+            centralComentarios = document.querySelector('#central_comentarios')
+
         if (centralAtivo.id.split('_')[1] !== conteudo) {
             centralAtivo.setAttribute("centralativo", "false")
             centralAtivo.style.animation = `${styles.conteudoCentralOut} 150ms forwards`
         } else return
-        
+
         switch (conteudo) {
             case 'publicacoes':
-                document.querySelector('#central_curtidas').style.display = 'flex'
-                document.querySelector('#central_publicacoes').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
-                document.querySelector('#central_publicacoes').setAttribute("centralativo", "true")
+                centralPublicacoes.style.display = 'flex'
+                centralPublicacoes.style.animation = `${styles.conteudoCentralIn} 150ms forwards`
+                centralPublicacoes.setAttribute("centralativo", "true")
                 break
             case 'curtidas':
-                document.querySelector('#central_curtidas').style.display = 'flex'
-                document.querySelector('#central_curtidas').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
-                document.querySelector('#central_curtidas').setAttribute("centralativo", "true")
+                centralCurtidas.style.display = 'flex'
+                centralCurtidas.style.animation = `${styles.conteudoCentralIn} 150ms forwards`
+                centralCurtidas.setAttribute("centralativo", "true")
                 break
             case 'comentarios':
-                document.querySelector('#central_curtidas').style.display = 'flex'
-                document.querySelector('#central_comentarios').style.animation = `${styles.conteudoCentralIn} 150ms forwards`
-                document.querySelector('#central_comentarios').setAttribute("centralativo", "true")
+                centralComentarios.style.display = 'flex'
+                centralComentarios.style.animation = `${styles.conteudoCentralIn} 150ms forwards`
+                centralComentarios.setAttribute("centralativo", "true")
                 break
             default:
                 break

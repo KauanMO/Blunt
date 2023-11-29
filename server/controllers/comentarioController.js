@@ -20,7 +20,7 @@ function listarComentariosPub(req, res) {
 
 async function listarComentariosUsuario(req,res) {
     try{
-        const results = model.listarComentariosUsuario(req.params.fkUsuario)
+        const results = await model.listarComentariosUsuario(req.params.fkUsuario)
         res.send(results)
     }catch(e) {
         console.log(e)
