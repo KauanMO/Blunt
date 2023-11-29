@@ -40,6 +40,7 @@ function Perfil() {
                 console.log(e)
             }
         }
+        fetchDataInfoUsuario()
 
         const fetchPublicacoesUsuario = async () => {
             if (!infoUsuario.idUsuario) { return }
@@ -51,6 +52,7 @@ function Perfil() {
                 console.log(e)
             }
         }
+        fetchPublicacoesUsuario()
 
         const fetchCurtidasUsuario = async () => {
             if (!infoUsuario.idUsuario) { return }
@@ -62,6 +64,7 @@ function Perfil() {
                 console.log(e)
             }
         }
+        fetchCurtidasUsuario()
 
         const fetchComentariosUsuario = async () => {
             if (!infoUsuario.idUsuario) { return }
@@ -73,6 +76,7 @@ function Perfil() {
                 console.log(e)
             }
         }
+        fetchComentariosUsuario()
 
         const fetchVerificarSeguidor = async () => {
             if (!infoUsuario.idUsuario) return
@@ -85,6 +89,7 @@ function Perfil() {
                 console.log(e)
             }
         }
+        fetchVerificarSeguidor()
 
         const fetchBuscarQtdSeguidores = async () => {
             if (!infoUsuario.idUsuario) return
@@ -97,28 +102,22 @@ function Perfil() {
                 console.log(e)
             }
         }
+        fetchBuscarQtdSeguidores()
 
         const fetchBuscarQtdSeguindo = async () => {
             if (!infoUsuario.idUsuario) return
 
             try {
-                const resQtdSeguindo = await fetch(`http://localhost:5000/seguidor/bqtds/${infoUsuario.idUsuario}`)
+                const resQtdSeguindo = await fetch(`http://localhost:5000/seguidores/bqtdsd/${infoUsuario.idUsuario}`)
                 const qtdSeguindo = await resQtdSeguindo.json()
                 setQtdSeguindo(qtdSeguindo)
             } catch (e) {
                 console.log(e)
             }
         }
-
-        if (infoUsuario.idUsuario === sessionStorage.getItem('idUsuario')) { setMeuPerfil(true) }
-
-        fetchDataInfoUsuario()
-        fetchPublicacoesUsuario()
-        fetchComentariosUsuario()
-        fetchCurtidasUsuario()
-        fetchVerificarSeguidor()
-        fetchBuscarQtdSeguidores()
         fetchBuscarQtdSeguindo()
+
+        if (infoUsuario.idUsuario === sessionStorage.getItem('idUsuario')) setMeuPerfil(true)
     }, [infoUsuario.idUsuario])
 
     function animacaoUnderlineOpcaoNavegacao(opcao) {
@@ -314,7 +313,7 @@ function Perfil() {
                             </div>
                             <div className={styles.seguidores_header}>
                                 <span className={styles.seguidores}>{qtdSeguidores} seguidores</span>
-                                <span className={styles.seguindo}>0 seguindo</span>
+                                <span className={styles.seguindo}>{qtdSeguindo} seguindo</span>
                             </div>
                         </div>
                     </div>

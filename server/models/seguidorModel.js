@@ -25,7 +25,7 @@ function buscarInfoSeguidores(fkSeguido) {
 }
 
 function buscarQuantidadeSeguindo(fkSeguidor) {
-    return db.exec(`SELECT COUNT(idSeguido) AS qtdSeguindo FROM Seguidor WHERE seguidor = '${fkSeguidor}'`)
+    return db.exec(`SELECT COUNT(idSeguidor) AS qtdSeguindo FROM Seguidor WHERE seguidor = '${fkSeguidor}'`)
 }
 
 function buscarInfoSeguindo(fkSeguidor) {
