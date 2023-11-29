@@ -27,4 +27,13 @@ router.get('/bis/:fkSeguido', token.autenticarToken, (req, res) => {
     controller.buscarInfoSeguidores(req, res)
 })
 
+// Buscar quantidade seguindo
+router.get('/bqtdsd/:fkSeguidor', (req, res) => {
+    controller.buscarQuantidadeSeguindo(req, res)
+})
+
+router.get('/bisd/:fkSeguidor', (req, res) => {
+    controller.buscarInfoSeguindo(req, res)
+})
+
 module.exports = router

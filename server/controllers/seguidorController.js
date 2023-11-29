@@ -42,8 +42,28 @@ async function buscarQuantidadeSeguidores(req, res) {
 
 async function buscarInfoSeguidores(req, res) {
     try {
-        const qtdSeguidores = await model.buscarInfoSeguidores(req.params.fkSeguido)
-        res.send(qtdSeguidores)
+        const infoSeguidor = await model.buscarInfoSeguidores(req.params.fkSeguido)
+        res.send(infoSeguidor)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ clientMessage: 'Erro ao buscar os seguidores', serverMessage: `Erro ao buscar os seguidores: ${e}` })
+    }
+}
+
+async function buscarQuantidadeSeguindo(req, res) {
+    try {
+        const qtdSeguindo = await model.buscarQuantidadeSeguindo(req.params.fkSeguidor)
+        res.send(String(qtdSeguindo[0].qtdSeguindo))
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ clientMessage: 'Erro ao buscar quantidade de seguindo', serverMessage: `Erro ao buscar quantidade de seguindo: ${e}` })
+    }
+}
+
+async function buscarInfoSeguindo(req, res) {
+    try {
+        const infoSeguindo = await model.buscarInfoSeguindo(req.params.fkSeguidor)
+        res.send(infoSeguindo)
     } catch (e) {
         console.log(e)
         res.status(500).send({ clientMessage: 'Erro ao buscar os seguidores', serverMessage: `Erro ao buscar os seguidores: ${e}` })
@@ -55,5 +75,7 @@ module.exports = {
     deixarSeguir,
     verificarSeguidor,
     buscarQuantidadeSeguidores,
-    buscarInfoSeguidores
+    buscarInfoSeguidores,
+    buscarQuantidadeSeguindo,
+    buscarInfoSeguindo
 }

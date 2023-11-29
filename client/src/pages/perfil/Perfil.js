@@ -28,6 +28,7 @@ function Perfil() {
     const [meuPerfil, setMeuPerfil] = useState(false)
     const [seguido, setSeguido] = useState(false)
     const [qtdSeguidores, setQtdSeguidores] = useState(0)
+    const [qtdSeguindo, setQtdSeguindo] = useState(0)
 
     useEffect(() => {
         const fetchDataInfoUsuario = async () => {
@@ -97,6 +98,18 @@ function Perfil() {
             }
         }
 
+        const fetchBuscarQtdSeguindo = async () => {
+            if (!infoUsuario.idUsuario) return
+
+            try {
+                const resQtdSeguindo = await fetch(`http://localhost:5000/seguidor/bqtds/${infoUsuario.idUsuario}`)
+                const qtdSeguindo = await resQtdSeguindo.json()
+                setQtdSeguindo(qtdSeguindo)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
         if (infoUsuario.idUsuario === sessionStorage.getItem('idUsuario')) { setMeuPerfil(true) }
 
         fetchDataInfoUsuario()
@@ -105,6 +118,7 @@ function Perfil() {
         fetchCurtidasUsuario()
         fetchVerificarSeguidor()
         fetchBuscarQtdSeguidores()
+        fetchBuscarQtdSeguindo()
     }, [infoUsuario.idUsuario])
 
     function animacaoUnderlineOpcaoNavegacao(opcao) {

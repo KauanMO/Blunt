@@ -182,3 +182,7 @@
 .icon_sinalizador_comentario {
     color: gray;
 }
+
+.seguidores, .seguindo {
+    cursor: pointer;
+}

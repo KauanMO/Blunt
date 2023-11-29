@@ -21,7 +21,19 @@ function buscarInfoSeguidores(fkSeguido) {
     u.idUsuario, u.username, u.fotoPerfilUsuario, u.nomeExibicaoUsuario
     FROM Seguidor s
     JOIN Usuario u ON s.seguidor = u.idUsuario
-    WHERE fkSeguidor = '${fkSeguido}'`)
+    WHERE s.seguido = '${fkSeguido}'`)
+}
+
+function buscarQuantidadeSeguindo(fkSeguidor) {
+    return db.exec(`SELECT COUNT(idSeguido) AS qtdSeguindo FROM Seguidor WHERE seguidor = '${fkSeguidor}'`)
+}
+
+function buscarInfoSeguindo(fkSeguidor) {
+    return db.exec(`SELECT s.notificar, s.seguidor, s.seguido,
+    u.idUsuario, u.username, u.fotoPerfilUsuario, u.nomeExibicaoUsuario
+    FROM Seguidor s
+    JOIN Usuario u ON s.seguidor = u.idUsuario
+    WHERE s.seguidor = '${fkSeguidor}'`)
 }
 
 module.exports = {
@@ -29,5 +41,7 @@ module.exports = {
     deixarDeSeguir,
     buscarSeguidor,
     buscarQuantidadeSeguidores,
-    buscarInfoSeguidores
+    buscarInfoSeguidores,
+    buscarQuantidadeSeguindo,
+    buscarInfoSeguindo
 }
