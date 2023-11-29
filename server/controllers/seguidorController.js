@@ -30,8 +30,30 @@ async function verificarSeguidor(req, res) {
     }
 }
 
+async function buscarQuantidadeSeguidores(req, res) {
+    try {
+        const qtdSeguidores = await model.buscarQuantidadeSeguidores(req.params.fkSeguido)
+        res.send(String(qtdSeguidores[0].qtdSeguidores))
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ clientMessage: 'Erro ao buscar quantidade de seguidores', serverMessage: `Erro ao buscar quantidade de seguidores: ${e}` })
+    }
+}
+
+async function buscarInfoSeguidores(req, res) {
+    try {
+        const qtdSeguidores = await model.buscarInfoSeguidores(req.params.fkSeguido)
+        res.send(qtdSeguidores)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ clientMessage: 'Erro ao buscar os seguidores', serverMessage: `Erro ao buscar os seguidores: ${e}` })
+    }
+}
+
 module.exports = {
     seguir,
     deixarSeguir,
-    verificarSeguidor
+    verificarSeguidor,
+    buscarQuantidadeSeguidores,
+    buscarInfoSeguidores
 }

@@ -14,12 +14,12 @@ import TextArea from '../../components/textArea/TextArea'
 function Perfil() {
     // infoUsuario = bioUsuario, dataCadastro, fotoCapaUsuario, fotoPerfilUsuario, idUsuario, nomeExibicaoUsuario, username
     const [infoUsuario, setInfoUsuario] = useState({
-        idUsuario: '',
-        username: '',
-        nomeExibicaoUsuario: '',
-        fotoCapaUsuario: '',
-        fotoPerfilUsuario: '',
-        bioUsuario: ''
+        idUsuario: null,
+        username: null,
+        nomeExibicaoUsuario: null,
+        fotoCapaUsuario: null,
+        fotoPerfilUsuario: null,
+        bioUsuario: null
     })
 
     const [pubsUsuario, setPubsUsuario] = useState([])
@@ -27,6 +27,7 @@ function Perfil() {
     const [comentariosUsuario, setComentariosUsuario] = useState([])
     const [meuPerfil, setMeuPerfil] = useState(false)
     const [seguido, setSeguido] = useState(false)
+    const [qtdSeguidores, setQtdSeguidores] = useState(0)
 
     useEffect(() => {
         const fetchDataInfoUsuario = async () => {
@@ -84,6 +85,18 @@ function Perfil() {
             }
         }
 
+        const fetchBuscarQtdSeguidores = async () => {
+            if (!infoUsuario.idUsuario) return
+
+            try {
+                const resQtdSeguidores = await fetch(`http://localhost:5000/seguidores/bqtds/${infoUsuario.idUsuario}`)
+                const qtdSeguidores = await resQtdSeguidores.json()
+                setQtdSeguidores(qtdSeguidores)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
         if (infoUsuario.idUsuario === sessionStorage.getItem('idUsuario')) { setMeuPerfil(true) }
 
         fetchDataInfoUsuario()
@@ -91,6 +104,7 @@ function Perfil() {
         fetchComentariosUsuario()
         fetchCurtidasUsuario()
         fetchVerificarSeguidor()
+        fetchBuscarQtdSeguidores()
     }, [infoUsuario.idUsuario])
 
     function animacaoUnderlineOpcaoNavegacao(opcao) {
@@ -285,7 +299,7 @@ function Perfil() {
                                     : ''}
                             </div>
                             <div className={styles.seguidores_header}>
-                                <span className={styles.seguidores}>0 seguidores</span>
+                                <span className={styles.seguidores}>{qtdSeguidores} seguidores</span>
                                 <span className={styles.seguindo}>0 seguindo</span>
                             </div>
                         </div>
