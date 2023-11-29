@@ -122,8 +122,8 @@ function Perfil() {
         if (centralAtivo.id.split('_')[1] !== conteudo) {
             centralAtivo.setAttribute("centralativo", "false")
             centralAtivo.style.animation = `${styles.conteudoCentralOut} 150ms forwards`
-        }
-
+        } else return
+        
         switch (conteudo) {
             case 'publicacoes':
                 document.querySelector('#central_curtidas').style.display = 'flex'
@@ -312,7 +312,7 @@ function Perfil() {
                 </div>
 
                 <div id='conteudo_central' className={styles.conteudo_central}>
-                    <div centralativo='true' id='central_publicacoes' className={styles.publicacoes_usuario}>
+                    <div style={{ display: 'flex', opacity: '1' }} centralativo='true' id='central_publicacoes' className={styles.publicacoes_usuario}>
                         {pubsUsuario[0] ?
                             pubsUsuario.map((post, i) => {
                                 return (<Publicacao key={i} pubInfo={post} />)
