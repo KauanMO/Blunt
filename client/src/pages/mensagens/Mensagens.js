@@ -10,7 +10,6 @@ function Mensagens() {
         useEffect(() => {
             async function fetchSeguidoresReciprocos() {
                 const resSeguidoresReciprocos = await fetch(`/seguidores/bsr/${sessionStorage.getItem('idUsuario')}`)
-                console.log(resSeguidoresReciprocos)
                 if (resSeguidoresReciprocos.status !== 200) {
                     setSeguidoresReciprocos([resSeguidoresReciprocos.status])
                     return

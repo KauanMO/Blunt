@@ -29,6 +29,10 @@
     cursor: pointer;
 }
 
+.chat_atual {
+    background-color: rgb(17, 17, 17);
+}
+
 .username_nomeExibicao_seguidor {
     display: flex;
     flex-direction: column;

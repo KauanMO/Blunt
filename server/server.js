@@ -7,28 +7,20 @@ const io = require('socket.io')(server, { cors: { origin: 'http://localhost:3000
 
 require('dotenv').config()
 
-const usuarioRoute = require('./routes/usuarioRoute')
-const publicacaoRoute = require('./routes/publicacaoRoute')
-const republicacaoRoute = require('./routes/republicacaoRoute')
-const curtidaRoute = require('./routes/curtidaRoute')
-const seguidorRoute = require('./routes/seguidorRoute')
-const comentarioRoute = require('./routes/comentarioRoute')
-const azureUploadRoute = require('./routes/azureUploadRoute')
-const fetchRoute = require('./routes/fetchRoute')
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(cors())
 
-app.use('/usuarios', usuarioRoute)
-app.use('/publicacoes', publicacaoRoute)
-app.use('/republicacoes', republicacaoRoute)
-app.use('/curtidas', curtidaRoute)
-app.use('/seguidores', seguidorRoute)
-app.use('/comentarios', comentarioRoute)
-app.use('/azureUpload', azureUploadRoute)
-app.use('/f', fetchRoute)
+app.use('/usuarios', require('./routes/usuarioRoute'))
+app.use('/publicacoes', require('./routes/publicacaoRoute'))
+app.use('/republicacoes', require('./routes/republicacaoRoute'))
+app.use('/curtidas', require('./routes/curtidaRoute'))
+app.use('/seguidores', require('./routes/seguidorRoute'))
+app.use('/comentarios', require('./routes/comentarioRoute'))
+app.use('/azureUpload', require('./routes/azureUploadRoute'))
+app.use('/f', require('./routes/fetchRoute'))
+app.use('/mensagens', require('./routes/mensagemRoute'))
 
 io.on('connection', socket => {
     console.log(`Usuário(${socket.id}) conectado.`)
@@ -41,5 +33,7 @@ io.on('connection', socket => {
         console.log(`Usuario(${socket.id}) desconectado. Razão: ${reason}.`)
     })
 })
+
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.efwxh13.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`)
 
 server.listen(5000, () => { console.log('Servidor rodando') })
