@@ -13,27 +13,27 @@ function Navbar() {
     const navBarOpcoes = [
         {
             span: 'Principal',
-            i: <i className="fa-solid fa-house"></i>,
+            i: <i className={`fa-solid fa-house ${styles.nav_opcao_icon}`}></i>,
             redirecionamento: 'feed'
         },
         {
             span: 'Pesquisar',
-            i: <i className="fa-solid fa-magnifying-glass"></i>,
+            i: <i className={`fa-solid fa-magnifying-glass ${styles.nav_opcao_icon}`}></i>,
             redirecionamento: 'pesquisar'
         },
         {
             span: 'Notificações',
-            i: <i className="fa-regular fa-bell"></i>,
+            i: <i className={`fa-regular fa-bell ${styles.nav_opcao_icon}`}></i>,
             redirecionamento: 'notificacoes'
         },
         {
             span: 'Configurações',
-            i: <i className="fa-solid fa-gear"></i>,
+            i: <i className={`fa-solid fa-gear ${styles.nav_opcao_icon}`}></i>,
             redirecionamento: 'configuracoes'
         },
         {
             span: 'Mensagens',
-            i: <i className="fa-regular fa-message"></i>,
+            i: <i className={`fa-regular fa-message ${styles.nav_opcao_icon}`}></i>,
             redirecionamento: 'mensagens'
         }
     ]
@@ -46,7 +46,7 @@ function Navbar() {
                     return (
                         <div key={i} onClick={redirecionar} redirecionamento={opcao.redirecionamento} className={styles.opcao_navbar}>
                             {opcao.i}
-                            <span>{opcao.span}</span>
+                            <span className={styles.opcao_span}>{opcao.span}</span>
                         </div>
                     )
                 })}

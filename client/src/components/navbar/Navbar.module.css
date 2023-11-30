@@ -43,3 +43,7 @@
     background-color: var(--raisin-black);
     transition: all 200ms;
 }
+
+.opcao_span, .nav_opcao_icon {
+    pointer-events: none;
+}
