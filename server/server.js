@@ -34,6 +34,6 @@ io.on('connection', socket => {
     })
 })
 
-mongoose.connect(`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.efwxh13.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`)
+require("mongoose").connect(process.env.MONGODB_MESSAGES_CONNECT)
 
 server.listen(5000, () => { console.log('Servidor rodando') })

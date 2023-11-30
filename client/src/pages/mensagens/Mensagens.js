@@ -3,6 +3,7 @@ import styles from './Mensagens.module.css'
 import NavBar from '../../components/navbar/Navbar'
 import Rightside from '../../components/rightside/Rightside'
 import Imagem from '../../components/imagem/Imagem'
+import Chat from '../../components/chat/Chat'
 
 function Mensagens() {
     const ListaSeguidoresReciprocos = () => {
@@ -50,6 +51,8 @@ function Mensagens() {
             <NavBar />
 
             <ListaSeguidoresReciprocos />
+
+            <Chat />
 
             <Rightside />
         </div>

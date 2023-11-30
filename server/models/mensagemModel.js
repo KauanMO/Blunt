@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
+const { Schema } = mongoose;
 
-const mensagem = mongoose.model("Mensagem", {
+const mensagemSchema = new Schema({
     remetente: {
         type: String,
         required: true
@@ -24,4 +25,6 @@ const mensagem = mongoose.model("Mensagem", {
     }
 })
 
-module.exports = mongoose.model("Mensagem", mensagem)
+const mensagem = mongoose.model("Mensagem", mensagemSchema)
+
+module.exports = mensagem
