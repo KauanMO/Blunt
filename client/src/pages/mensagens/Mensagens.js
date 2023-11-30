@@ -4,29 +4,30 @@ import NavBar from '../../components/navbar/Navbar'
 import Rightside from '../../components/rightside/Rightside'
 
 function Mensagens() {
-
     const ListaSeguidoresReciprocos = () => {
         const [seguidoresReciprocos, setSeguidoresReciprocos] = useState([])
         useEffect(() => {
             async function fetchSeguidoresReciprocos() {
                 const resSeguidoresReciprocos = await fetch(`/seguidores/bsr/${sessionStorage.getItem('idUsuario')}`)
-                const seguidoresReciprocos = await resSeguidoresReciprocos.json()
-
-                if (!seguidoresReciprocos[0]) {
-                    setSeguidoresReciprocos([null])
+                console.log(resSeguidoresReciprocos)
+                if (resSeguidoresReciprocos.status !== 200) {
+                    setSeguidoresReciprocos([resSeguidoresReciprocos.status])
                     return
                 }
+
+                const seguidoresReciprocos = await resSeguidoresReciprocos.json()
+
                 setSeguidoresReciprocos(seguidoresReciprocos)
             }
             fetchSeguidoresReciprocos()
-        })
+        }, [])
 
         return (
             <div className={styles.lista_seguidores_reciprocos}>
                 {
                     !seguidoresReciprocos[0]
-                        ? 'Buscando seguidores recíprocos'
-                        : seguidoresReciprocos[0] !== null
+                        ? 'Buscando seguidores recíprocos...'
+                        : seguidoresReciprocos[0].username
                             ? seguidoresReciprocos.map((seguidor, i) => {
                                 return (
                                     <div key={i}>
