@@ -70,6 +70,16 @@ async function buscarInfoSeguindo(req, res) {
     }
 }
 
+async function buscarSeguidoresReciprocos(req, res) {
+    try {
+        const seguidoresReciprocos = await model.buscarSeguidoresReciprocos(req.params.fkUsuario)
+        res.send(seguidoresReciprocos)
+    } catch (e) {
+        console.log(e)
+        res.status(500).send({ clientMessage: 'Erro ao buscar seguidores recíprocos', serverMessage: `Erro ao buscar seguidores recíprocos: ${e}` })
+    }
+}
+
 module.exports = {
     seguir,
     deixarSeguir,
@@ -77,5 +87,6 @@ module.exports = {
     buscarQuantidadeSeguidores,
     buscarInfoSeguidores,
     buscarQuantidadeSeguindo,
-    buscarInfoSeguindo
+    buscarInfoSeguindo,
+    buscarSeguidoresReciprocos
 }

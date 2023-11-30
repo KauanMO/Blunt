@@ -36,6 +36,13 @@ function buscarInfoSeguindo(fkSeguidor) {
     WHERE s.seguidor = '${fkSeguidor}'`)
 }
 
+function buscarSeguidoresReciprocos(fkUsuario) {
+    return db.exec(`SELECT seguido as seguidor
+    FROM seguidor 
+    WHERE seguidor = '${fkUsuario}' 
+    AND seguido IN (SELECT seguidor FROM seguidor WHERE seguido = '${fkUsuario}')`)
+}
+
 module.exports = {
     seguir,
     deixarDeSeguir,
@@ -43,5 +50,6 @@ module.exports = {
     buscarQuantidadeSeguidores,
     buscarInfoSeguidores,
     buscarQuantidadeSeguindo,
-    buscarInfoSeguindo
+    buscarInfoSeguindo,
+    buscarSeguidoresReciprocos
 }

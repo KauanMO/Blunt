@@ -32,8 +32,14 @@ router.get('/bqtdsd/:fkSeguidor', (req, res) => {
     controller.buscarQuantidadeSeguindo(req, res)
 })
 
+// Buscar info seguindo
 router.get('/bisd/:fkSeguidor', (req, res) => {
     controller.buscarInfoSeguindo(req, res)
+})
+
+// Buscar seguidores recíprocos
+router.get('/bsr/:fkUsuario', (req, res) => {
+    controller.buscarSeguidoresReciprocos(req, res)
 })
 
 module.exports = router

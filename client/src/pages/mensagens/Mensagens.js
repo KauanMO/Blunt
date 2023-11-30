@@ -17,8 +17,12 @@ function Mensagens() {
     }
 
     const listaPossiveisMensagens = async () => {
+        const resSeguidoresReciprocos = await fetch(`/seguidores/bsr/${sessionStorage.getItem('idUsuario')}`)
+        const seguidoresReciprocos = await resSeguidoresReciprocos.json()
 
+        console.log(seguidoresReciprocos)
     }
+    listaPossiveisMensagens()
 
     return (
         <div className={styles.mensagens_container}>
