@@ -37,8 +37,10 @@ function buscarInfoSeguindo(fkSeguidor) {
 }
 
 function buscarSeguidoresReciprocos(fkUsuario) {
-    return db.exec(`SELECT seguido as seguidor
-    FROM seguidor 
+    return db.exec(`SELECT s.seguido as seguidor,
+	u.username, u.fotoPerfilUsuario, u.nomeExibicaoUsuario
+    FROM seguidor s
+    JOIN Usuario u ON s.seguido = u.idUsuario
     WHERE seguidor = '${fkUsuario}' 
     AND seguido IN (SELECT seguidor FROM seguidor WHERE seguido = '${fkUsuario}')`)
 }
