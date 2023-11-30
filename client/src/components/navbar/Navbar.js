@@ -30,6 +30,11 @@ function Navbar() {
             span: 'Configurações',
             i: <i className="fa-solid fa-gear"></i>,
             redirecionamento: 'configuracoes'
+        },
+        {
+            span: 'Mensagens',
+            i: <i className="fa-regular fa-message"></i>,
+            redirecionamento: 'mensagens'
         }
     ]
 

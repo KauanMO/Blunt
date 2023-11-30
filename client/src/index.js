@@ -5,33 +5,23 @@ import CadastroImagem from './pages/cadastroImagem/CadastroImagem'
 import Feed from './pages/feed/Feed'
 import Perfil from './pages/perfil/Perfil'
 import VizPublicacao from './pages/vizPublicacao/VizPublicacao'
+import Error404 from './pages/error404/Error404'
 import Pesquisar from './pages/pesquisar/Pesquisar'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <CadastroLogin />
-  },
-  {
-    path: 'cadastro-imagem',
-    element: <CadastroImagem />
-  },
-  {
-    path: 'feed',
-    element: <Feed />
-  },
-  {
-    path: 'pesquisar',
-    element: <Pesquisar />
-  },
-  {
-    path: '/:usuario',
-    element: <Perfil />
-  },
-  {
-    path: '/:usuario/:idPublicacao',
-    element: <VizPublicacao />
+    errorElement: <Error404 />,
+    children: [
+      { path: '', element: <CadastroLogin /> },
+      { path: 'cadastro-imagem', element: <CadastroImagem /> },
+      { path: 'feed', element: <Feed /> },
+      { path: 'pesquisar', element: <Pesquisar /> },
+      { path: 'pesquisar', element: <Pesquisar /> },
+      { path: '/:usuario', element: <Perfil /> },
+      { path: '/:usuario/:idPublicacao', element: <VizPublicacao /> },
+    ]
   }
 ])
 
