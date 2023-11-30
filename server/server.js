@@ -31,7 +31,15 @@ app.use('/azureUpload', azureUploadRoute)
 app.use('/f', fetchRoute)
 
 io.on('connection', socket => {
-    console.log(`Socket conectado: ${socket.id}`)
+    console.log(`Usuário(${socket.id}) conectado.`)
+
+    socket.on('setIdUsuario', idUsuario => {
+        socket.data.idUsuario = idUsuario
+    })
+
+    socket.on('disconnect', reason => {
+        console.log(`Usuario(${socket.id}) desconectado. Razão: ${reason}.`)
+    })
 })
 
 server.listen(5000, () => { console.log('Servidor rodando') })

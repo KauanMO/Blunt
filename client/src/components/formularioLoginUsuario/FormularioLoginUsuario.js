@@ -1,6 +1,6 @@
 import { React, useEffect } from 'react'
 import { useState } from "react"
-import io from 'socket.io-client'
+import { socket } from '../../socket'
 import Input from '../input/Input'
 import './FormularioLoginUsuario.css'
 import { useNavigate } from "react-router-dom"
@@ -68,7 +68,7 @@ function FormularioLoginUsuario({ id }) {
             sessionStorage.setItem('idUsuario', cred.idUsuario)
             localStorage.setItem('jwt', cred.userToken)
 
-            await io.connect('http://localhost:5000')
+            socket.emit('setIdUsuario', cred.idUsuario)
 
             navigate('/feed')
         } else {
