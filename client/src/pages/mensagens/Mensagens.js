@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react'
 import styles from './Mensagens.module.css'
 import NavBar from '../../components/navbar/Navbar'
 import Rightside from '../../components/rightside/Rightside'
+import Imagem from '../../components/imagem/Imagem'
 
 function Mensagens() {
     const ListaSeguidoresReciprocos = () => {
@@ -30,8 +31,12 @@ function Mensagens() {
                         : seguidoresReciprocos[0].username
                             ? seguidoresReciprocos.map((seguidor, i) => {
                                 return (
-                                    <div key={i}>
-                                        {seguidor.username}
+                                    <div className={styles.seguidor_reciproco_container} key={i}>
+                                        <Imagem className={'foto_perfil_pesquisa'} src={seguidor.fotoPerfilUsuario} />
+                                        <div className={styles.username_nomeExibicao_seguidor}>
+                                            <span className={styles.nome_exibicao_seguidor}>{seguidor.nomeExibicaoUsuario}</span>
+                                            <span className={styles.username_seguidor}>@{seguidor.username}</span>
+                                        </div>
                                     </div>
                                 )
                             })
