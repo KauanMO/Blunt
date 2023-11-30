@@ -290,9 +290,14 @@ function Perfil() {
         )
     }
 
+    const abrirModalEditarPerfil = () => {
+        document.querySelector('.modal_editar_perfil').style.display = 'flex'
+        buscarInfoEditar()
+    }
+
     return (
         <div className={styles.perfil_container}>
-            <Modal closeIconOnClick={() => { document.querySelector('.modal_editar_perfil').style.display = 'none' }} className={'modal_editar_perfil'} >
+            <Modal className={'modal_editar_perfil'} >
                 <EditarPerfil />
             </Modal>
             <Navbar />
@@ -320,7 +325,7 @@ function Perfil() {
                     <Button
                         className={`w_7rem pr ${seguido ? 'full_colored' : 'negative_colored'}`}
                         handleOnClick={meuPerfil
-                            ? () => { document.querySelector('.modal_editar_perfil').style.display = 'flex'; buscarInfoEditar() }
+                            ? abrirModalEditarPerfil
                             : seguir}
                         text={meuPerfil ? 'Editar perfil' : seguido ? 'Seguindo' : 'Seguir'} >
                         {seguido ? <IconeNotificar /> : ''}

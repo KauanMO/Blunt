@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Mensagens.module.css'
 import NavBar from '../../components/navbar/Navbar'
 import Rightside from '../../components/rightside/Rightside'
+import Modal from '../../components/modal/Modal'
 
 function Mensagens() {
 
@@ -15,8 +16,16 @@ function Mensagens() {
         )
     }
 
+    const listaPossiveisMensagens = async () => {
+
+    }
+
     return (
         <div className={styles.mensagens_container}>
+            <Modal>
+                
+            </Modal>
+
             <NavBar />
 
             <SemMensagens />
