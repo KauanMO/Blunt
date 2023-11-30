@@ -25,7 +25,7 @@ function ModalPublicar() {
     }
 
     const publicar = async () => {
-        const resPub = await fetch('http://localhost:5000/publicacoes/publicar', {
+        const resPub = await fetch('/publicacoes/publicar', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -41,7 +41,7 @@ function ModalPublicar() {
         if (resPub.ok) {
             notificarPublicado()
             if (document.querySelector('#iFotoPub').files[0]) {
-                publicarFoto(`http://localhost:5000/azureUpload/uploadFotoPub/${pub.insertId}`, document.querySelector('#iFotoPub').files[0])
+                publicarFoto(`/azureUpload/uploadFotoPub/${pub.insertId}`, document.querySelector('#iFotoPub').files[0])
             }
         }
     }

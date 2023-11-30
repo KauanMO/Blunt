@@ -13,7 +13,7 @@ function Feed() {
     const [feed, setFeed] = useState([])
 
     useEffect(() => {
-        const forYouFetchUrl = `http://localhost:5000/publicacoes/foryou`;
+        const forYouFetchUrl = `/publicacoes/foryou`;
         const fetchData = async () => {
             try {
                 const response = await fetch(forYouFetchUrl)

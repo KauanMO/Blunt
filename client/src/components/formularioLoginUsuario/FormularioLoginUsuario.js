@@ -47,7 +47,7 @@ function FormularioLoginUsuario({ id }) {
     const login = async e => {
         e.preventDefault()
         cookie.innerText = ''
-        const loginRes = await fetch(`http://localhost:5000/usuarios/login`, {
+        const loginRes = await fetch(`/usuarios/login`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

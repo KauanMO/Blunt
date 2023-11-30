@@ -96,7 +96,7 @@ function FotoCapaPerfil({ img, className, imgClassName, meuPerfil }) {
         confirmCapa.style.animation = `dropdownOut 100ms forwards`
         document.querySelector('#input_foto_capa_perfil').value = ''
 
-        await fetch(`http://localhost:5000/azureUpload/uploadCapaUsuario/${sessionStorage.getItem('idUsuario')}`, {
+        await fetch(`/azureUpload/uploadCapaUsuario/${sessionStorage.getItem('idUsuario')}`, {
             method: 'POST',
             body: formData
         })

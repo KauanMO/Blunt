@@ -13,7 +13,7 @@ function MiniPerfil() {
     })
 
     useEffect(() => {
-        const url = `http://localhost:5000/usuarios/biu/${sessionStorage.getItem('idUsuario')}`
+        const url = `/usuarios/biu/${sessionStorage.getItem('idUsuario')}`
 
         const fetchData = async () => {
             try {

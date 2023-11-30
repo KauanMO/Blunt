@@ -9,7 +9,7 @@ function Comentario(comentario) {
 
     useEffect(() => {
         const contarCurtidas = async () => {
-            const curtidasRes = await fetch(`http://localhost:5000/curtidas/ccc/${comentario.comentario.idComentario}`)
+            const curtidasRes = await fetch(`/curtidas/ccc/${comentario.comentario.idComentario}`)
             const qtdCurtidas = await curtidasRes.json()
 
             setQtdCurtidas(qtdCurtidas.curtidas)
@@ -17,7 +17,7 @@ function Comentario(comentario) {
         contarCurtidas()
 
         const verificarCurtido = async () => {
-            const verificarCurtidaRes = await fetch(`http://localhost:5000/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${comentario.comentario.idComentario}/fkComentario`)
+            const verificarCurtidaRes = await fetch(`/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${comentario.comentario.idComentario}/fkComentario`)
             const verificarCurtida = await verificarCurtidaRes.json()
             setCurtido(verificarCurtida)
         }
@@ -26,7 +26,7 @@ function Comentario(comentario) {
 
     const curtirDescurtir = async e => {
         try {
-            fetch(`http://localhost:5000/curtidas/${curtido ? 'descurtir' : 'curtir'}`, {
+            fetch(`/curtidas/${curtido ? 'descurtir' : 'curtir'}`, {
                 method: 'POST',
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify({

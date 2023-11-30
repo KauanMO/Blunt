@@ -77,13 +77,13 @@ function FormularioCadastroUsuario({ id }) {
     }
 
     const verificarUsuarioUnico = () => {
-        return fetch(`http://localhost:5000/usuarios/buscarUsuario/username/${dados.iUsername}`).then(res => res.json().then(json => {
+        return fetch(`/usuarios/buscarUsuario/username/${dados.iUsername}`).then(res => res.json().then(json => {
             return json.length === 0
         }))
     }
 
     const verificarEmailUnico = () => {
-        return fetch(`http://localhost:5000/usuarios/buscarUsuario/emailUsuario/${dados.iEmail}`).then(res => res.json().then(json => {
+        return fetch(`/usuarios/buscarUsuario/emailUsuario/${dados.iEmail}`).then(res => res.json().then(json => {
             return json.length === 0
         }))
     }
@@ -96,7 +96,7 @@ function FormularioCadastroUsuario({ id }) {
             if (usernameUnico) {
                 verificarEmailUnico().then(emailUnico => {
                     if (emailUnico) {
-                        fetch('http://localhost:5000/usuarios/cadastrar', {
+                        fetch('/usuarios/cadastrar', {
                             method: 'POST',
                             headers: { 'Content-type': 'application/json' },
                             body: JSON.stringify({

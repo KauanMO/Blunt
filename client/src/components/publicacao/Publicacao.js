@@ -21,7 +21,7 @@ function Publicacao({ pubInfo, clicavel = true, container_comentar = true }) {
     const [qtdCurtidas, setQtdCurtidas] = useState(null)
 
     useEffect(() => {
-        const urlVerificarCurtida = `http://localhost:5000/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${pubInfo.idPublicacao}/fkPublicacao`
+        const urlVerificarCurtida = `/curtidas/vc/${sessionStorage.getItem('idUsuario')}/${pubInfo.idPublicacao}/fkPublicacao`
 
         const fetchDataVerificarCurtida = async () => {
             try {
@@ -35,7 +35,7 @@ function Publicacao({ pubInfo, clicavel = true, container_comentar = true }) {
 
         fetchDataVerificarCurtida()
 
-        const urlContarCurtidas = `http://localhost:5000/curtidas/ccp/${pubInfo.idPublicacao}`
+        const urlContarCurtidas = `/curtidas/ccp/${pubInfo.idPublicacao}`
 
         const fetchDataContarCurtidas = async () => {
             try {
@@ -51,7 +51,7 @@ function Publicacao({ pubInfo, clicavel = true, container_comentar = true }) {
     }, [pubInfo.idPublicacao, curtido])
 
     const curtirDescurtir = e => {
-        fetch(`http://localhost:5000/curtidas/${curtido ? 'descurtir' : 'curtir'}`, {
+        fetch(`/curtidas/${curtido ? 'descurtir' : 'curtir'}`, {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({

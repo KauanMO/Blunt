@@ -7,7 +7,7 @@ import './Comentar.css'
 function Comentar({ pubInfo, className }) {
     const comentar = e => {
         let textoComentario = document.querySelector(`#texto_comentario_${pubInfo.idPublicacao}`).value
-        fetch('http://localhost:5000/comentarios/comentar', {
+        fetch('/comentarios/comentar', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'

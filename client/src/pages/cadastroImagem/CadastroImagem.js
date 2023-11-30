@@ -21,7 +21,7 @@ function CadastroImagem() {
         setTimeout(() => { window.location.href = '/feed' }, 500)
     }
 
-    const uploadImagePath = `http://localhost:5000/azureUpload/uploadFotoUsuario/${sessionStorage.getItem('idUsuario')}`
+    const uploadImagePath = `/azureUpload/uploadFotoUsuario/${sessionStorage.getItem('idUsuario')}`
 
     return (
         <div>

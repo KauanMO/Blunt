@@ -33,7 +33,7 @@ function Perfil() {
     useEffect(() => {
         const fetchDataInfoUsuario = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/usuarios/biuu/${window.location.href.split('/')[3]}`, { headers: { auth_token: localStorage.getItem('jwt') } })
+                const response = await fetch(`/usuarios/biuu/${window.location.href.split('/')[3]}`, { headers: { auth_token: localStorage.getItem('jwt') } })
                 const infoUsuarioRes = await response.json()
                 setInfoUsuario(infoUsuarioRes[0])
             } catch (e) {
@@ -45,7 +45,7 @@ function Perfil() {
         const fetchPublicacoesUsuario = async () => {
             if (!infoUsuario.idUsuario) { return }
             try {
-                const response = await fetch(`http://localhost:5000/publicacoes/bpu/${infoUsuario.idUsuario}`)
+                const response = await fetch(`/publicacoes/bpu/${infoUsuario.idUsuario}`)
                 const pubsUsuarioRes = await response.json()
                 setPubsUsuario(pubsUsuarioRes)
             } catch (e) {
@@ -57,7 +57,7 @@ function Perfil() {
         const fetchCurtidasUsuario = async () => {
             if (!infoUsuario.idUsuario) { return }
             try {
-                const response = await fetch(`http://localhost:5000/publicacoes/bpcu/${infoUsuario.idUsuario}`)
+                const response = await fetch(`/publicacoes/bpcu/${infoUsuario.idUsuario}`)
                 const curtidasUsuarioRes = await response.json()
                 setCurtidasUsuario(curtidasUsuarioRes)
             } catch (e) {
@@ -69,7 +69,7 @@ function Perfil() {
         const fetchComentariosUsuario = async () => {
             if (!infoUsuario.idUsuario) { return }
             try {
-                const comentariosUsuarioRes = await fetch(`http://localhost:5000/comentarios/lcu/${infoUsuario.idUsuario}`)
+                const comentariosUsuarioRes = await fetch(`/comentarios/lcu/${infoUsuario.idUsuario}`)
                 const comentariosUsuario = await comentariosUsuarioRes.json()
                 setComentariosUsuario(comentariosUsuario)
             } catch (e) {
@@ -82,7 +82,7 @@ function Perfil() {
             if (!infoUsuario.idUsuario) return
 
             try {
-                const verificarSeguidorRes = await fetch(`http://localhost:5000/seguidores/vs/${sessionStorage.getItem('idUsuario')}/${infoUsuario.idUsuario}`, { headers: { token_auth: localStorage.getItem('jwt') } })
+                const verificarSeguidorRes = await fetch(`/seguidores/vs/${sessionStorage.getItem('idUsuario')}/${infoUsuario.idUsuario}`, { headers: { token_auth: localStorage.getItem('jwt') } })
                 const verificarSeguidor = await verificarSeguidorRes.json()
                 setSeguido(verificarSeguidor)
             } catch (e) {
@@ -95,7 +95,7 @@ function Perfil() {
             if (!infoUsuario.idUsuario) return
 
             try {
-                const resQtdSeguidores = await fetch(`http://localhost:5000/seguidores/bqtds/${infoUsuario.idUsuario}`)
+                const resQtdSeguidores = await fetch(`/seguidores/bqtds/${infoUsuario.idUsuario}`)
                 const qtdSeguidores = await resQtdSeguidores.json()
                 setQtdSeguidores(qtdSeguidores)
             } catch (e) {
@@ -108,7 +108,7 @@ function Perfil() {
             if (!infoUsuario.idUsuario) return
 
             try {
-                const resQtdSeguindo = await fetch(`http://localhost:5000/seguidores/bqtdsd/${infoUsuario.idUsuario}`)
+                const resQtdSeguindo = await fetch(`/seguidores/bqtdsd/${infoUsuario.idUsuario}`)
                 const qtdSeguindo = await resQtdSeguindo.json()
                 setQtdSeguindo(qtdSeguindo)
             } catch (e) {
@@ -183,7 +183,7 @@ function Perfil() {
 
     const seguir = async e => {
         try {
-            const urlSeguir = `http://localhost:5000/seguidores/${seguido ? 'dds' : 'seguir'}`
+            const urlSeguir = `/seguidores/${seguido ? 'dds' : 'seguir'}`
 
             await fetch(urlSeguir, {
                 method: 'POST',
@@ -208,7 +208,7 @@ function Perfil() {
 
     const buscarInfoEditar = async () => {
         try {
-            const infoUsuarioRes = await fetch(`http://localhost:5000/usuarios/biu/${sessionStorage.getItem('idUsuario')}`, { headers: { token_auth: localStorage.getItem('jwt') } })
+            const infoUsuarioRes = await fetch(`/usuarios/biu/${sessionStorage.getItem('idUsuario')}`, { headers: { token_auth: localStorage.getItem('jwt') } })
             const infoUsuario = await infoUsuarioRes.json()
             document.querySelector('#editar_nome_usuario').value = infoUsuario.username
             document.querySelector('#editar_nome_exibicao').value = infoUsuario.nomeExibicaoUsuario
@@ -243,7 +243,7 @@ function Perfil() {
             ]
 
             const fetchEditarPerfil = async (idUsuario, campo, valor) => {
-                const resEditarPerfil = await fetch(`http://localhost:5000/usuarios/euc`, {
+                const resEditarPerfil = await fetch(`/usuarios/euc`, {
                     method: 'PUT',
                     headers: {
                         'Content-type': 'application/json',

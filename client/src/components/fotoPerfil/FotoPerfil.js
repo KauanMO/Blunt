@@ -7,7 +7,7 @@ function FotoPerfil({ imageClassName }) {
     const [fotoUsuario, setFotoUsuario] = useState('')
 
     useEffect(() => {
-        const url = `http://localhost:5000/usuarios/bfu/${sessionStorage.getItem('idUsuario')}`;
+        const url = `/usuarios/bfu/${sessionStorage.getItem('idUsuario')}`;
 
         const fetchData = async () => {
             try {

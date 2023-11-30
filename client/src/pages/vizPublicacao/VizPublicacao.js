@@ -11,13 +11,13 @@ function VizPublicacao() {
 
     useEffect(() => {
         async function buscarComentarios(pubId) {
-            const comentariosRes = await fetch(`http://localhost:5000/comentarios/lcp/${pubId}`)
+            const comentariosRes = await fetch(`/comentarios/lcp/${pubId}`)
             const comentarios = await comentariosRes.json()
             setComentariosPub(comentarios)
         }
 
         async function buscarPubInfo(nanoId) {
-            const pubRes = await fetch(`http://localhost:5000/publicacoes/bpnid/${nanoId}`)
+            const pubRes = await fetch(`/publicacoes/bpnid/${nanoId}`)
             const pub = await pubRes.json()
             setPubInfo(pub)
 
