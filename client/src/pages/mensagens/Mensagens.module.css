@@ -1,0 +1,31 @@
+.mensagens_container {
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.sem_mensagens_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sem_mensagens_span {
+    user-select: none;
+}
+
+.mandar_mensagem_icon {
+    font-size: 2rem;
+    width: 2rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
