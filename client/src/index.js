@@ -7,6 +7,7 @@ import Perfil from './pages/perfil/Perfil'
 import VizPublicacao from './pages/vizPublicacao/VizPublicacao'
 import Error404 from './pages/error404/Error404'
 import Pesquisar from './pages/pesquisar/Pesquisar'
+import Mensagens from './pages/mensagens/Mensagens'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       { path: 'cadastro-imagem', element: <CadastroImagem /> },
       { path: 'feed', element: <Feed /> },
       { path: 'pesquisar', element: <Pesquisar /> },
-      { path: 'pesquisar', element: <Pesquisar /> },
+      { path: 'mensagens', element: <Mensagens /> },
       { path: '/:usuario', element: <Perfil /> },
       { path: '/:usuario/:idPublicacao', element: <VizPublicacao /> },
     ]

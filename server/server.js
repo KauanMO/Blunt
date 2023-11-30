@@ -2,6 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const cookieParser = require('cookie-parser')
+const server = require('http').createServer(app)
+const io = require('socket.io')(server, { cors: { origin: 'http://localhost:3000' } })
+
 require('dotenv').config()
 
 const usuarioRoute = require('./routes/usuarioRoute')
@@ -27,4 +30,8 @@ app.use('/comentarios', comentarioRoute)
 app.use('/azureUpload', azureUploadRoute)
 app.use('/f', fetchRoute)
 
-app.listen(5000, () => { console.log('Servidor rodando') })
+io.on('connection', socket => {
+    console.log(`Socket conectado: ${socket.id}`)
+})
+
+server.listen(5000, () => { console.log('Servidor rodando') })
