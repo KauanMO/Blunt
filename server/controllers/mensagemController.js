@@ -11,9 +11,9 @@ const criarMensagem = async (req, res) => {
     }
 }
 
-const listarMensagemPorRemetenteDestinatario = async (req, res) => {
+const buscarChat = async (req, res) => {
     try {
-        const mensagens = await Mensagem.find({ remetente: req.params.remetente, destinatario: req.params.destinatario }).exec()
+        const mensagens = await Mensagem.find({ remetente: req.params.usuario1, destinatario: req.params.usuario2 }).exec()
         res.send(mensagens)
     } catch (e) {
         console.log(e)
@@ -23,5 +23,5 @@ const listarMensagemPorRemetenteDestinatario = async (req, res) => {
 
 module.exports = {
     criarMensagem,
-    listarMensagemPorRemetenteDestinatario
+    buscarChat
 }

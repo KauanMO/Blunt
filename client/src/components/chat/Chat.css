@@ -1,0 +1,8 @@
+.chat_container {
+    width: 60%;
+    height: 100%;
+    margin-left: 1.5rem;
+    border-left: 1px solid var(--lilás);
+    border-right: 1px solid var(--lilás);
+    color: white;
+}

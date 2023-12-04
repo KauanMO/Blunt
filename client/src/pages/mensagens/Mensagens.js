@@ -6,6 +6,8 @@ import Imagem from '../../components/imagem/Imagem'
 import Chat from '../../components/chat/Chat'
 
 function Mensagens() {
+    const [usuarioChatAtual, setUsuarioChatAtual] = useState(null)
+
     const ListaSeguidoresReciprocos = () => {
         const [seguidoresReciprocos, setSeguidoresReciprocos] = useState([])
         useEffect(() => {
@@ -23,6 +25,11 @@ function Mensagens() {
             fetchSeguidoresReciprocos()
         }, [])
 
+        const abrirChat = e => {
+            console.log(e.target)
+            setUsuarioChatAtual(e.target.getAttribute('idusuario'))
+        }
+
         return (
             <div className={styles.lista_seguidores_reciprocos}>
                 {
@@ -31,8 +38,8 @@ function Mensagens() {
                         : seguidoresReciprocos[0].username
                             ? seguidoresReciprocos.map((seguidor, i) => {
                                 return (
-                                    <div className={styles.seguidor_reciproco_container} key={i}>
-                                        <Imagem className={'foto_perfil_pesquisa'} src={seguidor.fotoPerfilUsuario} />
+                                    <div idusuario={seguidor.seguidor} onClick={abrirChat} className={styles.seguidor_reciproco_container} key={i}>
+                                        <Imagem className={'foto_perfil_pesquisa ' + styles.foto_perfil_usuario} src={seguidor.fotoPerfilUsuario} />
                                         <div className={styles.username_nomeExibicao_seguidor}>
                                             <span className={styles.nome_exibicao_seguidor}>{seguidor.nomeExibicaoUsuario}</span>
                                             <span className={styles.username_seguidor}>@{seguidor.username}</span>
@@ -49,10 +56,11 @@ function Mensagens() {
     return (
         <div className={styles.mensagens_container}>
             <NavBar />
+            <div className={styles.mensagens_main}>
+                <ListaSeguidoresReciprocos />
 
-            <ListaSeguidoresReciprocos />
-
-            <Chat />
+                <Chat usuarioAtual={usuarioChatAtual} />
+            </div>
 
             <Rightside />
         </div>

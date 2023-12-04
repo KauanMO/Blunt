@@ -8,7 +8,6 @@
 
 .lista_seguidores_reciprocos {
     margin-top: 1rem;
-    width: calc(100% - 17% - 20%);
     color: white;
 }
 
@@ -46,6 +45,13 @@
     color: var(--cinza);
 }
 
-.nome_exibicao_seguidor, .username_seguidor {
+.nome_exibicao_seguidor, .username_seguidor, .foto_perfil_usuario, .username_nomeExibicao_seguidor {
     user-select: none;
+    pointer-events: none;
+}
+
+.mensagens_main{
+    display: flex;
+    position: relative;
+    width: calc(100% - 17% - 20%);
 }
