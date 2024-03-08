@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import FotoPerfil from '../../components/fotoPerfil/FotoPerfil'
+import FotoPerfil from '../fotoPerfil/FotoPerfil'
 import styles from './MiniPerfil.module.css'
 import { useNavigate } from 'react-router-dom'
 

@@ -4,7 +4,7 @@ import Button from '../button/Button'
 import styles from './Publicar.module.css'
 import TextArea from '../textArea/TextArea'
 import { useState } from 'react'
-import FotoPerfil from '../../components/fotoPerfil/FotoPerfil'
+import FotoPerfil from '../fotoPerfil/FotoPerfil'
 import { nanoid } from 'nanoid'
 
 function ModalPublicar() {

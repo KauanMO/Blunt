@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './Navbar.module.css'
-import MiniPerfil from '../../components/miniPerfil/MiniPerfil'
+import MiniPerfil from '../miniPerfil/MiniPerfil'
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
